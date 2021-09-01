@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "~antd/dist/antd.css";
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
+.slick-prev-arrow {
+  position: absolute;
+  top: 45%;
+  background-image: url('./assets/img/back-session.png');
+  border: none;
+  width: 50px;
+  height: 100px;
+  z-index: 2;
+  opacity: 0.5;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  cursor: pointer;
+}
+
+.slick-next-arrow {
+    position: absolute;
+    top: 45%;
+    right: 0;
+    background-image: url('./assets/img/next-session.png');
+    border: none;
+    width: 50px;
+    height: 100px;
+    z-index: 2;
+    opacity: 0.5;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    cursor: pointer;
+  }
