@@ -1,4 +1,4 @@
-import { SET_DANH_SACH_PHIM } from "../types/MovieType"
+import { SET_DANH_SACH_PHIM, SET_CHI_TIET_PHIM } from "../types/MovieType"
 
 const initialState = {
     arrFilm: [
@@ -17,6 +17,7 @@ const initialState = {
         //     "sapChieu": true
         // },
     ],
+    filmDetail: {}  
 }
 
 
@@ -28,9 +29,14 @@ export const LayDanhSachPhimReducer = (state = initialState, action) => {
             state.arrFilm = action.arrFilm;
             return { ...state }
         }
+        case SET_CHI_TIET_PHIM: {
+            state.filmDetail = action.filmDetail;
+            return {...state}
+        }
         default: return state
     }
 }
+
 
 
 

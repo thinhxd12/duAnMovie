@@ -1,6 +1,7 @@
 import React from 'react'
 import Slider from "react-slick";
-import Film from '../../pages/Home/HomeMenu/Film';
+// import Film from '../../pages/Home/HomeMenu/Film';
+import Film_Flip from '../Film/Film_Flip';
 
 
 export default function MultipleRowSlick(props) {
@@ -28,8 +29,8 @@ export default function MultipleRowSlick(props) {
 
   const settings = {
     infinite: true,
-    slidesToShow: 4,
-    slidesToScroll: 4,
+    slidesToShow: 3,
+    slidesToScroll: 3,
     rows: 2,
     speed: 500,
     nextArrow: <NextArrow />,
@@ -39,10 +40,10 @@ export default function MultipleRowSlick(props) {
 
 
   return (
-    <div className="w-3/4 mx-auto">
-      <Slider {...settings}>
+    <div className="w-3/4 mx-auto mb-5">
+      <Slider {...settings} >
         {props.arrFilm.map((item, index) => {
-          return <Film item={item} key={index} />
+          return <Film_Flip  item={item} key={index}/>
         })}
       </Slider>
     </div>

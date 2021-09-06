@@ -3,13 +3,15 @@ import { applyMiddleware, combineReducers, createStore } from 'redux';
 import thunk from 'redux-thunk'
 import { CarouselReducer } from './Reducers/CarouselReducer'
 import { LayDanhSachPhimReducer } from './Reducers/LayDanhSachPhimReducer'
+import { QuanLyNguoiDungReducer } from './Reducers/QuanLyNguoiDungReducer';
 import { QuanLyRapReducer } from './Reducers/QuanLyRapReducer'
 
 const rootReducer = combineReducers({
     //Khai báo reducer
     CarouselReducer,
     LayDanhSachPhimReducer,
-    QuanLyRapReducer
+    QuanLyRapReducer,
+    QuanLyNguoiDungReducer,
 })
 
 
