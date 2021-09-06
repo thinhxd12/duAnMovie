@@ -1,24 +1,32 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Slider from "react-slick";
+import { getCarouselAction } from "../../../redux/actions/CarouselAction";
 
 
 
 export default function HomeCarousel(props) {
+    const { arrImg } = useSelector(state => state.CarouselReducer);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        const action = getCarouselAction();
+        dispatch(action);
+    }, [dispatch])
     const NextArrow = (props) => {
-        const { className, style, onClick } = props;
+        const { onClick } = props;
         return (
             <div
-                className={'slick-next-arrow '}
+                className='slick__next__arrow'
                 onClick={onClick}
             />
         );
     }
 
     const PrevArrow = (props) => {
-        const { className, style, onClick } = props;
+        const { onClick } = props;
         return (
             <div
-                className={'slick-prev-arrow'}
+                className='slick__prev__arrow'
                 onClick={onClick}
             />
         );
@@ -26,6 +34,9 @@ export default function HomeCarousel(props) {
 
     const settings = {
         dots: true,
+        appendDots: dots => {
+            return <ul style={{ bottom: '5%' }}>{dots}</ul>;
+        },
         lazyLoad: true,
         infinite: true,
         speed: 500,
@@ -34,26 +45,27 @@ export default function HomeCarousel(props) {
         autoplay: true,
         autoplaySpeed: 5000,
         nextArrow: <NextArrow />,
-        prevArrow: <PrevArrow />
+        prevArrow: <PrevArrow />,
     };
+
+    const contentStyle = {
+        height: '815px',
+        width: '100%',
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat'
+    }
     return (
-        <div className="container">
+        <div className="w-full">
             <Slider {...settings}>
-                <div>
-                    <img src="https://picsum.photos/id/1/500/200" className="w-full" alt="..." />
-                </div>
-                <div>
-                    <img src="https://picsum.photos/id/2/500/200" className="w-full" alt="..." />
-                </div>
+                {arrImg.map((item, index) => {
+                    return <div key={index} >
+                        <div style={{ ...contentStyle, backgroundImage: `url(${item.hinhAnh})` }}>
 
-                <div>
-                    <img src="https://picsum.photos/id/3/500/200" className="w-full" alt="..." />
-                </div>
+                        </div>
 
-                <div>
-                    <img src="https://picsum.photos/id/4/500/200" className="w-full" alt="..." />
-                </div>
-
+                    </div>
+                })}
 
             </Slider>
         </div>

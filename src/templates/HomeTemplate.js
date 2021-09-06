@@ -2,6 +2,7 @@ import { Fragment, useEffect, useState } from "react";
 
 //Fragment giống thẻ div mà không hiển thị chỉ dùng để bao bọc trang
 import { Route } from "react-router-dom"
+import Footer from "../components/HomePage/Footer/Footer";
 import Header from "../components/HomePage/Header/Header"
 
 
@@ -46,6 +47,7 @@ export const HomeTemplate = (props) => {
            return <Fragment>
                <Header />
                 {renderComponent(propsRoute)}
+                <Footer/>
            </Fragment>
         }} />
  
