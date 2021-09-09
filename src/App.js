@@ -1,11 +1,14 @@
 import './App.css';
 //Cấu hình routing
-import { BrowserRouter, Route, Router, Switch } from 'react-router-dom'
+import { Router, Switch } from 'react-router-dom'
 import Home from './pages/Home/Home';
 import { HomeTemplate } from './templates/HomeTemplate';
 //Thư viện giúp chuyển hướng trang ở các file không phải là component
 import { createBrowserHistory } from 'history'
-import BaiTapTongHop from './components/BaiTapTongHop/BaiTapTongHop';
+import { AdminTemplate } from './templates/AdminTemplate';
+import Films from './pages/Admin/Films/Films'
+import AddFilm from './pages/Admin/AddFilms/AddFilm';
+// import BaiTapTongHop from './components/BaiTapTongHop/BaiTapTongHop';
 
 export const history = createBrowserHistory();
 
@@ -17,8 +20,9 @@ function App() {
 
         <HomeTemplate path="/home" component={Home} />
 
-        <HomeTemplate exact path="/baitaptonghop" component={BaiTapTongHop} />
-
+        <AdminTemplate exact path="/admin/films" component={Films} />
+        <AdminTemplate exact path="/admin/addfilm" component={AddFilm} />
+        <AdminTemplate exact path="/admin" component={Home} />
 
         <HomeTemplate exact path="/" component={Home} />
       </Switch>

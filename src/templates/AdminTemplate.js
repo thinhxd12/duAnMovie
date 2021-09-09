@@ -1,86 +1,72 @@
-import React, { Fragment, useState } from "react";
-
-//Fragment giống thẻ div mà không hiển thị chỉ dùng để bao bọc trang
-import { NavLink, Route } from "react-router-dom"
-
-import { Layout, Menu } from 'antd';
+import React, { Fragment, useState } from "react"
+import { Layout, Menu, Breadcrumb } from 'antd';
 import {
-    MenuUnfoldOutlined,
-    MenuFoldOutlined,
+    DesktopOutlined,
+    PieChartOutlined,
+    FileOutlined,
+    TeamOutlined,
     UserOutlined,
-    VideoCameraOutlined,
-    UploadOutlined,
 } from '@ant-design/icons';
+import { NavLink, Route } from "react-router-dom";
 
-const { Header, Sider, Content } = Layout;
-
-
+const { Header, Content, Footer, Sider } = Layout;
+const { SubMenu } = Menu;
 
 export const AdminTemplate = (props) => {
-    //props (path,component)
     const [state, setState] = useState({
         collapsed: false,
     })
 
-    // state = {
-    //     collapsed: false,
-    // };
 
-    const toggle = () => {
-        setState({
-            collapsed: !state.collapsed,
-        });
+    const onCollapse = collapsed => {
+        setState({ collapsed });
     };
 
-
     return <Route exact path={props.path} render={(propsRoute) => {
-
         return <Fragment>
-            <Layout>
-                <Sider trigger={null} collapsible collapsed={state.collapsed}>
-                    <div className="logo text-center"> 
-                            <img className="m-2" src="https://picsum.photos/200/200" alt="..." width={50} height={50} style={{borderRadius:'50%'}}/>
-                     </div>
-                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-                        <Menu.Item key="1" icon={<UserOutlined />}>
-
-                            <NavLink to="/admin/films">
-                                Quản lý phim
-                            </NavLink>
-                          
+            <Layout style={{ minHeight: '100vh' }}>
+                <Sider collapsible collapsed={state.collapsed} onCollapse={onCollapse}>
+                    <div className="logo" />
+                    <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+                        <Menu.Item key="1" icon={<PieChartOutlined />}>
+                            User
                         </Menu.Item>
-                        <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-                            Quản lý người dùng
-                        </Menu.Item>
-                        <Menu.Item key="3" icon={<UploadOutlined />}>
-                            Quản lý lịch chiếu
+                        <SubMenu key="sub1" icon={<UserOutlined />} title="Films">
+                            <Menu.Item key="3">
+                                <NavLink to="/admin/films">
+                                    Films
+                                </NavLink>
+                            </Menu.Item>
+                            <Menu.Item key="4">
+                                <NavLink to="/admin/addfilm">
+                                    Add Film
+                                </NavLink>
+                            </Menu.Item>
+                        </SubMenu>
+                        <Menu.Item key="9" icon={<FileOutlined />}>
+                            Show time
                         </Menu.Item>
                     </Menu>
                 </Sider>
                 <Layout className="site-layout">
-                    <Header className="site-layout-background" style={{ padding: 0 }}>
-                        {/* {React.createElement(state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-                            className: 'trigger',
-                            onClick: toggle,
-                        })} */}
-                        {state.collapsed ? <MenuUnfoldOutlined style={{fontSize:25}} onClick={toggle} />  : <MenuFoldOutlined style={{fontSize:25}} onClick={toggle}/>}
-                    </Header>
-                    <Content
-                        className="site-layout-background"
-                        style={{
-                            margin: '24px 16px',
-                            padding: 24,
-                            minHeight: '100vh',
-                        }}
-                    >
-                        <props.component {...propsRoute} />
+                    <Header className="site-layout-background" style={{ padding: 0 }} />
+                    <Content style={{ margin: '16px' }}>
+                        {/* <Breadcrumb style={{ margin: '16px 0' }}>
+                            <Breadcrumb.Item>User</Breadcrumb.Item>
+                            <Breadcrumb.Item>Bill</Breadcrumb.Item>
+                        </Breadcrumb> */}
+                        <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+
+                            <props.component {...propsRoute} />
+
+                        </div>
                     </Content>
+                    <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
                 </Layout>
             </Layout>
 
-
-
         </Fragment>
+
     }} />
 
 }
