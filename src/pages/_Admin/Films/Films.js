@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button, Table } from 'antd';
 import { Input } from 'antd';
-import { AudioOutlined } from '@ant-design/icons';
+import { AudioOutlined, EditOutlined, DeleteOutlined, CalendarOutlined } from '@ant-design/icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { layDanhSachPhimAction } from '../../../redux/actions/LayDanhSachPhimAction';
+import { Fragment } from 'react';
+import { NavLink } from 'react-router-dom';
+import { uniqueId } from 'lodash';
 
 const { Search } = Input;
 
@@ -21,88 +26,86 @@ const onChange = (pagination, filters, sorter, extra) => {
 }
 
 export default function Films(props) {
+
+    const { arrFilm } = useSelector(state => state.LayDanhSachPhimReducer);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(layDanhSachPhimAction());
+    }, [])
+
+    const data = arrFilm;
+
     const columns = [
         {
-            title: 'Name',
-            dataIndex: 'name',
-            filters: [
-                {
-                    text: 'Joe',
-                    value: 'Joe',
-                },
-                {
-                    text: 'Jim',
-                    value: 'Jim',
-                },
-                {
-                    text: 'Submenu',
-                    value: 'Submenu',
-                    children: [
-                        {
-                            text: 'Green',
-                            value: 'Green',
-                        },
-                        {
-                            text: 'Black',
-                            value: 'Black',
-                        },
-                    ],
-                },
-            ],// specify the condition of filtering result
-            // here is that finding the name started with `value`
-            onFilter: (value, record) => record.name.indexOf(value) === 0,
-            sorter: (a, b) => a.name.length - b.name.length,
-            sortDirections: ['descend'],
+            title: 'Mã phim',
+            dataIndex: 'maPhim',
+            sorter: (a, b) => a.maPhim - b.maPhim,
+            sortDirections: ['descend', 'ascend'],
+            width:'10%',
+            key: 1
         },
         {
-            title: 'Age',
-            dataIndex: 'age',
-            defaultSortOrder: 'descend',
-            sorter: (a, b) => a.age - b.age,
+            title: 'Hình ảnh',
+            dataIndex: 'hinhAnh',
+            render: (text, film, index) => {
+                return <Fragment key={index}>
+                    <img src={film.hinhAnh} alt={film.tenPhim} width={50} height={50} onError={(e) => { e.target.onerror = null; e.target.src = "https://picsum.photos/50" }} />
+                </Fragment>
+            },
+            width:'10%',
+            key: 2
         },
         {
-            title: 'Address',
-            dataIndex: 'address',
-            filters: [
-                {
-                    text: 'London',
-                    value: 'London',
-                },
-                {
-                    text: 'New York',
-                    value: 'New York',
-                },
-            ],
-            onFilter: (value, record) => record.address.indexOf(value) === 0,
+            title: 'Tên phim',
+            dataIndex: 'tenPhim',
+            sorter: (a, b) => {
+                let tenPhimA = a.tenPhim.toLowerCase().trim();
+                let tenPhimB = b.tenPhim.toLowerCase().trim();
+                if (tenPhimA > tenPhimB) {
+                    return 1;
+                }
+                return -1;
+            },
+            sortDirections: ['descend', 'ascend'],
+            with: '20%',
+            key: 3
+        }, {
+            title: 'Mô tả',
+            dataIndex: 'moTa',
+            render: (text, film, index) => {
+                return <Fragment key={index}>
+                    {film.moTa.length > 50 ? film.moTa.substr(0, 50) + '...' : film.moTa}
+                </Fragment>
+            },
+            sorter: (a, b) => {
+                let moTaA = a.moTa.toLowerCase().trim();
+                let moTaB = b.moTa.toLowerCase().trim();
+                if (moTaA > moTaB) {
+                    return 1;
+                }
+                return -1;
+            },
+            sortDirections: ['descend', 'ascend'],
+            width:'40%',
+            key: 4
+        },
+        {
+            title: 'Hành động',
+            dataIndex: 'hanhDong',
+            render: (text, film, index) => {
+                return <Fragment key={index}>
+                    <NavLink className="mr-2 text-2xl" to="/"><EditOutlined /></NavLink>
+                    <NavLink className="mr-2 text-2xl text-red-500" to="/"><DeleteOutlined /></NavLink>
+                    <NavLink className="mr-2 text-2xl text-green-500" to="/"><CalendarOutlined /></NavLink>
+
+                </Fragment>
+            },
+            width:'20%',
+            align: 'center',
+            key: 5
         },
     ];
 
-    const data = [
-        {
-            key: '1',
-            name: 'John Brown',
-            age: 32,
-            address: 'New York No. 1 Lake Park',
-        },
-        {
-            key: '2',
-            name: 'Jim Green',
-            age: 42,
-            address: 'London No. 1 Lake Park',
-        },
-        {
-            key: '3',
-            name: 'Joe Black',
-            age: 32,
-            address: 'Sidney No. 1 Lake Park',
-        },
-        {
-            key: '4',
-            name: 'Jim Red',
-            age: 32,
-            address: 'London No. 2 Lake Park',
-        },
-    ];
 
 
     return (
@@ -117,7 +120,7 @@ export default function Films(props) {
                 suffix={suffix}
                 onSearch={onSearch}
             />
-            <Table columns={columns} dataSource={data} onChange={onChange} />
+            <Table columns={columns} dataSource={data} onChange={onChange} rowKey={uniqueId}/>
         </div>
     )
 }
