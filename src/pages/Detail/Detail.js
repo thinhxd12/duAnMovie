@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { CustomCard } from "@tsamantanis/react-glassmorphism";
 import "@tsamantanis/react-glassmorphism/dist/index.css";
 import "../../assets/styles/circle.scss";
-import { Tabs, Radio, Space } from "antd";
+import { Tabs} from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { layThongTinChiTietPhimAction } from "../../redux/actions/QuanLyRapAction";
 import moment from "moment";
@@ -42,7 +42,7 @@ export default function Detail(props) {
         <div className="grid grid-cols-12">
           <div className="col-span-5 col-start-3">
             <div className="grid grid-cols-2">
-              <img src={filmDetail.hinhAnh} alt="123" />
+              <img src={filmDetail.hinhAnh} alt="..." />
               <div className="mt-20">
                 <p className="text-sm">
                   Ngày chiếu:{" "}
@@ -98,7 +98,7 @@ export default function Detail(props) {
                             <img
                               src={htr.logo}
                               className="rounded-full"
-                              width="50"
+                              width="50" alt="..."
                             />
                             <div className="text-center ml-2">
                               {htr.tenHeThongRap}
@@ -112,7 +112,7 @@ export default function Detail(props) {
                             <div className="m-2  flex" key={index}>
                                 <img
                                   style={{ width: 50, height: 50 }}
-                                  src={cumRap.hinhAnh}
+                                  src={cumRap.hinhAnh} alt="..."
                                 />
                                 <div className="ml-2">
                                   <h4 className="text-xl text-green-700">

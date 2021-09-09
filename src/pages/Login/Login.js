@@ -8,7 +8,8 @@ export default function Login(props) {
 
   const dispatch = useDispatch();
 
-  const {userLogin} = useSelector (state => state.QuanLyNguoiDungReducer)
+  const {userLogin} = useSelector (state => state.QuanLyNguoiDungReducer);
+  console.log ({userLogin})
   
   const formik = useFormik({
     initialValues: {

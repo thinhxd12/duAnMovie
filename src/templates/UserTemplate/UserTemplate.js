@@ -219,7 +219,7 @@ export const UserTemplate = (props) => {
                     <a
                       className="font-bold mt-4 sm:mt-0 sm:ml-4 px-8 py-3 sm:py-2 rounded bg-purple-700 text-gray-100 hover:bg-purple-900 transition duration-300 text-center"
                       href="https://treact.owaiskhan.me"
-                      target="_blank"
+                      
                     >
                       See Treact
                     </a>

@@ -1,18 +1,10 @@
-import { http, TOKEN_CYBERSOFT } from "../../util/setting";
-import axios from "axios";
+import { http } from "../../util/setting";
 import { DANG_NHAP_ACTION } from "../types/QuanLyNguoiDungType";
 
 export const dangNhapAction = (thongTinDangNhap) => {
   return async (dispatch) => {
     try {
-      const result = await axios({
-        url: "https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap",
-        method: "POST",
-        data: thongTinDangNhap,
-        headers: {
-          TokenCybersoft: TOKEN_CYBERSOFT,
-        },
-      });
+      const result = await http.post(`/api/QuanLyNguoiDung/DangNhap`, thongTinDangNhap);
 
       if(result.data.statusCode === 200) {
           dispatch({
@@ -23,7 +15,7 @@ export const dangNhapAction = (thongTinDangNhap) => {
       console.log("result", result);
     } catch (error) {
       alert("Tài khoản không tồn tại!");
-      console.log("error", error.response?.data);
+      console.log("error", error.response.data);
     }
   };
 };

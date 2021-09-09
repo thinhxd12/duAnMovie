@@ -1,4 +1,4 @@
-import { SET_CUM_RAP_THEO_HE_THONG, SET_HE_THONG_RAP_CHIEU, SET_CHI_TIET_PHIM } from "../types/MovieType"
+import { SET_CUM_RAP_THEO_HE_THONG, SET_HE_THONG_RAP_CHIEU} from "../types/MovieType"
 
 const initialState = {
     heThongRapChieu: [],
