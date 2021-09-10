@@ -3,10 +3,10 @@ import { Button, Table } from 'antd';
 import { Input } from 'antd';
 import { AudioOutlined, EditOutlined, DeleteOutlined, CalendarOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { layDanhSachPhimAction } from '../../../redux/actions/LayDanhSachPhimAction';
 import { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import { uniqueId } from 'lodash';
+import { layDanhSachPhimAction } from '../../../redux/actions/QuanlyPhimAction';
 
 const { Search } = Input;
 
@@ -94,7 +94,7 @@ export default function Films(props) {
             dataIndex: 'hanhDong',
             render: (text, film, index) => {
                 return <Fragment key={index}>
-                    <NavLink className="mr-2 text-2xl" to="/"><EditOutlined /></NavLink>
+                    <NavLink className="mr-2 text-2xl" to={`/admin/films/edit/${film.maPhim}`}><EditOutlined /></NavLink>
                     <NavLink className="mr-2 text-2xl text-red-500" to="/"><DeleteOutlined /></NavLink>
                     <NavLink className="mr-2 text-2xl text-green-500" to="/"><CalendarOutlined /></NavLink>
 

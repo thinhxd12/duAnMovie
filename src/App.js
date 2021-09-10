@@ -14,6 +14,7 @@ import Register from './pages/Register/Register'
 import { AdminTemplate } from './templates/AdminTemplate';
 import Films from './pages/Admin/Films/Films';
 import AddFilm from './pages/Admin/AddFilms/AddFilm';
+import EditFilm from './pages/Admin/Edit/EditFilm';
 
 
 
@@ -36,7 +37,7 @@ function App() {
 
 
 
-
+        <AdminTemplate exact path="/admin/films/edit/:id" component={EditFilm} />
         <AdminTemplate exact path="/admin/films" component={Films} />
         <AdminTemplate exact path="/admin/addfilm" component={AddFilm} />
         <AdminTemplate exact path="/admin" component={Home} />

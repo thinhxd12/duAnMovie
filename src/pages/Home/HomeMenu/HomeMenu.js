@@ -2,9 +2,9 @@ import React, { useEffect } from 'react'
 import { Tabs } from 'antd';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { layDanhSachPhimAction } from '../../../redux/actions/LayDanhSachPhimAction';
 
 import MultipleRowSlick from '../../../components/RSlick/MultipleRowSlick';
+import { layDanhSachPhimAction } from '../../../redux/actions/QuanlyPhimAction';
 
 
 

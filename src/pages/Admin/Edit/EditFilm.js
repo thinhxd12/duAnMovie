@@ -17,9 +17,8 @@ import { Fragment } from 'react';
 
 
 import { GROUP_ID } from '../../../util/setting';
-import { ThemPhimAction } from '../../../redux/actions/QuanlyPhimAction';
 
-export default function AddFilm(prop) {
+export default function EditFilm(prop) {
 
   const [componentSize, setComponentSize] = useState('default');
 
@@ -52,7 +51,6 @@ export default function AddFilm(prop) {
         }
       }
 
-      ThemPhimAction(frmData);
 
     }
   })

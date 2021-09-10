@@ -26,7 +26,13 @@ export const AdminTemplate = (props) => {
         return <Fragment>
             <Layout style={{ minHeight: '100vh' }}>
                 <Sider collapsible collapsed={state.collapsed} onCollapse={onCollapse}>
-                    <div className="logo" />
+                    <NavLink to="/">
+                        <img
+                            src="https://i.imgur.com/lC22izJ.png"
+                            alt="logo"
+                            style={{ maxWidth: "50px",margin:"10px auto" }}
+                        />
+                    </NavLink>
                     <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
                         <Menu.Item key="1" icon={<PieChartOutlined />}>
                             User

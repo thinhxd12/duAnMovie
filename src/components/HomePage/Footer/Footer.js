@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux'
 
 export default function Footer(props) {
     const { heThongRapChieu } = useSelector(state => state.QuanLyRapReducer)
-    console.log('heThongRapChieu', heThongRapChieu)
 
     return (
         <footer className="text-gray-600 body-font bg-gray-100">
