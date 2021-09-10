@@ -9,7 +9,7 @@ import { layDanhSachPhimAction } from '../../../redux/actions/QuanlyPhimAction';
 
 
 export default function HomeMenu(props) {
-    const { arrFilm } = useSelector(state => state.LayDanhSachPhimReducer);
+    const { arrFilm } = useSelector(state => state.QuanLyPhimReducer);
 
     const arrFilmDangChieu = arrFilm.filter(phim => phim.dangChieu);
     const arrFilmSapChieu = arrFilm.filter(phim => phim.sapChieu);

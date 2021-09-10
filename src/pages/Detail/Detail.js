@@ -11,9 +11,8 @@ import {NavLink} from 'react-router-dom'
 const { TabPane } = Tabs;
 
 export default function Detail(props) {
-  const filmDetail = useSelector(
-    (state) => state.LayDanhSachPhimReducer.filmDetail
-  );
+  
+  const {filmDetail} = useSelector(state => state.QuanLyPhimReducer)
   console.log({ filmDetail });
   const dispatch = useDispatch();
   useEffect(() => {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik'
 import {
   Form,
@@ -17,26 +17,38 @@ import { Fragment } from 'react';
 
 
 import { GROUP_ID } from '../../../util/setting';
+import { useDispatch, useSelector } from 'react-redux';
+import { layThongTinPhimAction } from '../../../redux/actions/QuanlyPhimAction';
+import moment from 'moment';
 
-export default function EditFilm(prop) {
+export default function EditFilm(props) {
 
   const [componentSize, setComponentSize] = useState('default');
 
-  const [imgSrc, setImgSrc] = useState('https://picsum.photos/200/200')
+  const [imgSrc, setImgSrc] = useState('')
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    let { id } = props.match.params;
+    dispatch(layThongTinPhimAction(id));
+  }, [])
+
+  const { thongTinPhim } = useSelector(state => state.QuanLyPhimReducer);
 
   const formik = useFormik({
+    enableReinitialize: true,
     initialValues: {
       maPhim: '',
-      tenPhim: '',
-      trailer: '',
-      moTa: '',
+      tenPhim: thongTinPhim.tenPhim,
+      trailer: thongTinPhim.trailer,
+      moTa: thongTinPhim.moTa,
       maNhom: GROUP_ID,
-      ngayKhoiChieu: '',
-      sapChieu: false,
-      dangChieu: false,
-      hot: false,
-      danhGia: 0,
-      hinhAnh: {}
+      ngayKhoiChieu: thongTinPhim.ngayKhoiChieu,
+      sapChieu: thongTinPhim.sapChieu,
+      dangChieu: thongTinPhim.dangChieu,
+      hot: thongTinPhim.hot,
+      danhGia: thongTinPhim.danhGia,
+      hinhAnh: null
     },
     onSubmit: (values) => {
       console.log(values);
@@ -106,32 +118,32 @@ export default function EditFilm(prop) {
           </Radio.Group>
         </Form.Item>
         <Form.Item label="Tên phim">
-          <Input name="tenPhim" onChange={formik.handleChange} />
+          <Input name="tenPhim" onChange={formik.handleChange} value={formik.values.tenPhim} />
         </Form.Item>
         <Form.Item label="Mô tả">
-          <Input name="moTa" onChange={formik.handleChange} />
+          <Input name="moTa" onChange={formik.handleChange} value={formik.values.moTa} />
         </Form.Item>
         <Form.Item label="Trailer">
-          <Input name="trailer" onChange={formik.handleChange} />
+          <Input name="trailer" onChange={formik.handleChange} value={formik.values.trailer} />
         </Form.Item>
         <Form.Item label="Ngày khởi chiếu">
-          <DatePicker name="ngayKhoiChieu" format="DD/MM/YYYY" onChange={handleChangeDatePicker} />
+          <DatePicker name="ngayKhoiChieu" format="DD/MM/YYYY" onChange={handleChangeDatePicker} value={moment(formik.values.ngayKhoiChieu,"DD/MM/YYYY")} />
         </Form.Item>
         <Form.Item label="Đang chiếu" valuePropName="checked">
-          <Switch name="dangChieu" onChange={(checked) => { handleChangeSwitch('dangChieu', checked) }} />
+          <Switch name="dangChieu" onChange={(checked) => { handleChangeSwitch('dangChieu', checked) }} checked={formik.values.dangChieu} />
         </Form.Item>
         <Form.Item label="sắp chiếu" valuePropName="checked" >
-          <Switch name="sapChieu" onChange={(checked) => { handleChangeSwitch('sapChieu', checked) }} />
+          <Switch name="sapChieu" onChange={(checked) => { handleChangeSwitch('sapChieu', checked) }} checked={formik.values.sapChieu} />
         </Form.Item>
         <Form.Item label="Hot" valuePropName="checked">
-          <Switch name="Hot" onChange={(checked) => { handleChangeSwitch('hot', checked) }} />
+          <Switch name="Hot" onChange={(checked) => { handleChangeSwitch('hot', checked) }} checked={formik.values.hot} />
         </Form.Item>
         <Form.Item label="Đánh giá">
-          <InputNumber name="danhGia" onChange={(value) => { formik.setFieldValue('danhGia', value) }} />
+          <InputNumber name="danhGia" onChange={(value) => { formik.setFieldValue('danhGia', value) }} value={formik.values.danhGia} />
         </Form.Item>
         <Form.Item label="Hình ảnh">
           <input type="file" name="hinhAnh" onChange={handleChangeFile} accept="image/png, image/jpg, image.jpeg,image/gif " />
-          <img style={{ width: 200 }} className="mt-2" src={imgSrc} alt="..." />
+          <img style={{ width: 200 }} className="mt-2" src={imgSrc === '' ? thongTinPhim.hinhAnh : imgSrc} alt="..." />
         </Form.Item>
         <Form.Item label="Chức năng">
           <button className="btn btn-outline-primary" type="submit">Thêm phim</button>

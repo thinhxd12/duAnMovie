@@ -27,7 +27,7 @@ const onChange = (pagination, filters, sorter, extra) => {
 
 export default function Films(props) {
 
-    const { arrFilm } = useSelector(state => state.LayDanhSachPhimReducer);
+    const { arrFilm } = useSelector(state => state.QuanLyPhimReducer);
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(layDanhSachPhimAction());
