@@ -1,4 +1,4 @@
-import { GROUP_ID, http } from "../../util/settings";
+import { GROUP_ID, http } from "../../util/setting";
 import { SET_DANH_SACH_PHIM } from "../types/MovieType";
 
 export const layDanhSachPhimAction =()=>{

@@ -22,11 +22,3 @@ http.interceptors.request.use((config)=>{
 }, (errors) => {
     return Promise.reject(errors)
 })
-
-
-
-
-
-
-
-

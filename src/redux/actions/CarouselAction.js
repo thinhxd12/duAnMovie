@@ -1,4 +1,4 @@
-import { http, } from "../../util/settings"
+import { http, } from "../../util/setting"
 import { SET_CAROUSEL } from "../types/MovieType";
 
 export const getCarouselAction = () => {

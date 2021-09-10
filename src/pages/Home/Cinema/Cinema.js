@@ -38,7 +38,7 @@ export default function Cinema(props) {
 
                                     {cumRap.danhSachPhim.slice(0, 5).map((phim) => {
                                         return <div className="m-2 flex" key={phim.tenPhim}>
-                                            <img src={phim.hinhAnh} alt={phim.tenPhim} style={{ width: '75px', height: '115px' }} onError={(e) => { e.target.onerror = null; e.target.src = "https://picsum.photos/75" }} />
+                                            <img src={phim.hinhAnh} alt={phim.tenPhim} style={{ width: '75px', height: 'auto' }} onError={(e) => { e.target.onerror = null; e.target.src = "https://picsum.photos/75" }} />
                                             <div className="ml-2">
                                                 <h4 className="text-xl text-green-700">{phim.tenPhim}</h4>
                                                 <p className="font-semibold text-sm">{cumRap.diaChi}</p>
