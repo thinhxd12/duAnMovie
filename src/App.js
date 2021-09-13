@@ -16,6 +16,8 @@ import Films from './pages/Admin/Films/Films';
 import AddFilm from './pages/Admin/AddFilms/AddFilm';
 import EditFilm from './pages/Admin/Edit/EditFilm';
 import ShowTime from './pages/Admin/ShowTime/ShowTime';
+import Users from './pages/Admin/Users/Users';
+import AddUser from './pages/Admin/AddUser/AddUser';
 
 
 
@@ -35,13 +37,13 @@ function App() {
         <CheckoutTemplate path="/checkout/:id" exact component={Checkout} />
         <UserTemplate path="/login" exact Component={Login} />
 
-
-
+        <AdminTemplate exact path="/admin/adduser" component={AddUser} />
+        <AdminTemplate exact path="/admin/users" component={Users} />
         <AdminTemplate exact path="/admin/films/showtime/:id" component={ShowTime} />
         <AdminTemplate exact path="/admin/films/edit/:id" component={EditFilm} />
-        <AdminTemplate exact path="/admin/films" component={Films} />
         <AdminTemplate exact path="/admin/addfilm" component={AddFilm} />
-        <AdminTemplate exact path="/admin" component={Home} />
+        <AdminTemplate exact path="/admin/films" component={Films} />
+        <AdminTemplate exact path="/admin" component={Users}/>
 
         <HomeTemplate exact path="/" component={Home} />
         

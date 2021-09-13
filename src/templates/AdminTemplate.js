@@ -1,11 +1,9 @@
 import React, { Fragment, useState } from "react"
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Layout, Menu } from 'antd';
 import {
-    DesktopOutlined,
-    PieChartOutlined,
     FileOutlined,
-    TeamOutlined,
     UserOutlined,
+    PlayCircleOutlined
 } from '@ant-design/icons';
 import { NavLink, Route } from "react-router-dom";
 
@@ -34,10 +32,19 @@ export const AdminTemplate = (props) => {
                         />
                     </NavLink>
                     <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-                        <Menu.Item key="1" icon={<PieChartOutlined />}>
-                            User
-                        </Menu.Item>
-                        <SubMenu key="sub1" icon={<UserOutlined />} title="Films">
+                        <SubMenu key="sub1" icon={<UserOutlined />} title="Users">
+                            <Menu.Item key="1">
+                                <NavLink to="/admin/users">
+                                    Users
+                                </NavLink>
+                            </Menu.Item>
+                            <Menu.Item key="2">
+                                <NavLink to="/admin/adduser">
+                                    Add User
+                                </NavLink>
+                            </Menu.Item>
+                        </SubMenu>
+                        <SubMenu key="sub2" icon={<PlayCircleOutlined />} title="Films">
                             <Menu.Item key="3">
                                 <NavLink to="/admin/films">
                                     Films
@@ -57,15 +64,13 @@ export const AdminTemplate = (props) => {
                 <Layout className="site-layout">
                     <Header className="site-layout-background" style={{ padding: 0 }} />
                     <Content style={{ margin: '16px' }}>
-                        {/* <Breadcrumb style={{ margin: '16px 0' }}>
-                            <Breadcrumb.Item>User</Breadcrumb.Item>
-                            <Breadcrumb.Item>Bill</Breadcrumb.Item>
-                        </Breadcrumb> */}
+                        
                         <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
 
                             <props.component {...propsRoute} />
 
                         </div>
+
                     </Content>
                     <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
                 </Layout>

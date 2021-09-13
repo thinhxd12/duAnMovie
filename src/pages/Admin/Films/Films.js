@@ -7,6 +7,7 @@ import { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import { uniqueId } from 'lodash';
 import { layDanhSachPhimAction, xoaPhimAction } from '../../../redux/actions/QuanlyPhimAction';
+import { history } from '../../../App';
 
 const { Search } = Input;
 
@@ -33,7 +34,7 @@ export default function Films(props) {
     }, [])
 
     const onSearch = value => {
-        console.log(value)
+        // console.log(value)
         dispatch(layDanhSachPhimAction(value));
     };
 
@@ -122,7 +123,9 @@ export default function Films(props) {
     return (
         <div>
             <h3 className="text-3xl">Quản lý phim</h3>
-            <Button className="my-3" type="primary">Thêm phim</Button>
+            <Button className="my-3" type="primary" onClick={()=>{
+                history.push('/admin/addfilm');
+            }}>Thêm phim</Button>
             <Search
                 className="w-50 mb-3 block"
                 placeholder="Nhập tên phim"
