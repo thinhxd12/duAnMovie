@@ -15,6 +15,7 @@ import { AdminTemplate } from './templates/AdminTemplate';
 import Films from './pages/Admin/Films/Films';
 import AddFilm from './pages/Admin/AddFilms/AddFilm';
 import EditFilm from './pages/Admin/Edit/EditFilm';
+import ShowTime from './pages/Admin/ShowTime/ShowTime';
 
 
 
@@ -36,7 +37,7 @@ function App() {
 
 
 
-
+        <AdminTemplate exact path="/admin/films/showtime/:id" component={ShowTime} />
         <AdminTemplate exact path="/admin/films/edit/:id" component={EditFilm} />
         <AdminTemplate exact path="/admin/films" component={Films} />
         <AdminTemplate exact path="/admin/addfilm" component={AddFilm} />

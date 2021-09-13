@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import { uniqueId } from 'lodash';
-import { layDanhSachPhimAction } from '../../../redux/actions/QuanlyPhimAction';
+import { layDanhSachPhimAction, xoaPhimAction } from '../../../redux/actions/QuanlyPhimAction';
 
 const { Search } = Input;
 
@@ -19,7 +19,6 @@ const suffix = (
     />
 );
 
-const onSearch = value => { };
 
 const onChange = (pagination, filters, sorter, extra) => {
     // console.log('params', pagination, filters, sorter, extra);
@@ -33,6 +32,11 @@ export default function Films(props) {
         dispatch(layDanhSachPhimAction());
     }, [])
 
+    const onSearch = value => {
+        console.log(value)
+        dispatch(layDanhSachPhimAction(value));
+    };
+
     const data = arrFilm;
 
     const columns = [
@@ -41,7 +45,7 @@ export default function Films(props) {
             dataIndex: 'maPhim',
             sorter: (a, b) => a.maPhim - b.maPhim,
             sortDirections: ['descend', 'ascend'],
-            width:'10%',
+            width: '10%',
             key: 1
         },
         {
@@ -52,7 +56,7 @@ export default function Films(props) {
                     <img src={film.hinhAnh} alt={film.tenPhim} width={50} height={50} onError={(e) => { e.target.onerror = null; e.target.src = "https://picsum.photos/50" }} />
                 </Fragment>
             },
-            width:'10%',
+            width: '10%',
             key: 2
         },
         {
@@ -86,7 +90,7 @@ export default function Films(props) {
                 return -1;
             },
             sortDirections: ['descend', 'ascend'],
-            width:'40%',
+            width: '40%',
             key: 4
         },
         {
@@ -95,12 +99,19 @@ export default function Films(props) {
             render: (text, film, index) => {
                 return <Fragment key={index}>
                     <NavLink className="mr-2 text-2xl" to={`/admin/films/edit/${film.maPhim}`}><EditOutlined /></NavLink>
-                    <NavLink className="mr-2 text-2xl text-red-500" to="/"><DeleteOutlined /></NavLink>
-                    <NavLink className="mr-2 text-2xl text-green-500" to="/"><CalendarOutlined /></NavLink>
+                    <span className="mr-2 text-2xl text-red-500" style={{ cursor: 'pointer' }} onClick={() => {
+                        if (window.confirm('Bạn có muốn xoá phim ' + film.tenPhim)) {
+                            // console.log(film.maPhim)
+                            xoaPhimAction(film.maPhim);
+                        }
+                    }}><DeleteOutlined /></span>
+                    <NavLink className="mr-2 text-2xl text-green-500" to={`/admin/films/showtime/${film.maPhim}`} onClick={() => {
+                        localStorage.setItem('filmParams', JSON.stringify(film))
+                    }}><CalendarOutlined /></NavLink>
 
                 </Fragment>
             },
-            width:'20%',
+            width: '20%',
             align: 'center',
             key: 5
         },
@@ -120,7 +131,7 @@ export default function Films(props) {
                 suffix={suffix}
                 onSearch={onSearch}
             />
-            <Table columns={columns} dataSource={data} onChange={onChange} rowKey={uniqueId}/>
+            <Table columns={columns} dataSource={data} onChange={onChange} rowKey={uniqueId} />
         </div>
     )
 }

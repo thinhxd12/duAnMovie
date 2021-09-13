@@ -17,7 +17,7 @@ import { Fragment } from 'react';
 
 
 import { GROUP_ID } from '../../../util/setting';
-import { ThemPhimAction } from '../../../redux/actions/QuanlyPhimAction';
+import { themPhimAction } from '../../../redux/actions/QuanlyPhimAction';
 
 export default function AddFilm(prop) {
 
@@ -52,7 +52,7 @@ export default function AddFilm(prop) {
         }
       }
 
-      ThemPhimAction(frmData);
+      themPhimAction(frmData);
 
     }
   })

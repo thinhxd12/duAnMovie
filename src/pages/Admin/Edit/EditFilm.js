@@ -18,7 +18,7 @@ import { Fragment } from 'react';
 
 import { GROUP_ID } from '../../../util/setting';
 import { useDispatch, useSelector } from 'react-redux';
-import { layThongTinPhimAction } from '../../../redux/actions/QuanlyPhimAction';
+import { capNhatPhimUploadAction, layThongTinPhimAction } from '../../../redux/actions/QuanlyPhimAction';
 import moment from 'moment';
 
 export default function EditFilm(props) {
@@ -38,7 +38,7 @@ export default function EditFilm(props) {
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      maPhim: '',
+      maPhim: thongTinPhim.maPhim,
       tenPhim: thongTinPhim.tenPhim,
       trailer: thongTinPhim.trailer,
       moTa: thongTinPhim.moTa,
@@ -59,10 +59,12 @@ export default function EditFilm(props) {
         if (key !== 'hinhAnh') {
           frmData.append(key, values[key]);
         } else {
-          frmData.append('File', values.hinhAnh, values.hinhAnh.name)
+          if(values.hinhAnh !== null){
+            frmData.append('File', values.hinhAnh, values.hinhAnh.name)
+          }
         }
       }
-
+      dispatch(capNhatPhimUploadAction(frmData));
 
     }
   })
@@ -72,7 +74,7 @@ export default function EditFilm(props) {
   };
 
   const handleChangeDatePicker = (date, dateString) => {
-    formik.setFieldValue('ngayKhoiChieu', dateString)
+    formik.setFieldValue('ngayKhoiChieu', moment(dateString,"DD/MM/YYYY"))
   }
 
   const handleChangeSwitch = (name, checked) => {
@@ -82,12 +84,12 @@ export default function EditFilm(props) {
   const handleChangeFile = async (event) => {
     let file = event.target.files[0];
     console.log('file', file);
+    await formik.setFieldValue('hinhAnh', file);
     let reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onload = async (e) => {
+    reader.onload = (e) => {
       setImgSrc(e.target.result);
     }
-    formik.setFieldValue('hinhAnh', file);
   }
 
 
@@ -127,7 +129,7 @@ export default function EditFilm(props) {
           <Input name="trailer" onChange={formik.handleChange} value={formik.values.trailer} />
         </Form.Item>
         <Form.Item label="Ngày khởi chiếu">
-          <DatePicker name="ngayKhoiChieu" format="DD/MM/YYYY" onChange={handleChangeDatePicker} value={moment(formik.values.ngayKhoiChieu,"DD/MM/YYYY")} />
+          <DatePicker name="ngayKhoiChieu" format="DD/MM/YYYY" onChange={handleChangeDatePicker} value={moment(formik.values.ngayKhoiChieu)} />
         </Form.Item>
         <Form.Item label="Đang chiếu" valuePropName="checked">
           <Switch name="dangChieu" onChange={(checked) => { handleChangeSwitch('dangChieu', checked) }} checked={formik.values.dangChieu} />
@@ -146,7 +148,7 @@ export default function EditFilm(props) {
           <img style={{ width: 200 }} className="mt-2" src={imgSrc === '' ? thongTinPhim.hinhAnh : imgSrc} alt="..." />
         </Form.Item>
         <Form.Item label="Chức năng">
-          <button className="btn btn-outline-primary" type="submit">Thêm phim</button>
+          <button className="btn btn-outline-primary" type="submit">Cập nhật</button>
         </Form.Item>
       </Form>
     </Fragment>
