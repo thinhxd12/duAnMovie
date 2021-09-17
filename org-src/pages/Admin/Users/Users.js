@@ -6,8 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import { uniqueId } from 'lodash';
-import { layDanhSachNguoiDungAction } from '../../../redux/actions/QuanLyNguoiDungAction';
-import { SET_THONG_TIN_NGUOI_DUNG } from '../../../redux/types/QuanLyNguoiDungType';
+import {  layDanhSachNguoiDungAction } from '../../../redux/actions/QuanLyNguoiDungAction';
 
 const { Search } = Input;
 
@@ -99,16 +98,10 @@ export default function Users(props) {
         {
             title: 'Thao tác',
             dataIndex: 'hanhDong',
-            render: (text, record, index) => {
+            render: (text, film, index) => {
                 return <Fragment key={index}>
-                    <NavLink className="mr-2 text-2xl" to={`/admin/edituser`} onClick={() => {
-                        // console.log(record)
-                        dispatch({
-                            type: SET_THONG_TIN_NGUOI_DUNG,
-                            userModify: record
-                        })
-                    }}><EditOutlined /></NavLink>
-
+                    <NavLink className="mr-2 text-2xl" to={`/admin/films`}><EditOutlined /></NavLink>
+                    
                     <NavLink className="mr-2 text-2xl text-red-500" to={`/admin/films`}><CloseOutlined /></NavLink>
                 </Fragment>
             },

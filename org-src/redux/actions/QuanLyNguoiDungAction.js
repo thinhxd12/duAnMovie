@@ -1,4 +1,4 @@
-import { GROUP_ID, http, httpBearer } from "../../util/setting";
+import { GROUP_ID, http } from "../../util/setting";
 import { DANG_NHAP_ACTION, SET_DANH_SACH_NGUOI_DUNG } from "../types/QuanLyNguoiDungType";
 
 export const dangNhapAction = (thongTinDangNhap) => {
@@ -55,25 +55,11 @@ export const layDanhSachNguoiDungAction = (tuKhoa = '') => {
 
 
 export const themNguoiDungAction = async (thongTinNguoiDung) => {
-  try {
-    const result = await httpBearer.post(`/api/QuanLyNguoiDung/ThemNguoiDung`, thongTinNguoiDung)
-    console.log(result)
-    alert('Đăng ký thành công !');
-  } catch (error) {
-    console.log(error.response?.data)
-    alert(error.response?.data.content)
-  }
-}
-
-
-
-export const capNhatThongTinNguoiDung = async (thongTinNguoiDung) => {
-  try {
-    const result = await httpBearer.post(`/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`, thongTinNguoiDung)
-    console.log(result)
-    alert('Cập nhật thành công !');
-  } catch (error) {
-    console.log(error.response?.data)
-    alert(error.response?.data.content)
-  }
+    try {
+      const result = await http.post(`/api/QuanLyNguoiDung/ThemNguoiDung`, thongTinNguoiDung)
+      console.log(result)
+      alert('Đăng ký thành công !');
+    } catch (error) {
+      console.log(error?.response)
+    }
 }

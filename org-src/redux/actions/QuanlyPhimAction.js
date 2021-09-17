@@ -1,4 +1,4 @@
-import { GROUP_ID, http, httpBearer } from "../../util/setting";
+import { GROUP_ID, http } from "../../util/setting";
 import { SET_DANH_SACH_PHIM, SET_THONG_TIN_PHIM } from "../types/MovieType";
 import { history } from '../../App'
 
@@ -12,7 +12,7 @@ export const layDanhSachPhimAction = (tenphim = '') => {
                     arrFilm: result.data.content
                 })
             } catch (error) {
-                console.log(error.response?.data)
+                console.log('error', error)
             }
 
         }
@@ -25,7 +25,7 @@ export const layDanhSachPhimAction = (tenphim = '') => {
                 arrFilm: result.data.content
             })
         } catch (error) {
-            console.log(error.response?.data)
+            console.log('error', error)
         }
 
     }
@@ -64,26 +64,23 @@ export const layThongTinPhimAction = (maPhim) => {
 export const capNhatPhimUploadAction = (frmData) => {
     return async (dispatch) => {
         try {
-            const result = await httpBearer.post('/api/QuanLyPhim/CapNhatPhimUpload', frmData)
+            const result = await http.post('/api/QuanLyPhim/CapNhatPhimUpload', frmData)
             console.log(result.data)
             alert('Cập nhật phim thành công!')
             history.push('/admin/films');
         } catch (error) {
-            console.log(error.response?.data)
-            alert(error.response?.data.content)
+            console.log(error)
         }
     }
 }
 
-export const xoaPhimAction = (maPhim) => {
-    return async (dispatch) => {
-        try {
-            const result = await httpBearer.delete(`api/QuanLyPhim/XoaPhim?MaPhim=${maPhim}`)
-            console.log(result.data)
-            alert('Xoá phim thành công!')
-            dispatch(layDanhSachPhimAction());
-        } catch (error) {
-            console.log(error.response?.data)
-        }
+export const xoaPhimAction = async (maPhim) => {
+    try {
+        const result = await http.delete(`api/QuanLyPhim/XoaPhim?MaPhim=${maPhim}`)
+        console.log(result.data)
+        alert('Xoá phim thành công!')
+        layDanhSachPhimAction();
+    } catch (error) {
+        console.log(error)
     }
 }

@@ -1,5 +1,5 @@
-import { USER_LOGIN, ACCESS_TOKEN, GROUP_ID } from "../../util/setting";
-import { DANG_NHAP_ACTION, SET_DANH_SACH_NGUOI_DUNG, SET_THONG_TIN_NGUOI_DUNG } from "../types/QuanLyNguoiDungType";
+import { USER_LOGIN, ACCESS_TOKEN } from "../../util/setting";
+import { DANG_NHAP_ACTION, SET_DANH_SACH_NGUOI_DUNG } from "../types/QuanLyNguoiDungType";
 
 let user = {}
 if (localStorage.getItem(USER_LOGIN)) {
@@ -8,16 +8,7 @@ if (localStorage.getItem(USER_LOGIN)) {
 
 const stateDefault = {
     userLogin: user,
-    arrUser: [],
-    userModify: {
-        "taiKhoan": "",
-        "matKhau": "",
-        "email": "",
-        "soDt": "",
-        "maNhom": GROUP_ID,
-        "maLoaiNguoiDung": "",
-        "hoTen": ""
-    }
+    arrUser: []
 }
 
 export const QuanLyNguoiDungReducer = (state = stateDefault, action) => {
@@ -31,10 +22,6 @@ export const QuanLyNguoiDungReducer = (state = stateDefault, action) => {
         }
         case SET_DANH_SACH_NGUOI_DUNG: {
             state.arrUser = action.arrUser;
-            return { ...state }
-        }
-        case SET_THONG_TIN_NGUOI_DUNG: {
-            state.userModify = { ...action.userModify, "maNhom": GROUP_ID };
             return { ...state }
         }
         default:

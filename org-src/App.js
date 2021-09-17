@@ -13,12 +13,11 @@ import { UserTemplate } from './templates/UserTemplate/UserTemplate';
 import Register from './pages/Register/Register'
 import { AdminTemplate } from './templates/AdminTemplate';
 import Films from './pages/Admin/Films/Films';
-import AddFilm from './pages/Admin/Films/AddFilms/AddFilm';
-import EditFilm from './pages/Admin/Films/Edit/EditFilm';
-import ShowTime from './pages/Admin/Films/ShowTime/ShowTime';
-import AddUser from './pages/Admin/Users/AddUser/AddUser';
+import AddFilm from './pages/Admin/AddFilms/AddFilm';
+import EditFilm from './pages/Admin/Edit/EditFilm';
+import ShowTime from './pages/Admin/ShowTime/ShowTime';
 import Users from './pages/Admin/Users/Users';
-import EditUser from './pages/Admin/Users/EditUser/EditUser';
+import AddUser from './pages/Admin/AddUser/AddUser';
 
 
 
@@ -38,7 +37,6 @@ function App() {
         <CheckoutTemplate path="/checkout/:id" exact component={Checkout} />
         <UserTemplate path="/login" exact Component={Login} />
 
-        <AdminTemplate exact path="/admin/edituser" component={EditUser} />
         <AdminTemplate exact path="/admin/adduser" component={AddUser} />
         <AdminTemplate exact path="/admin/users" component={Users} />
         <AdminTemplate exact path="/admin/films/showtime/:id" component={ShowTime} />
