@@ -1,3 +1,4 @@
+import { history } from "../../App";
 import { GROUP_ID, http, httpBearer } from "../../util/setting";
 import { DANG_NHAP_ACTION, SET_DANH_SACH_NGUOI_DUNG } from "../types/QuanLyNguoiDungType";
 
@@ -71,9 +72,21 @@ export const capNhatThongTinNguoiDung = async (thongTinNguoiDung) => {
   try {
     const result = await httpBearer.post(`/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`, thongTinNguoiDung)
     console.log(result)
-    alert('Cập nhật thành công !');
+    alert(result.data.message);
   } catch (error) {
     console.log(error.response?.data)
     alert(error.response?.data.content)
   }
+}
+
+
+export const xoaNguoiDung = async (taiKhoan) => {
+    try {
+      const result = await httpBearer.delete(`/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`)
+      console.log(result)
+      alert(result.data.message);
+    } catch (error) {
+      console.log(error.response?.data)
+      alert(error.response?.data.content)
+    }
 }

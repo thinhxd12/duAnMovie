@@ -11,15 +11,6 @@ import { history } from '../../../App';
 
 const { Search } = Input;
 
-const suffix = (
-    <AudioOutlined
-        style={{
-            fontSize: 16,
-            color: '#1890ff',
-        }}
-    />
-);
-
 
 const onChange = (pagination, filters, sorter, extra) => {
     // console.log('params', pagination, filters, sorter, extra);
@@ -31,7 +22,7 @@ export default function Films(props) {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(layDanhSachPhimAction());
-    }, [])
+    }, [dispatch])
 
     const onSearch = value => {
         // console.log(value)
@@ -105,6 +96,7 @@ export default function Films(props) {
                             // console.log(film.maPhim)
                             xoaPhimAction(film.maPhim);
                         }
+                        dispatch(layDanhSachPhimAction());
                     }}><DeleteOutlined /></span>
                     <NavLink className="mr-2 text-2xl text-green-500" to={`/admin/films/showtime/${film.maPhim}`} onClick={() => {
                         localStorage.setItem('filmParams', JSON.stringify(film))
@@ -131,8 +123,8 @@ export default function Films(props) {
                 placeholder="Nhập tên phim"
                 enterButton="Tìm"
                 size="large"
-                suffix={suffix}
                 onSearch={onSearch}
+                allowClear="true"
             />
             <Table columns={columns} dataSource={data} onChange={onChange} rowKey={uniqueId} />
         </div>

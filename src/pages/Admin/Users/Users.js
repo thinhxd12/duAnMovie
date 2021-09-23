@@ -1,24 +1,15 @@
 import React, { useEffect } from 'react'
-import { Button, Table } from 'antd';
+import {  Table } from 'antd';
 import { Input } from 'antd';
 import { AudioOutlined, CloseOutlined, EditOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import { uniqueId } from 'lodash';
-import { layDanhSachNguoiDungAction } from '../../../redux/actions/QuanLyNguoiDungAction';
+import { layDanhSachNguoiDungAction, xoaNguoiDung } from '../../../redux/actions/QuanLyNguoiDungAction';
 import { SET_THONG_TIN_NGUOI_DUNG } from '../../../redux/types/QuanLyNguoiDungType';
 
 const { Search } = Input;
-
-const suffix = (
-    <AudioOutlined
-        style={{
-            fontSize: 16,
-            color: '#1890ff',
-        }}
-    />
-);
 
 
 const onChange = (pagination, filters, sorter, extra) => {
@@ -38,14 +29,20 @@ export default function Users(props) {
         dispatch(layDanhSachNguoiDungAction(value));
     };
 
-    const data = arrUser;
+    let datArrUser = arrUser.map((item, index) => {
+        return { ...item, index: index + 1 }
+    })
+
+    const data = datArrUser;
+
+
 
     const columns = [
         {
             title: 'STT',
-            dataIndex: '',
+            dataIndex: 'index',
             width: '5%',
-            key: 1
+            key: 1,
         },
 
         {
@@ -102,14 +99,18 @@ export default function Users(props) {
             render: (text, record, index) => {
                 return <Fragment key={index}>
                     <NavLink className="mr-2 text-2xl" to={`/admin/edituser`} onClick={() => {
-                        // console.log(record)
                         dispatch({
                             type: SET_THONG_TIN_NGUOI_DUNG,
                             userModify: record
                         })
                     }}><EditOutlined /></NavLink>
 
-                    <NavLink className="mr-2 text-2xl text-red-500" to={`/admin/films`}><CloseOutlined /></NavLink>
+                    <span className="mr-2 text-2xl text-red-500" style={{ cursor: 'pointer' }} onClick={() => {
+                        if (window.confirm('Bạn có muốn xoá tài khoản ' + record.taiKhoan)) {
+                            xoaNguoiDung(record.taiKhoan);
+                        }
+                        dispatch(layDanhSachNguoiDungAction());
+                    }}><CloseOutlined/></span>
                 </Fragment>
             },
             width: '10%',
@@ -128,8 +129,8 @@ export default function Users(props) {
                 placeholder="Nhập vào tài khoản hoặc họ tên người dùng"
                 enterButton="Tìm"
                 size="large"
-                suffix={suffix}
                 onSearch={onSearch}
+                allowClear="true"
             />
             <Table columns={columns} dataSource={data} onChange={onChange} rowKey={uniqueId} />
         </div>

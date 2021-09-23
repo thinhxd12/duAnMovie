@@ -3,13 +3,9 @@ import { useFormik } from 'formik'
 import {
   Form,
   Input,
-  Button,
   Radio,
-  Select,
-  Cascader,
   DatePicker,
   InputNumber,
-  TreeSelect,
   Switch,
 } from 'antd';
 import { Fragment } from 'react';
@@ -30,7 +26,7 @@ export default function EditFilm(props) {
   useEffect(() => {
     let { id } = props.match.params;
     dispatch(layThongTinPhimAction(id));
-  }, [])
+  }, [dispatch])
 
   const { thongTinPhim } = useSelector(state => state.QuanLyPhimReducer);
 

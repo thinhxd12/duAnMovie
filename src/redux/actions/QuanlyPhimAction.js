@@ -75,15 +75,14 @@ export const capNhatPhimUploadAction = (frmData) => {
     }
 }
 
-export const xoaPhimAction = (maPhim) => {
-    return async (dispatch) => {
-        try {
-            const result = await httpBearer.delete(`api/QuanLyPhim/XoaPhim?MaPhim=${maPhim}`)
-            console.log(result.data)
-            alert('Xoá phim thành công!')
-            dispatch(layDanhSachPhimAction());
-        } catch (error) {
-            console.log(error.response?.data)
-        }
+export const xoaPhimAction = async (maPhim) => {
+    try {
+        const result = await httpBearer.delete(`api/QuanLyPhim/XoaPhim?MaPhim=${maPhim}`)
+        console.log(result.data)
+        alert(result.data.content)
+
+    } catch (error) {
+        console.log(error.response?.data)
     }
 }
+

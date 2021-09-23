@@ -33,7 +33,7 @@ export default function ShowTime(props) {
         cumRapChieu: []
     });
 
-    useEffect(async () => {
+    useEffect( async() => {
         try {
             let result = await http.get(`/api/QuanLyRap/LayThongTinHeThongRap`);
             setState({
