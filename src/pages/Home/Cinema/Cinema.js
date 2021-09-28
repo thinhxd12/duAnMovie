@@ -15,7 +15,7 @@ export default function Cinema(props) {
     }, [dispatch])
 
     return (
-        <div className="container" style={{ height: '600px' }}>
+        <div className="container" style={{ height: '700px' }}>
             <Tabs tabPosition="left" defaultActiveKey="BHDStar" onTabClick={(maHeThongRap) => {
                 dispatch(layThongTinCumRapTheoHeThongAction(maHeThongRap));
             }}>

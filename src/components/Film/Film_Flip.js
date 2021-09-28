@@ -1,7 +1,7 @@
 import React from "react";
 import "./Film_Flip.css";
-import {PlayCircleOutlined} from '@ant-design/icons'
-import {history} from '../../App'
+import { PlayCircleOutlined } from '@ant-design/icons'
+import { history } from '../../App'
 
 
 export default function Film_Flip(props) {
@@ -38,16 +38,16 @@ export default function Film_Flip(props) {
             }}
           >
             <div className="rounded-full cursor-pointer">
-            <PlayCircleOutlined style={{fontSize: '50px'}} />
-            </div> 
+              <PlayCircleOutlined style={{ fontSize: '50px' }} />
+            </div>
             {/* <div className="text-2xl ml-2 font-bold">{item.tenPhim}</div> */}
           </div>
         </div>
       </div>
-      <div onClick ={() => {
+      <div onClick={() => {
         history.push(`/detail/${item.maPhim}`)
       }} className=" w-full bg-orange-300 text-center cursor-pointer py-2 bg-indigo-300 text-success-50 font-bold ">
-      ĐẶT VÉ
+        ĐẶT VÉ
       </div>
     </div>
   );

@@ -29,8 +29,8 @@ export default function MultipleRowSlick(props) {
 
   const settings = {
     infinite: true,
-    slidesToShow: 3,
-    slidesToScroll: 3,
+    slidesToShow: 4,
+    slidesToScroll: 4,
     rows: 2,
     speed: 500,
     nextArrow: <NextArrow />,

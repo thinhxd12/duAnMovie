@@ -51,8 +51,8 @@ export default function Header(props) {
           </li>
         </ul>
         <div className="items-center flex-shrink-0 hidden lg:flex">
-          <button onClick={()=> {
-              history.push('/login')
+          <button onClick={() => {
+            history.push('/login')
           }} className="self-center px-8 py-2 rounded">Sign in</button>
           <button className="self-center px-8 py-2 font-semibold rounded bg-red-600 text-white">
             Sign up

@@ -2,14 +2,14 @@ import React, { useEffect } from 'react'
 import { Tabs } from 'antd';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { layDanhSachPhimAction } from '../../../redux/actions/LayDanhSachPhimAction';
 
 import MultipleRowSlick from '../../../components/RSlick/MultipleRowSlick';
+import { layDanhSachPhimAction } from '../../../redux/actions/QuanlyPhimAction';
 
 
 
 export default function HomeMenu(props) {
-    const { arrFilm } = useSelector(state => state.LayDanhSachPhimReducer);
+    const { arrFilm } = useSelector(state => state.QuanLyPhimReducer);
 
     const arrFilmDangChieu = arrFilm.filter(phim => phim.dangChieu);
     const arrFilmSapChieu = arrFilm.filter(phim => phim.sapChieu);

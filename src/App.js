@@ -17,6 +17,12 @@ import Loading from './components/Loading/Loading';
 
 // const CheckoutTemplateLazy = lazy(()=> ('./templates/CheckoutTemplate/CheckoutTemplate'))
 
+import { AdminTemplate } from './templates/AdminTemplate';
+import Films from './pages/Admin/Films/Films';
+import AddFilm from './pages/Admin/AddFilms/AddFilm';
+import EditFilm from './pages/Admin/Edit/EditFilm';
+
+
 
 
 
@@ -38,12 +44,11 @@ function App() {
 
 
 
-        {/* <Suspense fallback={<h1>LOADING.....</h1>}>
-        <CheckoutTemplateLazy path="/checkout/:id" exact component={Checkout} />
-        </Suspense> */}
 
-
-
+        <AdminTemplate exact path="/admin/films/edit/:id" component={EditFilm} />
+        <AdminTemplate exact path="/admin/films" component={Films} />
+        <AdminTemplate exact path="/admin/addfilm" component={AddFilm} />
+        <AdminTemplate exact path="/admin" component={Home} />
 
         <HomeTemplate exact path="/" component={Home} />
         
