@@ -1,11 +1,12 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import { history } from "../../../App";
 export default function Header(props) {
   return (
     <header className="p-2 bg-black text-white fixed z-50 w-full bg-opacity-30">
       <div className="container flex justify-between h-16 mx-auto">
-        <a
-          href="/"
+        <NavLink
+          to="/"
           aria-label="Back to homepage"
           className="flex items-center p-2"
         >
@@ -14,7 +15,7 @@ export default function Header(props) {
             alt="logo"
             style={{ maxWidth: "55px" }}
           />
-        </a>
+        </NavLink>
         <ul className="items-stretch hidden space-x-3 lg:flex">
           <li className="flex">
             <a

@@ -21,7 +21,7 @@ export default function Detail(props) {
     let { id } = props.match.params;
     console.log("id", id);
     dispatch(layThongTinChiTietPhimAction(id));
-  }, []);
+  }, [dispatch]);
 
   return (
     <div
@@ -126,7 +126,7 @@ export default function Detail(props) {
                                 
                               <div className="thong-tin-lich-chieu grid grid-cols-6 gap-4">
                                   {cumRap.lichChieuPhim?.slice(0,12).map((lichChieu,index) => {
-                                    return <NavLink to="/" key={index} className="text-base text-green-400">
+                                    return <NavLink to={`/checkout/${lichChieu.maLichChieu}`} key={index} className="text-base text-green-400">
                                       {moment(lichChieu.ngayChieuGioChieu).format('hh:mm A')}
                                     </NavLink>
                                   })}

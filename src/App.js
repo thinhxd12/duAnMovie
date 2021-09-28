@@ -11,6 +11,7 @@ import Checkout from './pages/Checkout/Checkout';
 import Login from './pages/Login/Login';
 import { UserTemplate } from './templates/UserTemplate/UserTemplate';
 import Register from './pages/Register/Register'
+import Loading from './components/Loading/Loading';
 // import { Suspense, lazy } from 'react';
 // import BaiTapTongHop from './components/BaiTapTongHop/BaiTapTongHop';
 
@@ -24,6 +25,7 @@ export const history = createBrowserHistory();
 function App() {
   return (
     <Router history={history}>
+      <Loading />
 
       <Switch>
 

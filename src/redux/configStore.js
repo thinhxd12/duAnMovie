@@ -3,8 +3,10 @@ import { applyMiddleware, combineReducers, createStore } from 'redux';
 import thunk from 'redux-thunk'
 import { CarouselReducer } from './Reducers/CarouselReducer'
 import { LayDanhSachPhimReducer } from './Reducers/LayDanhSachPhimReducer'
+import { QuanLyDatVeRuducer } from './Reducers/QuanLyDatVeReducer';
 import { QuanLyNguoiDungReducer } from './Reducers/QuanLyNguoiDungReducer';
 import { QuanLyRapReducer } from './Reducers/QuanLyRapReducer'
+import { LoadingReducer } from './Reducers/LoadingReducer';
 
 const rootReducer = combineReducers({
     //Khai báo reducer
@@ -12,6 +14,9 @@ const rootReducer = combineReducers({
     LayDanhSachPhimReducer,
     QuanLyRapReducer,
     QuanLyNguoiDungReducer,
+    QuanLyDatVeRuducer,
+    LoadingReducer,
+    
 })
 
 

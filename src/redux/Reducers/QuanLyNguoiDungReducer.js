@@ -1,5 +1,5 @@
 import { USER_LOGIN, ACCESS_TOKEN } from "../../util/setting";
-import { DANG_NHAP_ACTION } from "../types/QuanLyNguoiDungType";
+import { DANG_NHAP_ACTION, SET_THONG_TIN_NGUOI_DUNG } from "../types/QuanLyNguoiDungType";
 
 let user = {}
 if(localStorage.getItem(USER_LOGIN)){
@@ -8,6 +8,7 @@ if(localStorage.getItem(USER_LOGIN)){
 
 const stateDefault = {
     userLogin: user,
+    thongTinNguoiDung: {},
 }
 
 export const QuanLyNguoiDungReducer = (state = stateDefault, action) =>{
@@ -19,6 +20,10 @@ export const QuanLyNguoiDungReducer = (state = stateDefault, action) =>{
           localStorage.setItem(ACCESS_TOKEN,thongTinDangNhap.accessToken);
           return {...state,userLogin:thongTinDangNhap}  
     }
+        case SET_THONG_TIN_NGUOI_DUNG: {
+            state.thongTinNguoiDung = action.thongTinNguoiDung;
+            return {...state}
+        }
     default: 
     return {...state}
 }
