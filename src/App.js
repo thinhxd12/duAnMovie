@@ -21,6 +21,7 @@ import { AdminTemplate } from './templates/AdminTemplate';
 import Films from './pages/Admin/Films/Films';
 import AddFilm from './pages/Admin/AddFilms/AddFilm';
 import EditFilm from './pages/Admin/Edit/EditFilm';
+import Profile from './pages/Profile/Profile';
 
 
 
@@ -41,6 +42,8 @@ function App() {
         <Route path="/register" exact component={Register} />
         <CheckoutTemplate path="/checkout/:id" exact component={Checkout} />
         <UserTemplate path="/login" exact Component={Login} />
+        <UserTemplate path="/register" exact Component={Register} />
+        <HomeTemplate path="/profile" exact component={Profile} />
 
 
 

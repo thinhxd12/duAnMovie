@@ -1,6 +1,7 @@
 import { http } from "../../util/setting";
 import { DANG_NHAP_ACTION, SET_THONG_TIN_NGUOI_DUNG } from "../types/QuanLyNguoiDungType";
-import {history} from "../../App"
+import {history} from "../../App";
+import { notificationFunction } from "../../templates/Notification/Notification";
 
 export const dangNhapAction = (thongTinDangNhap) => {
   return async (dispatch) => {
@@ -40,4 +41,18 @@ export const layThongTinNguoiDungAction = () => {
     }
   };
 };
+
+export const dangKyNguoiDungAction = (formDangKy) => {
+  return async(dispatch) => {
+    try {
+      const result = await http.post(`/api/QuanLyNguoiDung/DangKy`,formDangKy);
+      console.log({ result });
+      notificationFunction("success", "Register is successful");
+      history.push("/login");
+    } catch (error) {
+      notificationFunction("error", "Register is unsuccessful");
+      console.log("error", error.response?.data);
+    }
+  }
+}
 

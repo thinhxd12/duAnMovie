@@ -8,6 +8,7 @@ import {
     UserOutlined,
 } from '@ant-design/icons';
 import { NavLink, Route } from "react-router-dom";
+import { useEffect } from "react";
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -21,6 +22,11 @@ export const AdminTemplate = (props) => {
     const onCollapse = collapsed => {
         setState({ collapsed });
     };
+    useEffect(() => {
+        return () => {
+          window.scrollTo(0,0)
+        }
+      })
 
     return <Route exact path={props.path} render={(propsRoute) => {
         return <Fragment>

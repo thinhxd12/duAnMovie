@@ -7,14 +7,27 @@ import {
 } from "../../redux/actions/QuanLyDatVeAction";
 import style from "./Checkout.module.css";
 import "./Checkout.css";
-import { CloseOutlined, UserOutlined, CheckOutlined, TeamOutlined } from "@ant-design/icons";
-import { CHANGE_TAB_ACTIVE, DAT_GHE, DAT_VE } from "../../redux/types/QuanLyDatVeType";
+import {
+  CloseOutlined,
+  UserOutlined,
+  CheckOutlined,
+  TeamOutlined,
+  HomeOutlined,
+} from "@ant-design/icons";
+import {
+  CHANGE_TAB_ACTIVE,
+  DAT_GHE,
+  DAT_VE,
+} from "../../redux/types/QuanLyDatVeType";
 import _, { result } from "lodash";
 import { ThongTinDatVe } from "../../_cores/models/ThongTinDatVe";
-import { Tabs } from "antd";
+import { Button, Tabs } from "antd";
 import { layThongTinNguoiDungAction } from "../../redux/actions/QuanLyNguoiDungAction";
 import moment from "moment";
 import { connection } from "../../index";
+import { history } from "../../../src/App";
+import { ACCESS_TOKEN, USER_LOGIN } from "../../util/setting";
+import { NavLink } from "react-router-dom";
 
 function Checkout(props) {
   const { userLogin } = useSelector((state) => state.QuanLyNguoiDungReducer);
@@ -28,45 +41,44 @@ function Checkout(props) {
     //dispatch function này đi
     dispatch(action);
     //Có 1 client nào thực hiện việc đặt vé thành công mình sẽ load lại danh sách phòng vé của lịch chiếu đó
-    connection.on('datVeThanhCong', () => {
-      dispatch(action)
-    })
+    connection.on("datVeThanhCong", () => {
+      dispatch(action);
+    });
     //vừa vào trang load tất cả ghế của người khác đặt
-    connection.invoke('loadDanhSachGhe', props.match.params.id)
-     //Load danh sách ghế đang đặt từ sever về(lắng nghe tin hiệu từ server)
-     connection.on("loadDanhSachGheDaDat", (dsGheKhachDat) => {
-
-      console.log('danhSachGheKhachDat',dsGheKhachDat);
+    connection.invoke("loadDanhSachGhe", props.match.params.id);
+    //Load danh sách ghế đang đặt từ sever về(lắng nghe tin hiệu từ server)
+    connection.on("loadDanhSachGheDaDat", (dsGheKhachDat) => {
+      console.log("danhSachGheKhachDat", dsGheKhachDat);
       //Bước 1: loại mình ra khỏi danh sách
-      dsGheKhachDat = dsGheKhachDat.filter(item => item.taiKhoan !== userLogin.taiKhoan);
+      dsGheKhachDat = dsGheKhachDat.filter(
+        (item) => item.taiKhoan !== userLogin.taiKhoan
+      );
       //Bước 2: gộp danh sách ghế khách đặt ở tất cả user thành 1 mảng
-      let arrGheKhachDat = dsGheKhachDat.reduce((result,item,index) => {
+      let arrGheKhachDat = dsGheKhachDat.reduce((result, item, index) => {
         let arrGhe = JSON.parse(item.danhSachGhe);
-        return [...result,...arrGhe]
-      },[]);
+        return [...result, ...arrGhe];
+      }, []);
       //ghế k bị trùng nhau, Đưa dữ liệu cập nhật lên redux
-      arrGheKhachDat = _.uniqBy(arrGheKhachDat,'maGhe');
+      arrGheKhachDat = _.uniqBy(arrGheKhachDat, "maGhe");
       //đưa dữ liệu ghế khách đặt về redux
       dispatch({
         type: DAT_GHE,
-        arrGheKhachDat
-      })
+        arrGheKhachDat,
+      });
       //Cài đặt sự kiện khi reload trang
-        window.addEventListener("beforeunload",clearGhe);
+      window.addEventListener("beforeunload", clearGhe);
 
       return () => {
         clearGhe();
-        window.addEventListener("beforeunload",clearGhe);
-      }
-
-
-    })
-  }, [dispatch]);  
+        window.addEventListener("beforeunload", clearGhe);
+      };
+    });
+  }, [dispatch]);
   // console.log({ chiTietPhongVe });
 
-  const clearGhe = function(event) {
-    connection.invoke('huyDat',userLogin.taiKhoan,props.match.params.id);
-  }
+  const clearGhe = function (event) {
+    connection.invoke("huyDat", userLogin.taiKhoan, props.match.params.id);
+  };
 
   const { thongTinPhim, danhSachGhe } = chiTietPhongVe;
 
@@ -100,7 +112,7 @@ function Checkout(props) {
         <Fragment key={index}>
           <button
             onClick={() => {
-              const action = datGheAction(ghe,props.match.params.id);
+              const action = datGheAction(ghe, props.match.params.id);
               dispatch(action);
             }}
             disabled={ghe.daDat || classGheKhachDat !== ""}
@@ -115,7 +127,9 @@ function Checkout(props) {
                   style={{ marginBottom: 5, fontWeight: "bold" }}
                 />
               )
-            ) : classGheKhachDat !== '' ? <TeamOutlined style={{ marginBottom: 5, fontWeight: "bold" }}/> : (
+            ) : classGheKhachDat !== "" ? (
+              <TeamOutlined style={{ marginBottom: 5, fontWeight: "bold" }} />
+            ) : (
               ghe.stt
             )}
           </button>
@@ -276,10 +290,51 @@ const { TabPane } = Tabs;
 export default function CheckoutTab(props) {
   const { tabActive } = useSelector((state) => state.QuanLyDatVeRuducer);
   const dispatch = useDispatch();
-
+  const { userLogin } = useSelector((state) => state.QuanLyNguoiDungReducer);
+  useEffect(() => {
+    return () => {
+      dispatch({
+        type: CHANGE_TAB_ACTIVE,
+        number: '1',
+      })
+    }
+  }, [])
+  const operations = (
+    <Fragment>
+      {!_.isEmpty(userLogin) ? (
+        <Fragment>
+          <button
+            onClick={() => {
+              history.push("/profile");
+            }}
+            className="text-xl"
+          >
+            <div className="ml-4 w-16 h-16 rounded-full bg-yellow-500 flex justify-center items-center capitalize text-white text-2xl mr-4">
+              {userLogin.taiKhoan.substr(0, 1)}
+            </div>
+            Hello! {userLogin.taiKhoan}
+          </button>
+          <button
+            onClick={() => {
+              localStorage.removeItem(USER_LOGIN);
+              localStorage.removeItem(ACCESS_TOKEN);
+              history.push("/home");
+              window.location.reload();
+            }}
+            className="text-blue-800"
+          >
+            Đăng xuất
+          </button>{" "}
+        </Fragment>
+      ) : (
+        ""
+      )}
+    </Fragment>
+  );
   return (
     <div className="p-2">
       <Tabs
+        tabBarExtraContent={operations}
         defaultActiveKey="1"
         activeKey={tabActive}
         onChange={(key) => {
@@ -295,6 +350,14 @@ export default function CheckoutTab(props) {
         <TabPane tab="02 KẾT QUẢ ĐẶT VÉ" key="2">
           <KetQuaDatVe {...props} />
         </TabPane>
+        <TabPane
+          tab={
+            <NavLink className=" text-3xl" to="/">
+              <HomeOutlined className=" mb-3" style={{marginLeft:10}} />  
+            </NavLink>
+          }
+          key="3"
+        ></TabPane>
       </Tabs>
     </div>
   );

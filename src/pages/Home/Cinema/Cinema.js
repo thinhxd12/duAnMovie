@@ -44,7 +44,7 @@ export default function Cinema(props) {
                                                 <p className="font-semibold text-sm">{cumRap.diaChi}</p>
                                                 <div className="grid grid-cols-6 gap-6">
                                                     {phim.lstLichChieuTheoPhim.slice(0, 12).map((lichChieu, index2) => {
-                                                        return <NavLink key={index2} className="text-base text-green-400" to="/">
+                                                        return <NavLink key={index2} className="text-base text-green-400" to={`/checkout/${lichChieu.maLichChieu}`}>
                                                             {moment(lichChieu.ngayChieuGioChieu).format('hh:mm A')}
                                                         </NavLink>
                                                     })}

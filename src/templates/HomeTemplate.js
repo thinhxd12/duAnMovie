@@ -30,7 +30,9 @@ export const HomeTemplate = (props) => {
                 height:window.innerHeight
             })
         }
-    },[])
+        //Load đầu trang
+        window.scrollTo(0,0);
+    })
 
     const renderComponent = (propsRoute) =>{
         if(state.width <= 768) {

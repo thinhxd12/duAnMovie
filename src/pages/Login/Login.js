@@ -61,7 +61,7 @@ export default function Login(props) {
               </svg>
             </div>
             <div className="text-2xl text-indigo-800 tracking-wide ml-2 font-semibold">
-              CYBER 
+              CYBER CINEMA
             </div>
           </div>
         </div>
