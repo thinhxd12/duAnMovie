@@ -34,7 +34,7 @@ export default function Footer(props) {
                     <div className="lg:w-1/4 md:w-1/2 w-full px-4">
                         <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">ĐỐI TÁC</h2>
                         <div className="grid grid-cols-3 justify-items-center">
-                            {heThongRapChieu.map((item, index) => {
+                            {heThongRapChieu?.map((item, index) => {
                                 return <a key={index} className="w-8 mr-3 mb-3 inline-block" href="/" >
                                     <img src={item.logo} alt="..." />
                                 </a>
@@ -64,7 +64,7 @@ export default function Footer(props) {
                             </a>
                         </div>
                     </div>
-
+                            
                 </div>
             </div>
             <div className="bg-gray-100">
