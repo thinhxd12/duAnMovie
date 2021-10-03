@@ -8,6 +8,7 @@ if (localStorage.getItem(USER_LOGIN)) {
 
 const stateDefault = {
     userLogin: user,
+    thongTinNguoiDung: {},
     arrUser: [],
     userModify: {
         "taiKhoan": "",
@@ -34,8 +35,8 @@ export const QuanLyNguoiDungReducer = (state = stateDefault, action) => {
             return { ...state }
         }
         case SET_THONG_TIN_NGUOI_DUNG: {
-            state.userModify = { ...action.userModify, "maNhom": GROUP_ID };
-            return { ...state }
+            state.thongTinNguoiDung = action.thongTinNguoiDung;
+            return {...state}
         }
         default:
             return { ...state }

@@ -1,34 +1,65 @@
 import React, { Fragment, useState } from "react"
-import { Layout, Menu } from 'antd';
+import { Avatar, Layout, Menu } from 'antd';
 import {
-    FileOutlined,
+    MenuUnfoldOutlined,
+    MenuFoldOutlined,
     UserOutlined,
     PlayCircleOutlined
 } from '@ant-design/icons';
 import { NavLink, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
+import _ from 'lodash';
+import { history } from "../App";
+import { ACCESS_TOKEN, USER_LOGIN } from "../util/setting";
 
-const { Header, Content, Footer, Sider } = Layout;
+const {  Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
 export const AdminTemplate = (props) => {
     const [state, setState] = useState({
-        collapsed: false,
+        collapsed: false
     })
 
+    const { userLogin } = useSelector(state => state.QuanLyNguoiDungReducer);
+    // console.log('userLogin', userLogin)
 
-    const onCollapse = collapsed => {
-        setState({ collapsed });
+    const renderUser = () => {
+        return (!_.isEmpty(userLogin)) ?
+            <div className="flex pr-12">
+                <Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }} size="large">{userLogin.taiKhoan.substr(0, 1)}</Avatar>
+                <div>
+                    <button className="text-base ml-1 block" onClick={() => {
+                        history.push('/profile')
+                    }}>
+                        {userLogin.taiKhoan}
+                    </button>
+                    <button onClick={() => {
+                        localStorage.removeItem(USER_LOGIN);
+                        localStorage.removeItem(ACCESS_TOKEN);
+                        history.push('/home');
+                        window.location.reload();
+                    }} className="text-sm ml-1 text-blue-500 block">Đăng xuất</button>
+                </div>
+            </div>
+            : ''
+
+    }
+
+    const toggle = () => {
+        setState({
+            collapsed: !state.collapsed,
+        });
     };
 
     return <Route exact path={props.path} render={(propsRoute) => {
         return <Fragment>
             <Layout style={{ minHeight: '100vh' }}>
-                <Sider collapsible collapsed={state.collapsed} onCollapse={onCollapse}>
+                <Sider trigger={null} collapsible collapsed={state.collapsed}>
                     <NavLink to="/">
                         <img
                             src="https://i.imgur.com/lC22izJ.png"
                             alt="logo"
-                            style={{ maxWidth: "50px",margin:"10px auto" }}
+                            style={{ maxWidth: "50px", margin: "10px auto" }}
                         />
                     </NavLink>
                     <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
@@ -56,15 +87,19 @@ export const AdminTemplate = (props) => {
                                 </NavLink>
                             </Menu.Item>
                         </SubMenu>
-                        <Menu.Item key="9" icon={<FileOutlined />}>
-                            Show time
-                        </Menu.Item>
+
                     </Menu>
                 </Sider>
                 <Layout className="site-layout">
-                    <Header className="site-layout-background" style={{ padding: 0 }} />
+                    <div className="site-layout-background flex justify-between items-center p-3" style={{ paddingLeft: '20px', fontSize: '20px' }}>
+                        {React.createElement(state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+                            className: 'trigger',
+                            onClick: toggle,
+                        })}
+                        {renderUser()}
+                    </div>
                     <Content style={{ margin: '16px' }}>
-                        
+
                         <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
 
                             <props.component {...propsRoute} />

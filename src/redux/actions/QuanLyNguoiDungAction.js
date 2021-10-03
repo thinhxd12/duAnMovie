@@ -1,25 +1,12 @@
-<<<<<<< HEAD
-import { history } from "../../App";
-import { GROUP_ID, http, httpBearer } from "../../util/setting";
-import { DANG_NHAP_ACTION, SET_DANH_SACH_NGUOI_DUNG } from "../types/QuanLyNguoiDungType";
-=======
-import { http } from "../../util/setting";
-import { DANG_NHAP_ACTION, SET_THONG_TIN_NGUOI_DUNG } from "../types/QuanLyNguoiDungType";
+import { DANG_NHAP_ACTION, SET_DANH_SACH_NGUOI_DUNG, SET_THONG_TIN_NGUOI_DUNG } from "../types/QuanLyNguoiDungType";
 import {history} from "../../App"
->>>>>>> origin/detail_login
+import { GROUP_ID, http, httpBearer } from "../../util/setting";
 
 export const dangNhapAction = (thongTinDangNhap) => {
   return async (dispatch) => {
     try {
       const result = await http.post(`/api/QuanLyNguoiDung/DangNhap`, thongTinDangNhap);
 
-<<<<<<< HEAD
-      if (result.data.statusCode === 200) {
-        dispatch({
-          type: DANG_NHAP_ACTION,
-          thongTinDangNhap: result.data.content
-        })
-=======
       if(result.data.statusCode === 200) {
           dispatch({
               type: DANG_NHAP_ACTION,
@@ -27,7 +14,6 @@ export const dangNhapAction = (thongTinDangNhap) => {
           });
           //Chuyển hướng đăng nhập về trang trước đó
           history.goBack()
->>>>>>> origin/detail_login
       }
       console.log("result", result);
     } catch (error) {
@@ -37,7 +23,6 @@ export const dangNhapAction = (thongTinDangNhap) => {
   };
 };
 
-<<<<<<< HEAD
 
 export const layDanhSachNguoiDungAction = (tuKhoa = '') => {
   if (tuKhoa.trim() !== '') {
@@ -107,7 +92,6 @@ export const xoaNguoiDung = async (taiKhoan) => {
       alert(error.response?.data.content)
     }
 }
-=======
 export const layThongTinNguoiDungAction = () => {
   return async (dispatch) => {
     try {
@@ -126,4 +110,3 @@ export const layThongTinNguoiDungAction = () => {
   };
 };
 
->>>>>>> origin/detail_login

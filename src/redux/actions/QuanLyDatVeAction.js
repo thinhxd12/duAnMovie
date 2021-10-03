@@ -1,5 +1,11 @@
-<<<<<<< HEAD
-import { httpBearer } from "../../util/setting";
+// import { httpBearer } from "../../util/setting";
+import { http, httpBearer } from "../../util/setting";
+import { ThongTinDatVe } from "../../_cores/models/ThongTinDatVe";
+import { CHUYEN_TAB, SET_CHI_TIET_PHONG_VE } from "../types/QuanLyDatVeType";
+import { DAT_VE_HOAN_TAT } from "../types/QuanLyDatVeType";
+import { displayLoadingAction, hideLoadingAction } from "./LoadingAction";
+import { DAT_VE } from "../types/QuanLyDatVeType";
+import { connection } from "../../index";
 
 export const taoLichChieuAction = async (thongTinLichChieu) => {
     try {
@@ -9,14 +15,6 @@ export const taoLichChieuAction = async (thongTinLichChieu) => {
         console.log( error.response?.data.content);
     }
 };
-=======
-import { http } from "../../util/setting";
-import { ThongTinDatVe } from "../../_cores/models/ThongTinDatVe";
-import { CHUYEN_TAB, SET_CHI_TIET_PHONG_VE } from "../types/QuanLyDatVeType";
-import { DAT_VE_HOAN_TAT } from "../types/QuanLyDatVeType";
-import { displayLoadingAction, hideLoadingAction } from "./LoadingAction";
-import { DAT_VE } from "../types/QuanLyDatVeType";
-import { connection } from "../../index";
 
 export const layChiTietPhongVeAction = (maLichChieu) => {
   return async (dispatch) => {
@@ -90,4 +88,3 @@ export const datGheAction = (ghe, maLichChieu) => {
         // connection.invoke('datGhe',taiKhoan,danhSachGheDangDat,maLichChieu);
   };
 };
->>>>>>> origin/detail_login
