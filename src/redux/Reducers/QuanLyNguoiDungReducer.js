@@ -1,5 +1,5 @@
 import { USER_LOGIN, ACCESS_TOKEN, GROUP_ID } from "../../util/setting";
-import { DANG_NHAP_ACTION, SET_DANH_SACH_NGUOI_DUNG, SET_THONG_TIN_NGUOI_DUNG } from "../types/QuanLyNguoiDungType";
+import { DANG_NHAP_ACTION, SET_DANH_SACH_NGUOI_DUNG, SET_THONG_TIN_NGUOI_DUNG, SET_THONG_TIN_NGUOI_DUNG_ADMIN } from "../types/QuanLyNguoiDungType";
 
 let user = {}
 if (localStorage.getItem(USER_LOGIN)) {
@@ -37,6 +37,10 @@ export const QuanLyNguoiDungReducer = (state = stateDefault, action) => {
         case SET_THONG_TIN_NGUOI_DUNG: {
             state.thongTinNguoiDung = action.thongTinNguoiDung;
             return {...state}
+        }
+        case SET_THONG_TIN_NGUOI_DUNG_ADMIN: {
+            state.userModify = { ...action.userModify, "maNhom": GROUP_ID };
+            return { ...state }
         }
         default:
             return { ...state }

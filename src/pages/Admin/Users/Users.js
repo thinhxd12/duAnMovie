@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
-import {  Table } from 'antd';
+import { Table } from 'antd';
 import { Input } from 'antd';
-import { AudioOutlined, CloseOutlined, EditOutlined } from '@ant-design/icons';
+import { CloseOutlined, EditOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import { uniqueId } from 'lodash';
 import { layDanhSachNguoiDungAction, xoaNguoiDung } from '../../../redux/actions/QuanLyNguoiDungAction';
-import { SET_THONG_TIN_NGUOI_DUNG } from '../../../redux/types/QuanLyNguoiDungType';
+import { SET_THONG_TIN_NGUOI_DUNG_ADMIN } from '../../../redux/types/QuanLyNguoiDungType';
 
 const { Search } = Input;
 
@@ -100,7 +100,7 @@ export default function Users(props) {
                 return <Fragment key={index}>
                     <NavLink className="mr-2 text-2xl" to={`/admin/edituser`} onClick={() => {
                         dispatch({
-                            type: SET_THONG_TIN_NGUOI_DUNG,
+                            type: SET_THONG_TIN_NGUOI_DUNG_ADMIN,
                             userModify: record
                         })
                     }}><EditOutlined /></NavLink>
@@ -110,7 +110,7 @@ export default function Users(props) {
                             xoaNguoiDung(record.taiKhoan);
                         }
                         dispatch(layDanhSachNguoiDungAction());
-                    }}><CloseOutlined/></span>
+                    }}><CloseOutlined /></span>
                 </Fragment>
             },
             width: '10%',
