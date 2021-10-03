@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import _ from 'lodash';
 import { history } from "../App";
 import { ACCESS_TOKEN, USER_LOGIN } from "../util/setting";
+import { useEffect } from "react";
 
 const {  Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -50,6 +51,11 @@ export const AdminTemplate = (props) => {
             collapsed: !state.collapsed,
         });
     };
+    useEffect(() => {
+        return () => {
+          window.scrollTo(0,0)
+        }
+      })
 
     return <Route exact path={props.path} render={(propsRoute) => {
         return <Fragment>

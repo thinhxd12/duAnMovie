@@ -1,8 +1,14 @@
 import { Fragment } from "react";
 import { Route } from "react-router";
+import { useEffect } from "react";
 
 export const UserTemplate = (props) => {
   const { Component, ...restProps } = props;
+  useEffect(() => {
+    return () => {
+      window.scrollTo(0,0)
+    }
+  })
   return (
     <Route
       {...restProps}

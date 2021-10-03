@@ -11,12 +11,15 @@ import { store } from "./redux/configStore";
 import "antd/dist/antd.css";
 //Cấu hình realtime (websocket với signalR)
 import * as signalR from "@aspnet/signalr";
+//import đa ngôn ngữ
+import './i18n'
 
 //Kết nối đến sever lắng nghe sever
 export const connection = new signalR.HubConnectionBuilder()
   .withUrl(`${DOMAIN}/DatVeHub`)
   .configureLogging(signalR.LogLevel.Information)
   .build();
+
 connection
   .start()
   .then(() => {

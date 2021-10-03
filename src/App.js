@@ -25,6 +25,7 @@ import ShowTime from './pages/Admin/Films/ShowTime/ShowTime';
 import AddUser from './pages/Admin/Users/AddUser/AddUser';
 import Users from './pages/Admin/Users/Users';
 import EditUser from './pages/Admin/Users/EditUser/EditUser';
+import Profile from './pages/Profile/Profile';
 
 
 
@@ -45,6 +46,8 @@ function App() {
         <Route path="/register" exact component={Register} />
         <CheckoutTemplate path="/checkout/:id" exact component={Checkout} />
         <UserTemplate path="/login" exact Component={Login} />
+        <UserTemplate path="/register" exact Component={Register} />
+        <HomeTemplate path="/profile" exact component={Profile} />
 
         <AdminTemplate exact path="/admin/edituser" component={EditUser} />
         <AdminTemplate exact path="/admin/adduser" component={AddUser} />
