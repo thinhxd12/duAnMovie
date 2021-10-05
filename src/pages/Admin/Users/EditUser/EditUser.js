@@ -69,10 +69,6 @@ export default function EditUser(prop) {
     };
 
 
-
-
-
-
     return (
         <div className="container">
             <h3 className="text-3xl mb-3 text-left">Cập nhật thông người dùng</h3>
@@ -102,31 +98,31 @@ export default function EditUser(prop) {
                     <Input name="taiKhoan" onChange={formik.handleChange} value={formik.values.taiKhoan} />
                     {formik.touched.taiKhoan && formik.errors.taiKhoan ? (
                         <div className="text-red-500">{formik.errors.taiKhoan}</div>
-                    ) : null}
+                    ) : ''}
                 </Form.Item>
                 <Form.Item label="Mật khẩu">
                     <Input name="matKhau" onChange={formik.handleChange} value={formik.values.matKhau} />
                     {formik.touched.matKhau && formik.errors.matKhau ? (
                         <div className="text-red-500">{formik.errors.matKhau}</div>
-                    ) : null}
+                    ) : ''}
                 </Form.Item>
                 <Form.Item label="Họ tên">
                     <Input name="hoTen" onChange={formik.handleChange} value={formik.values.hoTen} />
                     {formik.touched.hoTen && formik.errors.hoTen ? (
                         <div className="text-red-500">{formik.errors.hoTen}</div>
-                    ) : null}
+                    ) : ''}
                 </Form.Item>
                 <Form.Item label="Email">
                     <Input name="email" onChange={formik.handleChange} value={formik.values.email} />
                     {formik.touched.email && formik.errors.email ? (
                         <div className="text-red-500">{formik.errors.email}</div>
-                    ) : null}
+                    ) : ''}
                 </Form.Item>
                 <Form.Item label="Số điện thoại">
                     <Input name="soDt" onChange={formik.handleChange} value={formik.values.soDt} />
                     {formik.touched.soDt && formik.errors.soDt ? (
                         <div className="text-red-500">{formik.errors.soDt}</div>
-                    ) : null}
+                    ) : ''}
                 </Form.Item>
                 <Form.Item label="Loại người dùng">
                     <Select onChange={(value) => { formik.setFieldValue('maLoaiNguoiDung', value) }} value={formik.values.maLoaiNguoiDung}>

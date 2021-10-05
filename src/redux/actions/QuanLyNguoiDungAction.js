@@ -1,4 +1,4 @@
-import { DANG_NHAP_ACTION, SET_DANH_SACH_NGUOI_DUNG, SET_THONG_TIN_NGUOI_DUNG } from "../types/QuanLyNguoiDungType";
+import { DANG_NHAP_ACTION, SET_DANH_SACH_NGUOI_DUNG, SET_THONG_TIN_NGUOI_DUNG, LAY_THONG_TIN_NGUOI_DUNG_USER } from "../types/QuanLyNguoiDungType";
 import {history} from "../../App"
 import { GROUP_ID, http, httpBearer } from "../../util/setting";
 import { notificationFunction } from "../../templates/Notification/Notification";
@@ -111,10 +111,10 @@ export const layThongTinNguoiDungAction = () => {
   };
 };
 
-export const dangKyNguoiDungAction = (formDangKy) => {
+export const dangKyNguoiDungAction = (thongTinNguoiDung) => {
   return async(dispatch) => {
     try {
-      const result = await http.post(`/api/QuanLyNguoiDung/DangKy`,formDangKy);
+      const result = await http.post(`/api/QuanLyNguoiDung/DangKy`,thongTinNguoiDung);
       console.log({ result });
       notificationFunction("success", "Register is successful");
       history.push("/login");
@@ -124,4 +124,22 @@ export const dangKyNguoiDungAction = (formDangKy) => {
     }
   }
 }
+
+export const layThongTinNguoiDungUserAction = () => {
+  return async (dispatch) => {
+    try {
+      const result = await httpBearer.post(`/api/QuanLyNguoiDung/ThongTinTaiKhoan`);
+      console.log({ result });
+      if (result.status === 200) {
+        dispatch({
+          type: LAY_THONG_TIN_NGUOI_DUNG_USER,
+          thongTinNguoiDungUser: result.data.content
+        });
+      }
+    } catch (err) {
+      console.log("err", err);
+      console.log("err", err.response?.data);
+    }
+  };
+};
 
