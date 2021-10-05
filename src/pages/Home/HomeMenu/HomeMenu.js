@@ -1,42 +1,44 @@
-import React, { useEffect } from 'react'
-import { Tabs } from 'antd';
-
+import React, { useEffect, useState } from 'react'
+import './HomeMenu.css'
 import { useDispatch, useSelector } from 'react-redux';
 
 import MultipleRowSlick from '../../../components/RSlick/MultipleRowSlick';
 import { layDanhSachPhimAction } from '../../../redux/actions/QuanlyPhimAction';
+import { SET_PHIM_DANG_CHIEU, SET_PHIM_HOT, SET_PHIM_SAP_CHIEU, SET_VIDEO_MODAL } from '../../../redux/types/MovieType';
 
+
+import ModalVideo from 'react-modal-video'
 
 
 export default function HomeMenu(props) {
-    const { arrFilm } = useSelector(state => state.QuanLyPhimReducer);
-
-    const arrFilmDangChieu = arrFilm.filter(phim => phim.dangChieu);
-    const arrFilmSapChieu = arrFilm.filter(phim => phim.sapChieu);
-    const arrFilmHot = arrFilm.filter(phim => phim.hot);
-
+    const { arrFilm, isOpenModal, modalTrailer } = useSelector(state => state.QuanLyPhimReducer);
     const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch(layDanhSachPhimAction());
-    }, [dispatch]);
-
-    const { TabPane } = Tabs;
+    }, []);
 
 
     return (
         <div className="container mt-2">
-            <Tabs defaultActiveKey="1">
-                <TabPane tab="Phim đang chiếu" key="1">
-                    <MultipleRowSlick arrFilm={arrFilmDangChieu} />
-                </TabPane>
-                <TabPane tab="Phim sắp chiếu" key="2">
-                    <MultipleRowSlick arrFilm={arrFilmSapChieu} />
-                </TabPane>
-                <TabPane tab="Phim hot" key="3">
-                    <MultipleRowSlick arrFilm={arrFilmHot} />
-                </TabPane>
-            </Tabs>
-
+            <div class="btn-container">
+                <button class="glass-btn" onClick={() => {
+                    dispatch({ type: SET_PHIM_DANG_CHIEU })
+                }}><span>Phim đang chiếu</span></button>
+                <button class="glass-btn" onClick={() => {
+                    dispatch({ type: SET_PHIM_SAP_CHIEU })
+                }}><span>Phim sắp chiếu</span></button>
+                <button class="glass-btn" onClick={() => {
+                    dispatch({ type: SET_PHIM_HOT })
+                }}><span>Phim hot</span></button>
+            </div>
+            <ModalVideo channel='youtube' autoplay isOpen={isOpenModal} videoId={modalTrailer} onClose={() => {
+                dispatch({
+                    type: SET_VIDEO_MODAL,
+                    isOpenModal: false
+                })
+            }} />
+            <MultipleRowSlick arrFilm={arrFilm} />
         </div>
     )
 }

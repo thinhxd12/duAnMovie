@@ -1,24 +1,12 @@
-import { SET_DANH_SACH_PHIM, SET_CHI_TIET_PHIM, SET_THONG_TIN_PHIM } from "../types/MovieType"
+import { SET_DANH_SACH_PHIM, SET_CHI_TIET_PHIM, SET_PHIM_SAP_CHIEU, SET_PHIM_DANG_CHIEU, SET_PHIM_HOT, SET_THONG_TIN_PHIM, SET_VIDEO_MODAL } from "../types/MovieType"
 
 const initialState = {
-    arrFilm: [
-        // {
-        //     "maPhim": 1283,
-        //     "tenPhim": "Lat mat 48h123",
-        //     "biDanh": "lat-mat-48h123",
-        //     "trailer": "",
-        //     "hinhAnh": "https://movienew.cybersoft.edu.vn/hinhanh/lat-mat-48h123_gp01.jpg",
-        //     "moTa": "",
-        //     "maNhom": "GP01",
-        //     "ngayKhoiChieu": "2020-10-10T00:00:00",
-        //     "danhGia": 10,
-        //     "hot": true,
-        //     "dangChieu": true,
-        //     "sapChieu": true
-        // },
-    ],
+    arrFilm: [],
+    arrFilmDefault: [],
     filmDetail: {},
-    thongTinPhim:{}
+    thongTinPhim: {},
+    isOpenModal:false,
+    modalTrailer:'L61p2uyiMSo'
 }
 
 
@@ -27,17 +15,42 @@ export const QuanLyPhimReducer = (state = initialState, action) => {
     switch (action.type) {
 
         case SET_DANH_SACH_PHIM: {
-            state.arrFilm = action.arrFilm;
+            state.arrFilmDefault = action.arrFilm;
+            state.arrFilm = state.arrFilmDefault.filter(film => film.dangChieu)
             return { ...state }
         }
+
+        case SET_PHIM_DANG_CHIEU: {
+
+            state.arrFilm = state.arrFilmDefault.filter(film => film.dangChieu)
+            return { ...state }
+        }
+        case SET_PHIM_SAP_CHIEU: {
+            state.arrFilm = state.arrFilmDefault.filter(film => film.sapChieu)
+            return { ...state }
+        }
+
+        case SET_PHIM_HOT: {
+            state.arrFilm = state.arrFilmDefault.filter(film => film.hot)
+            return { ...state }
+        }
+
         case SET_CHI_TIET_PHIM: {
             state.filmDetail = action.filmDetail;
-            return {...state}
+            return { ...state }
         }
+        
         case SET_THONG_TIN_PHIM:{
             state.thongTinPhim = action.thongTinPhim;
             return {...state}
         }
+
+        case SET_VIDEO_MODAL:{
+            state.isOpenModal = action.isOpenModal;
+            state.modalTrailer = action.modalTrailer;
+            return {...state}
+        }
+
         default: return state
     }
 }

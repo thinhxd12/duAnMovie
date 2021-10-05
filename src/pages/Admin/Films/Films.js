@@ -18,7 +18,7 @@ const onChange = (pagination, filters, sorter, extra) => {
 
 export default function Films(props) {
 
-    const { arrFilm } = useSelector(state => state.QuanLyPhimReducer);
+    const { arrFilmDefault } = useSelector(state => state.QuanLyPhimReducer);
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(layDanhSachPhimAction());
@@ -29,7 +29,7 @@ export default function Films(props) {
         dispatch(layDanhSachPhimAction(value));
     };
 
-    const data = arrFilm;
+    const data = arrFilmDefault;
 
     const columns = [
         {

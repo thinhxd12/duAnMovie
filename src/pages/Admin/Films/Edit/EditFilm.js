@@ -7,6 +7,7 @@ import {
   DatePicker,
   InputNumber,
   Switch,
+  Button,
 } from 'antd';
 import { Fragment } from 'react';
 import { GROUP_ID } from '../../../../util/setting';
@@ -21,14 +22,13 @@ export default function EditFilm(props) {
   const [componentSize, setComponentSize] = useState('default');
 
   const [imgSrc, setImgSrc] = useState('')
-
   const dispatch = useDispatch();
   useEffect(() => {
     let { id } = props.match.params;
     dispatch(layThongTinPhimAction(id));
   }, [dispatch])
 
-  const { thongTinPhim } = useSelector(state => state.QuanLyPhimReducer);
+  const {thongTinPhim } = useSelector(state => state.QuanLyPhimReducer);
 
   const formik = useFormik({
     enableReinitialize: true,
@@ -143,7 +143,7 @@ export default function EditFilm(props) {
           <img style={{ width: 200 }} className="mt-2" src={imgSrc === '' ? thongTinPhim.hinhAnh : imgSrc} alt="..." />
         </Form.Item>
         <Form.Item label="Chức năng">
-          <button className="btn btn-outline-primary" type="submit">Cập nhật</button>
+          <Button type="primary" htmlType="submit" >Cập nhật</Button>
         </Form.Item>
       </Form>
     </Fragment>

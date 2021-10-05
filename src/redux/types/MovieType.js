@@ -10,3 +10,10 @@ export const SET_CHI_TIET_PHIM = 'SET_CHI_TIET_PHIM';
 
 export const SET_THONG_TIN_PHIM = 'SET_THONG_TIN_PHIM';
 
+export const SET_PHIM_DANG_CHIEU = 'SET_PHIM_DANG_CHIEU';
+
+export const SET_PHIM_SAP_CHIEU = 'SET_PHIM_SAP_CHIEU';
+
+export const SET_PHIM_HOT = 'SET_PHIM_HOT';
+
+export const SET_VIDEO_MODAL = 'SET_VIDEO_MODAL';

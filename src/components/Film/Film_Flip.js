@@ -1,54 +1,48 @@
 import React from "react";
 import "./Film_Flip.css";
-import { PlayCircleOutlined } from '@ant-design/icons'
 import { history } from '../../App'
+import { Rate } from 'antd';
+import { useDispatch } from 'react-redux';
+import { SET_VIDEO_MODAL } from "../../redux/types/MovieType";
 
 
 export default function Film_Flip(props) {
   const { item } = props;
+  let stars = Number(item.danhGia) / 2;
+  const dispatch = useDispatch();
+
+
   return (
-    <div className="flip-card my-5">
-      <div className="flip-card-inner">
-        <div className="flip-card-front">
-          <img
-            src={item.hinhAnh}
-            alt="Avatar"
-            style={{ width: 300, height: 300 }}
-          />
-        </div>
-        <div
-          className="flip-card-back"
-          style={{ position: "relative", backgroundColor: "rgba(0,0,0,.9)" }}
+    <div className="card__content">
+      <div className="card">
+        <div className="card__img"
+          style={{
+            backgroundImage: `url(${item.hinhAnh})`,
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            height: "240px",
+            borderRadius: "18px"
+          }}
         >
-          <div style={{ position: "absolute", top: 0, left: 0 }}>
-            <img
-              src={item.hinhAnh}
-              alt="Avatar"
-              style={{ width: 300, height: 300 }}
-            />
-          </div>
-          <div
-            className="w-full h-full"
-            style={{
-              position: "absolute",
-              backgroundColor: "rgba(0,0,0,.5)",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <div className="rounded-full cursor-pointer">
-              <PlayCircleOutlined style={{ fontSize: '50px' }} />
-            </div>
-            {/* <div className="text-2xl ml-2 font-bold">{item.tenPhim}</div> */}
+          <div className="card__info" onClick={() => {
+            dispatch({
+              type: SET_VIDEO_MODAL,
+              isOpenModal: true,
+              modalTrailer: item.trailer
+            })
+          }}>
+            <img src="./img/play-video.png" alt="..." width={50} height={50} />
           </div>
         </div>
-      </div>
-      <div onClick={() => {
-        history.push(`/detail/${item.maPhim}`)
-      }} className=" w-full bg-orange-300 text-center cursor-pointer py-2 bg-indigo-300 text-success-50 font-bold ">
-        ĐẶT VÉ
+        <h4 className="card__name">{item.tenPhim.length > 18 ? item.tenPhim.substr(0, 15) + '...' : item.tenPhim}</h4>
+        <Rate disabled allowHalf="true" defaultValue={stars} />
+        <p className="card__desc">{item.tenPhim.length > 50 ? item.tenPhim.substr(0, 50) + '...' : item.tenPhim}</p>
+        <button className="card__btn" onClick={() => {
+          history.push(`/detail/${item.maPhim}`)
+        }}><i className="fas fa-arrow-right"></i></button>
       </div>
     </div>
+
   );
 }

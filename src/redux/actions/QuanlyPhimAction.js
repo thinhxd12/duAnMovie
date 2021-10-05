@@ -46,11 +46,10 @@ export const themPhimAction = async (frmData) => {
 
 
 export const layThongTinPhimAction = (maPhim) => {
-    return async (dispatch2) => {
+    return async (dispatch) => {
         try {
             const result = await http.get(`/api/QuanLyPhim/LayThongTinPhim?MaPhim=${maPhim}`);
-            // console.log(result.data)
-            dispatch2({
+            dispatch({
                 type: SET_THONG_TIN_PHIM,
                 thongTinPhim: result.data.content
             })

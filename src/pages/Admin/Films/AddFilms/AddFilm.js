@@ -7,6 +7,7 @@ import {
   DatePicker,
   InputNumber,
   Switch,
+  Button,
 } from 'antd';
 import { Fragment } from 'react';
 
@@ -132,7 +133,7 @@ export default function AddFilm(prop) {
           <img style={{ width: 200 }} className="mt-2" src={imgSrc} alt="..." />
         </Form.Item>
         <Form.Item label="Chức năng">
-          <button className="btn btn-outline-primary" type="submit">Thêm phim</button>
+          <Button type="submit">Thêm phim</Button>
         </Form.Item>
       </Form>
     </Fragment>
