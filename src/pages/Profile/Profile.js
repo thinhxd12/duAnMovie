@@ -135,7 +135,7 @@ export default function Profile(props) {
           </div>
           <div className="w-full md:w-9/12 mx-2 min-h-screen md:h-screen">
             {/* Right Section */}
-            <Tabs defaultActiveKey="2" onChange={callback}>
+            <Tabs defaultActiveKey="1" onChange={callback}>
               <TabPane tab="THÔNG TIN TÀI KHOẢN" key="1">
                 <Form
                   onSubmitCapture={formik.handleSubmit}
