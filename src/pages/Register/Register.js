@@ -87,9 +87,9 @@ export default function Register(props) {
               </g>
             </svg>
           </div>
-          <div className="text-2xl text-indigo-800 tracking-wide ml-2 font-semibold">
+          <a href="/home" className="text-2xl text-indigo-800 tracking-wide ml-2 font-semibold">
             CYBER CINEMA
-          </div>
+          </a>
         </div>
       </div>
       <div className="mt-10 px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl">

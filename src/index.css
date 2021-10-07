@@ -7,9 +7,7 @@
 /* react-modal-video */
 @import '~react-modal-video/css/modal-video.css';
 
-body {
-  /* background: linear-gradient(-70deg, #ebebeb, #ffffff); */
-}
+
 
 .slick__prev__arrow {
   position: absolute;
