@@ -82,7 +82,7 @@ export default function Header(props) {
         <ul className="items-stretch hidden space-x-3 lg:flex">
           <li className="flex">
             <a
-              href="/"
+              href="/home"
               className="flex items-center -mb-0.5 border-b-2 px-4 border-transparent text-red-600 border-red-600"
             >
               Trang chủ

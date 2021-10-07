@@ -96,7 +96,7 @@ export const xoaNguoiDung = async (taiKhoan) => {
 export const layThongTinNguoiDungAction = () => {
   return async (dispatch) => {
     try {
-      const result = await http.post(`/api/QuanLyNguoiDung/ThongTinTaiKhoan`);
+      const result = await httpBearer.post(`/api/QuanLyNguoiDung/ThongTinTaiKhoan`);
 
       if(result.data.statusCode === 200) {
           dispatch({
@@ -114,7 +114,7 @@ export const layThongTinNguoiDungAction = () => {
 export const dangKyNguoiDungAction = (thongTinNguoiDung) => {
   return async(dispatch) => {
     try {
-      const result = await http.post(`/api/QuanLyNguoiDung/DangKy`,thongTinNguoiDung);
+      const result = await httpBearer.post(`/api/QuanLyNguoiDung/DangKy`,thongTinNguoiDung);
       console.log({ result });
       notificationFunction("success", "Register is successful");
       history.push("/login");

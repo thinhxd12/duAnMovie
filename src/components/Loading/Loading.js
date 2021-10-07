@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import loading from '../../assets/img/Spinner-1s-200px.gif'
 
 export default function Loading(props) {
   const { isLoading } = useSelector((state) => state.LoadingReducer);
@@ -21,7 +22,9 @@ export default function Loading(props) {
             zIndex: 99,
           }}
         >
-          <div className="text-4xl text-white">Loading...</div>
+          <div className="text-4xl text-white">
+            <img src={loading} alt="..." ></img>
+          </div>
         </div>
       ) : (
         ""

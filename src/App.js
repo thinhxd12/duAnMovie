@@ -39,7 +39,6 @@ function App() {
       <Loading />
 
       <Switch>
-
         <HomeTemplate path="/home" component={Home} />
         <HomeTemplate path="/detail/:id" exact component={Detail} />
         {/* <HomeTemplate exact path="/baitaptonghop" component={BaiTapTongHop} /> */}
@@ -57,9 +56,7 @@ function App() {
         <AdminTemplate exact path="/admin/addfilm" component={AddFilm} />
         <AdminTemplate exact path="/admin/films" component={Films} />
         <AdminTemplate exact path="/admin" component={Users}/>
-
-        <HomeTemplate exact path="/" component={Home} />
-        
+        <HomeTemplate path="/" component={Home} />
       </Switch>
 
     </Router>
