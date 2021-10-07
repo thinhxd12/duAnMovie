@@ -6,6 +6,7 @@ import { DAT_VE_HOAN_TAT } from "../types/QuanLyDatVeType";
 import { displayLoadingAction, hideLoadingAction } from "./LoadingAction";
 import { DAT_VE } from "../types/QuanLyDatVeType";
 import { connection } from "../../index";
+import { notificationFunction } from "../../templates/Notification/Notification";
 
 export const taoLichChieuAction = async (thongTinLichChieu) => {
     try {
@@ -19,6 +20,7 @@ export const taoLichChieuAction = async (thongTinLichChieu) => {
 export const layChiTietPhongVeAction = (maLichChieu) => {
   return async (dispatch) => {
     try {
+      dispatch(displayLoadingAction)
       const result = await http.get(
         `api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${maLichChieu}`
       );
@@ -28,6 +30,7 @@ export const layChiTietPhongVeAction = (maLichChieu) => {
           type: SET_CHI_TIET_PHONG_VE,
           chiTietPhongVe: result.data.content,
         });
+      await dispatch(hideLoadingAction)
       }
     } catch (error) {
       console.log("error", error);
@@ -41,7 +44,8 @@ export const DatVeAction = (thongTinDatVe = new ThongTinDatVe()) => {
   return async (dispatch, getState) => {
     try {
       dispatch(displayLoadingAction);
-      const result = await http.post(`/api/QuanLyDatVe/DatVe`, thongTinDatVe);
+      const result = await httpBearer.post(`/api/QuanLyDatVe/DatVe`, thongTinDatVe);
+      notificationFunction("success", "Booking Ticket is successful")
       console.log(result.data.content);
       //Đặt vé thành công gọi api load lại phòng vé
       await dispatch(layChiTietPhongVeAction(thongTinDatVe.maLichChieu));
