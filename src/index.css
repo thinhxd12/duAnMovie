@@ -8,13 +8,12 @@
 @import '~react-modal-video/css/modal-video.css';
 
 body {
-  background: linear-gradient(-70deg, #ebebeb, #ffffff);
+  /* background: linear-gradient(-70deg, #ebebeb, #ffffff); */
 }
-
 
 .slick__prev__arrow {
   position: absolute;
-  top: 45%;
+  top: 40%;
   background-image: url("./assets/img/back-session.png");
   border: none;
   width: 50px;
@@ -29,7 +28,7 @@ body {
 
 .slick__next__arrow {
   position: absolute;
-  top: 45%;
+  top: 40%;
   right: 0;
   background-image: url("./assets/img/next-session.png");
   border: none;

@@ -32,7 +32,7 @@ export default function Film_Flip(props) {
               modalTrailer: item.trailer
             })
           }}>
-            <img src="./img/play-video.png" alt="..." width={50} height={50} />
+            <img src="./img/play-video.png" alt="..." width={50} height={50}/>
           </div>
         </div>
         <h4 className="card__name">{item.tenPhim.length > 18 ? item.tenPhim.substr(0, 15) + '...' : item.tenPhim}</h4>

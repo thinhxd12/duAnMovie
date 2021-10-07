@@ -21,14 +21,14 @@ export default function HomeMenu(props) {
 
     return (
         <div className="container mt-2">
-            <div class="btn-container">
-                <button class="glass-btn" onClick={() => {
+            <div className="btn-container">
+                <button className="glass-btn" onClick={() => {
                     dispatch({ type: SET_PHIM_DANG_CHIEU })
                 }}><span>Phim đang chiếu</span></button>
-                <button class="glass-btn" onClick={() => {
+                <button className="glass-btn" onClick={() => {
                     dispatch({ type: SET_PHIM_SAP_CHIEU })
                 }}><span>Phim sắp chiếu</span></button>
-                <button class="glass-btn" onClick={() => {
+                <button className="glass-btn" onClick={() => {
                     dispatch({ type: SET_PHIM_HOT })
                 }}><span>Phim hot</span></button>
             </div>

@@ -1,31 +1,28 @@
-import React, { useEffect } from 'react'
+import React, {  useEffect } from 'react'
 import { Tabs } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { layDanhSachHeThongRapAction, layThongTinCumRapTheoHeThongAction } from '../../../redux/actions/QuanLyRapAction';
 import moment from 'moment';
+import { layThongTinLichChieuHeThongRapAction } from '../../../redux/actions/QuanLyRapAction';
+import { history } from '../../../App';
 
 export default function Cinema(props) {
     const { TabPane } = Tabs;
-    const { heThongRapChieu, cumRap } = useSelector(state => state.QuanLyRapReducer)
+    const { heThongRapChieu } = useSelector(state => state.QuanLyRapReducer)
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(layDanhSachHeThongRapAction());
-        dispatch(layThongTinCumRapTheoHeThongAction('BHDStar'))
-    }, [dispatch])
-
+        dispatch(layThongTinLichChieuHeThongRapAction());
+    }, [])
+    
     return (
-        <div className="container" style={{ height: '700px' }}>
-            <Tabs tabPosition="left" defaultActiveKey="BHDStar" onTabClick={(maHeThongRap) => {
-                dispatch(layThongTinCumRapTheoHeThongAction(maHeThongRap));
-            }}>
-
+        <div className="container w-3/4" style={{ height: '700px'}}>
+            <Tabs tabPosition="left">
                 {heThongRapChieu.map((heThongRapChieu, index) => {
-                    return <TabPane key={heThongRapChieu.maHeThongRap} tab={<img src={heThongRapChieu.logo} alt={heThongRapChieu.biDanh} className="rounded-full" width={50} />}>
+                    return <TabPane key={index} tab={<img src={heThongRapChieu.logo} alt={heThongRapChieu.maHeThongRap} className="rounded-full" width={50} />}>
                         <Tabs tabPosition="left">
 
-                            {cumRap.slice(0,6).map((cumRap, index1) => {
-                                return <TabPane key={index1} tab={
+                            {heThongRapChieu.lstCumRap.slice(0,6).map((cumRap, index) => {
+                                return <TabPane key={cumRap.maCumRap} tab={
                                     <div className="flex items-center">
                                         <img src={cumRap.hinhAnh} alt={cumRap.tenCumRap} style={{ width: '50px', height: '50px' }} onError={(e) => { e.target.onerror = null; e.target.src = "https://picsum.photos/50" }} />
                                         <div className="ml-2 text-left">
@@ -38,28 +35,25 @@ export default function Cinema(props) {
                                     <div style={{ height: '600px', overflow: 'auto' }}>
                                         {cumRap.danhSachPhim.map((phim) => {
                                             return <div className="m-2 flex" key={phim.tenPhim}>
-                                                <img src={phim.hinhAnh} alt={phim.tenPhim} style={{ width: '75px', height: 'auto' }} onError={(e) => { e.target.onerror = null; e.target.src = "https://picsum.photos/75" }} />
+                                                <img src={phim.hinhAnh} alt={phim.tenPhim} style={{width:'50px',height:'70px'}} onError={(e) => { e.target.onerror = null; e.target.src = "https://picsum.photos/75" }} />
                                                 <div className="ml-2">
-                                                    <h4 className="text-xl text-green-700">{phim.tenPhim}</h4>
+                                                    <h4 className="text-xl text-green-700 pb-1 cursor-pointer" onClick={()=>{
+                                                        history.push(`/detail/${phim.maPhim}`)
+                                                    }}>{phim.tenPhim}</h4>
                                                     <p className="font-semibold text-sm">{cumRap.diaChi}</p>
                                                     <div className="grid grid-cols-6 gap-6">
                                                         {phim.lstLichChieuTheoPhim.slice(0, 12).map((lichChieu, index2) => {
-                                                            return <NavLink key={index2} className="text-base text-green-400" to={`/checkout/${lichChieu.maLichChieu}`}>
+                                                            return <NavLink key={index2} className="text-sm text-green-400" to={`/checkout/${lichChieu.maLichChieu}`}>
                                                                 {moment(lichChieu.ngayChieuGioChieu).format('hh:mm A')}
                                                             </NavLink>
                                                         })}
-
                                                     </div>
                                                 </div>
                                             </div>
                                         })}
-
                                     </div>
-
                                 </TabPane>
-
                             })}
-
                         </Tabs>
                     </TabPane>
                 })}

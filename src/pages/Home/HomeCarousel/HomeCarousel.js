@@ -49,7 +49,7 @@ export default function HomeCarousel(props) {
     };
 
     const contentStyle = {
-        height: '815px',
+        height: '650px',
         width: '100%',
         backgroundPosition: 'center',
         backgroundSize: 'cover',
@@ -57,13 +57,22 @@ export default function HomeCarousel(props) {
     }
     return (
         <div className="w-full">
+
             <Slider {...settings}>
                 {arrImg.map((item, index) => {
                     return <div key={index} >
                         <div style={{ ...contentStyle, backgroundImage: `url(${item.hinhAnh})` }}>
 
+                            <div style={{
+                                position: 'relative',
+                                top: '0',
+                                width: '100%',
+                                height: '100%',
+                                background: 'rgba(29, 42, 55, 0.15)'
+                            }}>
+                            <img src="./img/play-video.png" alt="..." className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer" />
+                            </div>
                         </div>
-
                     </div>
                 })}
 
