@@ -74,7 +74,7 @@ export const themNguoiDungAction = async (thongTinNguoiDung) => {
 export const capNhatThongTinNguoiDung = async (thongTinNguoiDung) => {
   try {
     const result = await httpBearer.post(`/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`, thongTinNguoiDung)
-    console.log(result)
+    console.log(result);
     alert(result.data.message);
   } catch (error) {
     console.log(error.response?.data)

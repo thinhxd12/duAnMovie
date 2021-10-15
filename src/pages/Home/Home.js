@@ -6,6 +6,7 @@ import News from '../News/News'
 import Lottie from "react-lottie";
 import * as location from "../../movieGif.json";
 import * as success from "../../success.json";
+import Application from "../Application/Apllication";
 
 export default function Home() {
   // Loading Page
@@ -62,6 +63,7 @@ export default function Home() {
           <HomeMenu />
           <Cinema />
           <News />
+          <Application />
         </div>
       )}
     </>

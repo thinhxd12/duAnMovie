@@ -102,9 +102,9 @@ export default function Profile(props) {
   }
 
   return (
-    <div className="md:w-full md:flex mb-15">
+    <div className="md:w-full md:flex">
       <div className="container mx-auto p-5 ">
-        <div className="md:flex no-wrap md:-mx-2 mt-5 ">
+        <div className="md:flex no-wrap md:-mx-2 mt-20 ">
           {/* Left Side */}
           <div className="w-full md:w-3/12 md:mx-2">
             <div
@@ -114,24 +114,14 @@ export default function Profile(props) {
             >
               {thongTinNguoiDungUser.taiKhoan?.slice(0, 1)}
             </div>
-            <h1 className="text-center text-4xl mb-3 uppercase mr-12">{thongTinNguoiDungUser.taiKhoan}</h1>
-            <ul className="list-group">
-              <li className="list-group-item">
-                <span className="float-left">
-                  <strong>THẺ QUÀ TẶNG</strong>
-                </span>
-              </li>
-              <li className="list-group-item">
-                <span className="float-left">
-                  <strong>VOUCHER </strong>
-                </span>
-              </li>
-              <li className="list-group-item">
-                <span className="float-left">
-                  <strong>COUPON</strong>
-                </span>
-              </li>
-            </ul>
+            <h1 className="text-center text-4xl mb-10 uppercase mr-20">
+              {thongTinNguoiDungUser.taiKhoan}
+            </h1>
+            <div className="divide-y divide-light-blue-400 ">
+              <div className="text-xl mb-2 uppercase">Thẻ quà tặng</div>
+              <div className="text-xl mb-2 uppercase">coupon</div>
+              <div className="text-xl mb-2 uppercase">Voucher</div>
+            </div>
           </div>
           <div className="w-full md:w-9/12 mx-2 min-h-screen md:h-screen">
             {/* Right Section */}

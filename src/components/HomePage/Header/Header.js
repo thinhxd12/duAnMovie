@@ -110,7 +110,7 @@ export default function Header(props) {
           </li>
           <li className="flex">
             <a
-              href="/"
+              href="/#footer"
               className="flex items-center -mb-0.5 border-b-2 px-4 border-transparent hover:text-red-600"
             >
               Liên hệ
@@ -118,7 +118,7 @@ export default function Header(props) {
           </li>
           <li className="flex">
             <a
-              href="/"
+              href="/#news"
               className="flex items-center -mb-0.5 border-b-2 px-4 border-transparent hover:text-red-600"
             >
               Tin tức
@@ -126,7 +126,7 @@ export default function Header(props) {
           </li>
           <li className="flex">
             <a
-              href="/"
+              href="/#application"
               className="flex items-center -mb-0.5 border-b-2 px-4 border-transparent hover:text-red-600"
             >
               Ứng dụng

@@ -12,6 +12,7 @@ import Login from './pages/Login/Login';
 import { UserTemplate } from './templates/UserTemplate/UserTemplate';
 import Register from './pages/Register/Register'
 import Loading from './components/Loading/Loading';
+import './assets/scss/main.scss'
 // import { Suspense, lazy } from 'react';
 // import BaiTapTongHop from './components/BaiTapTongHop/BaiTapTongHop';
 
@@ -42,7 +43,6 @@ function App() {
         <HomeTemplate path="/home" component={Home} />
         <HomeTemplate path="/detail/:id" exact component={Detail} />
         {/* <HomeTemplate exact path="/baitaptonghop" component={BaiTapTongHop} /> */}
-        <Route path="/register" exact component={Register} />
         <CheckoutTemplate path="/checkout/:id" exact component={Checkout} />
         <UserTemplate path="/login" exact Component={Login} />
         <UserTemplate path="/register" exact Component={Register} />
