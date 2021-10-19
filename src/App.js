@@ -12,12 +12,12 @@ import Login from './pages/Login/Login';
 import { UserTemplate } from './templates/UserTemplate/UserTemplate';
 import Register from './pages/Register/Register'
 import Loading from './components/Loading/Loading';
+import './assets/scss/main.scss'
 // import { Suspense, lazy } from 'react';
 // import BaiTapTongHop from './components/BaiTapTongHop/BaiTapTongHop';
 
 // const CheckoutTemplateLazy = lazy(()=> ('./templates/CheckoutTemplate/CheckoutTemplate'))
 
-import { AdminTemplate } from './templates/AdminTemplate';
 import Films from './pages/Admin/Films/Films';
 import AddFilm from './pages/Admin/Films/AddFilms/AddFilm';
 import EditFilm from './pages/Admin/Films/Edit/EditFilm';
@@ -26,6 +26,7 @@ import AddUser from './pages/Admin/Users/AddUser/AddUser';
 import Users from './pages/Admin/Users/Users';
 import EditUser from './pages/Admin/Users/EditUser/EditUser';
 import Profile from './pages/Profile/Profile';
+import AdminTemplate from './templates/AdminTemplate/AdminTemplate';
 
 
 
@@ -42,7 +43,6 @@ function App() {
         <HomeTemplate path="/home" component={Home} />
         <HomeTemplate path="/detail/:id" exact component={Detail} />
         {/* <HomeTemplate exact path="/baitaptonghop" component={BaiTapTongHop} /> */}
-        <Route path="/register" exact component={Register} />
         <CheckoutTemplate path="/checkout/:id" exact component={Checkout} />
         <UserTemplate path="/login" exact Component={Login} />
         <UserTemplate path="/register" exact Component={Register} />

@@ -1,17 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
-import {
-    Form,
-    Input,
-    Radio,
-    Select,
-    Button,
-} from 'antd';
-
-import {
-    ArrowLeftOutlined
-} from '@ant-design/icons';
 
 import { history } from '../../../../App';
 import { http } from '../../../../util/setting';
@@ -20,9 +9,6 @@ import { useSelector } from 'react-redux';
 
 
 export default function EditUser(prop) {
-    const { Option } = Select;
-
-    const [componentSize, setComponentSize] = useState('default');
     const { userModify } = useSelector(state => state.QuanLyNguoiDungReducer)
     const [state, setState] = useState({
         arrLoaiNguoiDung: []
@@ -64,83 +50,116 @@ export default function EditUser(prop) {
         }
     })
 
-    const onFormLayoutChange = ({ size }) => {
-        setComponentSize(size);
-    };
+  
 
 
     return (
-        <div className="container">
-            <h3 className="text-3xl mb-3 text-left">Cập nhật thông người dùng</h3>
-            <Form
-                onSubmitCapture={formik.handleSubmit}
-                labelCol={{
-                    span: 4,
-                }}
-                wrapperCol={{
-                    span: 14,
-                }}
-                layout="horizontal"
-                initialValues={{
-                    size: componentSize,
-                }}
-                onValuesChange={onFormLayoutChange}
-                size={componentSize}
-            >
-                <Form.Item label="Form Size" name="size">
-                    <Radio.Group>
-                        <Radio.Button value="small">Small</Radio.Button>
-                        <Radio.Button value="default">Default</Radio.Button>
-                        <Radio.Button value="large">Large</Radio.Button>
-                    </Radio.Group>
-                </Form.Item>
-                <Form.Item label="Tài khoản">
-                    <Input name="taiKhoan" onChange={formik.handleChange} value={formik.values.taiKhoan} />
-                    {formik.touched.taiKhoan && formik.errors.taiKhoan ? (
-                        <div className="text-red-500">{formik.errors.taiKhoan}</div>
-                    ) : ''}
-                </Form.Item>
-                <Form.Item label="Mật khẩu">
-                    <Input name="matKhau" onChange={formik.handleChange} value={formik.values.matKhau} />
-                    {formik.touched.matKhau && formik.errors.matKhau ? (
-                        <div className="text-red-500">{formik.errors.matKhau}</div>
-                    ) : ''}
-                </Form.Item>
-                <Form.Item label="Họ tên">
-                    <Input name="hoTen" onChange={formik.handleChange} value={formik.values.hoTen} />
-                    {formik.touched.hoTen && formik.errors.hoTen ? (
-                        <div className="text-red-500">{formik.errors.hoTen}</div>
-                    ) : ''}
-                </Form.Item>
-                <Form.Item label="Email">
-                    <Input name="email" onChange={formik.handleChange} value={formik.values.email} />
-                    {formik.touched.email && formik.errors.email ? (
-                        <div className="text-red-500">{formik.errors.email}</div>
-                    ) : ''}
-                </Form.Item>
-                <Form.Item label="Số điện thoại">
-                    <Input name="soDt" onChange={formik.handleChange} value={formik.values.soDt} />
-                    {formik.touched.soDt && formik.errors.soDt ? (
-                        <div className="text-red-500">{formik.errors.soDt}</div>
-                    ) : ''}
-                </Form.Item>
-                <Form.Item label="Loại người dùng">
-                    <Select onChange={(value) => { formik.setFieldValue('maLoaiNguoiDung', value) }} value={formik.values.maLoaiNguoiDung}>
-                        {state.arrLoaiNguoiDung.map((item, index) => {
-                            return <Option value={item.maLoaiNguoiDung} key={index}>{item.tenLoai}</Option>
-                        })}
-                    </Select>
-                </Form.Item>
+            <div className="col-span-full xl:col-span-6">
+                <header className="flex justify-between px-5 py-4 border-b border-gray-100">
+                    <h2 className="font-semibold text-gray-800 text-xl">Profile Settings</h2>
+                    <button onClick={history.goBack} className="inline-flex items-center justify-center px-4 py-2 text-xs font-medium text-center text-indigo-100 border border-indigo-500 rounded-lg shadow-sm cursor-pointer hover:text-white bg-gradient-to-br from-purple-500 via-indigo-500 to-indigo-500">
+                        Go Back
+                        <i className="fas fa-chevron-circle-left fa-fw ml-1" />
+                    </button>
+                </header>
+                <div className="p-3 w-full">
+                    <form onSubmit={formik.handleSubmit}>
 
-                <div className="text-center flex justify-between w-3/4">
-                    <Button type="primary" htmlType="button" className="mr-2" onClick={history.goBack}>
-                        <ArrowLeftOutlined /> Go back
-                    </Button>
-                    <Button type="primary" htmlType="submit" className="mr-2">
-                        Cập nhật thông tin
-                    </Button>
+                        <div className="mb-5">
+                            <label className="block text-gray-700 text-sm font-bold mb-2">
+                                <span className="text-red-500">&nbsp;*</span>
+                                Username
+                            </label>
+                            <div className="mt-1 relative rounded-md shadow-sm">
+                                <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                    <svg className="h-5 w-5 text-gray-400" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} stroke="currentColor" viewBox="0 0 24 24"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+                                </div>
+                                <input name="taiKhoan" disabled value={formik.values.taiKhoan} className="block cursor-not-allowed pr-10 shadow appearance-none border border-orange-100 rounded w-full py-2 px-4 text-gray-700 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-orange-500 transition duration-500 ease-in-out"/>
+                            </div>
+                            <strong className="text-red-500 text-xs italic">
+                                {formik.touched.taiKhoan && formik.errors.taiKhoan ? <p>{formik.errors.taiKhoan}</p> : ''}
+                            </strong>
+                        </div>
+                        <div className="mb-5">
+                            <label className="block text-gray-700 text-sm font-bold mb-2">
+                                <span className="text-red-500">&nbsp;*</span>
+                            Password
+                            </label>
+                            <div className="mt-1 relative rounded-md shadow-sm">
+                                <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                    <svg className="h-5 w-5 text-gray-400" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} stroke="currentColor" viewBox="0 0 24 24"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>              </div>
+                                <input name="matKhau" onChange={formik.handleChange} value={formik.values.matKhau} className="block pr-10 shadow appearance-none border border-orange-100 rounded w-full py-2 px-4 text-gray-700 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-orange-500 transition duration-500 ease-in-out" />
+                            </div>
+                            <strong className="text-red-500 text-xs italic">
+                                {formik.touched.matKhau && formik.errors.matKhau ? <p>{formik.errors.matKhau}</p> : ''}
+                            </strong>
+                        </div>
+                        <div className="mb-5">
+                            <label className="block text-gray-700 text-sm font-bold mb-2">
+                                <span className="text-red-500">&nbsp;*</span>
+                                Full Name
+                            </label>
+                            <div className="mt-1 relative rounded-md shadow-sm">
+                                <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                    <svg className="h-5 w-5 text-gray-400" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} stroke="currentColor" viewBox="0 0 24 24"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+                                </div>
+                                <input name="hoTen" onChange={formik.handleChange} value={formik.values.hoTen} className="block pr-10 shadow appearance-none border border-orange-100 rounded w-full py-2 px-4 text-gray-700 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-orange-500 transition duration-500 ease-in-out" />
+                            </div>
+                            <strong className="text-red-500 text-xs italic">
+                                {formik.touched.hoTen && formik.errors.hoTen ? <p>{formik.errors.hoTen}</p> : ''}
+                            </strong>
+                        </div>
+                        <div className="mb-5">
+                            <label className="block text-gray-700 text-sm font-bold mb-2">
+                                <span className="text-red-500">&nbsp;*</span>
+                                Email
+                            </label>
+                            <div className="mt-1 relative rounded-md shadow-sm">
+                                <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                    <svg className="h-5 w-5 text-gray-400" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} stroke="currentColor" viewBox="0 0 24 24"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+                                </div>
+                                <input name="email" onChange={formik.handleChange} value={formik.values.email} className="block pr-10 shadow appearance-none border border-orange-100 rounded w-full py-2 px-4 text-gray-700 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-orange-500 transition duration-500 ease-in-out" />
+                            </div>
+                            <strong className="text-red-500 text-xs italic">
+                                {formik.touched.email && formik.errors.email ? <p>{formik.errors.email}</p> : ''}
+                            </strong>
+                        </div>
+                        <div className="mb-5">
+                            <label className="block text-gray-700 text-sm font-bold mb-2">
+                                <span className="text-red-500">&nbsp;*</span>
+                                Phone Number
+                            </label>
+                            <div className="mt-1 relative rounded-md shadow-sm">
+                                <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                    <svg className="h-5 w-5 text-gray-400" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} stroke="currentColor" viewBox="0 0 24 24"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+                                </div>
+                                <input name="soDt" onChange={formik.handleChange} value={formik.values.soDt} className="block pr-10 shadow appearance-none border border-orange-100 rounded w-full py-2 px-4 text-gray-700 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-orange-500 transition duration-500 ease-in-out" />
+                            </div>
+                            <strong className="text-red-500 text-xs italic">
+                                {formik.touched.soDt && formik.errors.soDt ? <p>{formik.errors.soDt}</p> : ''}
+                            </strong>
+                        </div>
+                        <div className="mb-5">
+                            <label className="block text-gray-700 text-sm font-bold mb-2">
+                                <span className="text-red-500">&nbsp;*</span>
+                                Account Type
+                            </label>
+                            <div className="mt-1 relative rounded-md shadow-sm">
+                                <select onChange={(e) => formik.setFieldValue('maLoaiNguoiDung', e.target.value)} value={formik.values.maLoaiNguoiDung} className="block cursor-pointer shadow border border-orange-100 rounded w-full py-2 px-4 text-gray-700 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-orange-500 transition duration-500 ease-in-out">
+                                    {state.arrLoaiNguoiDung.map((item, index) => {
+                                        return <option value={item.maLoaiNguoiDung} key={index} className="cursor-pointer">{item.tenLoai}</option>
+                                    })}
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="submit" className="inline-flex items-center justify-center px-4 py-2 text-xs font-medium text-center text-indigo-100 border border-indigo-500 rounded-lg shadow-sm cursor-pointer hover:text-white bg-gradient-to-br from-purple-500 via-indigo-500 to-indigo-500">
+                            Save Profile
+                        </button>
+
+                    </form>
                 </div>
-            </Form>
-        </div>
+            </div>
+
     )
 }

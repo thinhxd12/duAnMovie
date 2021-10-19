@@ -74,11 +74,11 @@ export const themNguoiDungAction = async (thongTinNguoiDung) => {
 export const capNhatThongTinNguoiDung = async (thongTinNguoiDung) => {
   try {
     const result = await httpBearer.post(`/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`, thongTinNguoiDung)
-    console.log(result)
-    alert(result.data.message);
+    console.log(result);
+    notificationFunction("success", "Update is successful");
   } catch (error) {
     console.log(error.response?.data)
-    alert(error.response?.data.content)
+    notificationFunction("error", "Update is unsuccessful")
   }
 }
 

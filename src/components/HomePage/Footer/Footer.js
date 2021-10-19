@@ -5,17 +5,17 @@ export default function Footer(props) {
     const { heThongRapChieu } = useSelector(state => state.QuanLyRapReducer)
 
     return (
-        <footer className="text-gray-600 body-font bg-gray-100">
+        <footer className="bg-gray-300 backdrop-filter backdrop-blur-md text-black shadow-md">
             <div className="container px-5 py-8 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
                 <div className="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
-                    <a className="flex flex-col title-font font-medium items-center md:justify-start justify-center text-gray-900" href="/">
+                    <a className="flex flex-col title-font font-medium items-center md:justify-start justify-center" href="/">
                         <img src="https://i.imgur.com/lC22izJ.png" alt="logo" style={{ maxWidth: '70px' }} />
                         <p className="ml-3 text-xl">Movie Cybersoft</p>
                     </a>
                 </div>
                 <div className="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
                     <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-                        <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">MOVIE CYBERSOFT</h2>
+                        <h2 className="title-font font-medium tracking-widest text-sm mb-3">MOVIE CYBERSOFT</h2>
                         <nav className="list-none mb-10">
                             <li>
                                 <a className="text-gray-600 hover:text-gray-800" href="/">FAQ</a>
@@ -32,8 +32,8 @@ export default function Footer(props) {
                         </nav>
                     </div>
                     <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-                        <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">ĐỐI TÁC</h2>
-                        <div className="grid grid-cols-3 justify-items-center">
+                        <h2 className="title-font font-medium tracking-widest text-sm mb-3">ĐỐI TÁC</h2>
+                        <div className="grid grid-cols-3 mt-3">
                             {heThongRapChieu?.map((item, index) => {
                                 return <a key={index} className="w-8 mr-3 mb-3 inline-block" href="/" >
                                     <img src={item.logo} alt="..." />
@@ -43,8 +43,8 @@ export default function Footer(props) {
                         </div>
                     </div>
                     <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-                        <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">MOBILE APP</h2>
-                        <div className="flex justify-center">
+                        <h2 className="title-font font-medium tracking-widest text-sm mb-3">MOBILE APP</h2>
+                        <div className="flex">
                             <a className="w-8 mr-3" href="/" >
                                 <img src="https://tix.vn/app/assets/img/icons/apple-logo.png" alt="..." />
                             </a>
@@ -54,8 +54,8 @@ export default function Footer(props) {
                         </div>
                     </div>
                     <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-                        <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">SOCIAL</h2>
-                        <div className="flex justify-center">
+                        <h2 className="title-font font-medium tracking-widest text-sm mb-3">SOCIAL</h2>
+                        <div className="flex">
                             <a className="w-8 mr-3" href="/" >
                                 <img src="https://tix.vn/app/assets/img/icons/facebook-logo.png" alt="..." />
                             </a>
@@ -64,16 +64,13 @@ export default function Footer(props) {
                             </a>
                         </div>
                     </div>
-                            
                 </div>
             </div>
-            <div className="bg-gray-100">
-                <div className="container mx-auto py-4 px-5 border-t-2">
-                    <p className="text-gray-500 text-sm text-center sm:text-left">© 2021
-                        <a href="/" rel="noopener noreferrer" className="text-blue-500 ml-1" target="_blank">Movie Cybersoft </a>
-                        All Rights Reserved.
-                    </p>
-                </div>
+            <div className="container mx-auto py-4 px-5 border-t w-3/4">
+                <p className="text-gray-500 text-sm md:text-center sm:text-left">© 2021
+                    <a href="/" rel="noopener noreferrer" className="text-black ml-1 hover:text-red-600" target="_blank">Movie Cybersoft </a>
+                    All Rights Reserved.
+                </p>
             </div>
         </footer>
 

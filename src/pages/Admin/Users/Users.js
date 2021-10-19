@@ -39,14 +39,14 @@ export default function Users(props) {
 
     const columns = [
         {
-            title: 'STT',
+            title: '#',
             dataIndex: 'index',
             width: '5%',
             key: 1,
         },
 
         {
-            title: 'Tài khoản',
+            title: 'Account Name',
             dataIndex: 'taiKhoan',
             sorter: (a, b) => {
                 let tenPhimA = a.taiKhoan.toLowerCase().trim();
@@ -61,13 +61,13 @@ export default function Users(props) {
             key: 2
         },
         {
-            title: 'Mật khẩu',
+            title: 'Password',
             dataIndex: 'matKhau',
             with: '20%',
             key: 2
         },
         {
-            title: 'Họ tên',
+            title: 'Full Name',
             dataIndex: 'hoTen',
             sorter: (a, b) => {
                 let tenPhimA = a.hoTen.toLowerCase().trim();
@@ -88,13 +88,13 @@ export default function Users(props) {
             key: 2
         },
         {
-            title: 'Số điện thoại',
+            title: 'Phone Number',
             dataIndex: 'soDt',
             with: '20%',
             key: 2
         },
         {
-            title: 'Thao tác',
+            title: 'Actions',
             dataIndex: 'hanhDong',
             render: (text, record, index) => {
                 return <Fragment key={index}>
@@ -122,17 +122,14 @@ export default function Users(props) {
 
 
     return (
-        <div>
-            <h3 className="text-3xl mb-3">Quản lý người dùng</h3>
-            <Search
-                className="w-50 mb-3 block"
-                placeholder="Nhập vào tài khoản hoặc họ tên người dùng"
-                enterButton="Tìm"
-                size="large"
-                onSearch={onSearch}
-                allowClear="true"
-            />
-            <Table columns={columns} dataSource={data} onChange={onChange} rowKey={uniqueId} />
+        <div className="col-span-full xl:col-span-6">
+            <header className="flex justify-between px-5 py-4 border-b border-gray-100">
+                <h2 className="font-semibold text-gray-800 text-xl">Accounts</h2>
+                <Search placeholder="Search account ..." size="large" allowClear="true" onSearch={onSearch} style={{ width: 200, outline: 'none' }} />
+            </header>
+            <div className="p-3 w-full">
+                <Table columns={columns} dataSource={data} onChange={onChange} rowKey={uniqueId} />
+            </div>
         </div>
     )
 }

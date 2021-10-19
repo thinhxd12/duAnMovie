@@ -1,26 +1,22 @@
 import React, { useState } from 'react';
 import { useFormik } from 'formik'
 import {
-  Form,
-  Input,
-  Radio,
   DatePicker,
   InputNumber,
   Switch,
-  Button,
 } from 'antd';
-import { Fragment } from 'react';
 
 
 
 import { GROUP_ID } from '../../../../util/setting';
 import { themPhimAction } from '../../../../redux/actions/QuanlyPhimAction';
+import { history } from '../../../../App';
 
 export default function AddFilm(prop) {
 
-  const [componentSize, setComponentSize] = useState('default');
 
-  const [imgSrc, setImgSrc] = useState('https://picsum.photos/200/200')
+  const [imgSrc, setImgSrc] = useState('')
+
 
   const formik = useFormik({
     initialValues: {
@@ -54,9 +50,6 @@ export default function AddFilm(prop) {
     }
   })
 
-  const onFormLayoutChange = ({ size }) => {
-    setComponentSize(size);
-  };
 
   const handleChangeDatePicker = (date, dateString) => {
     formik.setFieldValue('ngayKhoiChieu', dateString)
@@ -77,65 +70,113 @@ export default function AddFilm(prop) {
     formik.setFieldValue('hinhAnh', file);
   }
 
+  const renderImgInput = () => {
+    if (imgSrc !== '') {
+      return <img style={{ width: 200 }} className="mt-2" src={imgSrc} alt="..." />
+    }
+    else return <label className="w-64 flex flex-col items-center px-4 py-6 bg-white rounded-md shadow-md tracking-wide uppercase border border-blue cursor-pointer hover:bg-gray-100 text-indigo-500 ease-linear transition-all duration-150">
+      <i className="fas fa-cloud-upload-alt fa-3x" />
+      <span className="mt-2 text-base leading-normal">Select a file</span>
+      <input type="file" className="hidden" name="hinhAnh" onChange={handleChangeFile} accept="image/png, image/jpg, image.jpeg,image/gif " />
+    </label>
+
+  }
+
 
 
   return (
-    <Fragment>
-      <h3>Thêm phim</h3>
-      <Form
-        onSubmitCapture={formik.handleSubmit}
-        labelCol={{
-          span: 4,
-        }}
-        wrapperCol={{
-          span: 14,
-        }}
-        layout="horizontal"
-        initialValues={{
-          size: componentSize,
-        }}
-        onValuesChange={onFormLayoutChange}
-        size={componentSize}
-      >
-        <Form.Item label="Form Size" name="size">
-          <Radio.Group>
-            <Radio.Button value="small">Small</Radio.Button>
-            <Radio.Button value="default">Default</Radio.Button>
-            <Radio.Button value="large">Large</Radio.Button>
-          </Radio.Group>
-        </Form.Item>
-        <Form.Item label="Tên phim">
-          <Input name="tenPhim" onChange={formik.handleChange} />
-        </Form.Item>
-        <Form.Item label="Mô tả">
-          <Input name="moTa" onChange={formik.handleChange} />
-        </Form.Item>
-        <Form.Item label="Trailer">
-          <Input name="trailer" onChange={formik.handleChange} />
-        </Form.Item>
-        <Form.Item label="Ngày khởi chiếu">
-          <DatePicker name="ngayKhoiChieu" format="DD/MM/YYYY" onChange={handleChangeDatePicker} />
-        </Form.Item>
-        <Form.Item label="Đang chiếu" valuePropName="checked">
-          <Switch name="dangChieu" onChange={(checked) => { handleChangeSwitch('dangChieu', checked) }} />
-        </Form.Item>
-        <Form.Item label="sắp chiếu" valuePropName="checked" >
-          <Switch name="sapChieu" onChange={(checked) => { handleChangeSwitch('sapChieu', checked) }} />
-        </Form.Item>
-        <Form.Item label="Hot" valuePropName="checked">
-          <Switch name="Hot" onChange={(checked) => { handleChangeSwitch('hot', checked) }} />
-        </Form.Item>
-        <Form.Item label="Đánh giá">
-          <InputNumber name="danhGia" onChange={(value) => { formik.setFieldValue('danhGia', value) }} />
-        </Form.Item>
-        <Form.Item label="Hình ảnh">
-          <input type="file" name="hinhAnh" onChange={handleChangeFile} accept="image/png, image/jpg, image.jpeg,image/gif " />
-          <img style={{ width: 200 }} className="mt-2" src={imgSrc} alt="..." />
-        </Form.Item>
-        <Form.Item label="Chức năng">
-          <Button type="submit">Thêm phim</Button>
-        </Form.Item>
-      </Form>
-    </Fragment>
+    <div className="col-span-full xl:col-span-6">
+      <header className="flex justify-between px-5 py-4 border-b border-gray-100">
+        <h2 className="font-semibold text-gray-800 text-xl">Add Movie</h2>
+        <button onClick={history.goBack} className="inline-flex items-center justify-center px-4 py-2 text-xs font-medium text-center text-indigo-100 border border-indigo-500 rounded-lg shadow-sm cursor-pointer hover:text-white bg-gradient-to-br from-purple-500 via-indigo-500 to-indigo-500">
+          Go Back
+          <i className="fas fa-chevron-circle-left fa-fw ml-1" />
+        </button>
+      </header>
+      <div className="p-3 w-full">
+        <form onSubmit={formik.handleSubmit}>
+
+          <div className="mb-5">
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              <span className="text-red-500">&nbsp;*</span>
+              Title
+            </label>
+            <div className="mt-1 relative rounded-md shadow-sm">
+              <input name="taiKhoan" onChange={formik.handleChange} className="block pr-10 shadow appearance-none border border-orange-100 rounded w-full py-2 px-4 text-gray-700 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-orange-500 transition duration-500 ease-in-out" />
+            </div>
+          </div>
+          <div className="mb-5">
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              <span className="text-red-500">&nbsp;*</span>
+              Description
+            </label>
+            <div className="mt-1 relative rounded-md shadow-sm">
+              <input name="taiKhoan" onChange={formik.handleChange} className="block pr-10 shadow appearance-none border border-orange-100 rounded w-full py-2 px-4 text-gray-700 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-orange-500 transition duration-500 ease-in-out" />
+            </div>
+          </div>
+          <div className="mb-5">
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              <span className="text-red-500">&nbsp;*</span>
+              Trailer
+            </label>
+            <div className="mt-1 relative rounded-md shadow-sm">
+              <input name="taiKhoan" onChange={formik.handleChange} className="block pr-10 shadow appearance-none border border-orange-100 rounded w-full py-2 px-4 text-gray-700 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-orange-500 transition duration-500 ease-in-out" />
+            </div>
+          </div>
+          <div className="mb-5">
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              <span className="text-red-500">&nbsp;*</span>
+              Date
+            </label>
+            <div className="mt-1 relative rounded-md shadow-sm">
+              <DatePicker name="ngayKhoiChieu" format="DD/MM/YYYY" onChange={handleChangeDatePicker} />
+            </div>
+          </div>
+          <div className="mb-5">
+            <label className="mr-2 w-32 inline-block text-gray-700 text-sm font-bold mb-2">
+              <span className="text-red-500">&nbsp;*</span>
+              Now Playing:
+            </label>
+            <Switch name="dangChieu" onChange={(checked) => { handleChangeSwitch('dangChieu', checked) }} />
+          </div>
+          <div className="mb-5">
+            <label className="mr-2 w-32 inline-block text-gray-700 text-sm font-bold mb-2">
+              <span className="text-red-500">&nbsp;*</span>
+              Coming soon:
+            </label>
+            <Switch name="sapChieu" onChange={(checked) => { handleChangeSwitch('sapChieu', checked) }} />
+          </div>
+          <div className="mb-5">
+            <label className="mr-2 w-32 inline-block text-gray-700 text-sm font-bold mb-2">
+              <span className="text-red-500">&nbsp;*</span>
+              Hot Movie:
+            </label>
+            <Switch name="Hot" onChange={(checked) => { handleChangeSwitch('hot', checked) }} />
+          </div>
+          <div className="mb-5">
+            <label className="mr-2 w-32 inline-block text-gray-700 text-sm font-bold mb-2">
+              <span className="text-red-500">&nbsp;*</span>
+              Rating:
+            </label>
+            <InputNumber name="danhGia" onChange={(value) => { formik.setFieldValue('danhGia', value) }} />
+          </div>
+
+          <div className="mb-5">
+            <label className="mr-2 w-32 inline-block text-gray-700 text-sm font-bold mb-2">
+              <span className="text-red-500">&nbsp;*</span>
+              Image:
+            </label>
+            {renderImgInput()}
+          </div>
+          <button type="submit" className="inline-flex items-center justify-center px-4 py-2 text-xs font-medium text-center text-indigo-100 border border-indigo-500 rounded-lg shadow-sm cursor-pointer hover:text-white bg-gradient-to-br from-purple-500 via-indigo-500 to-indigo-500">
+            <svg className="mr-1 w-3 h-3 fill-current flex-shrink-0" viewBox="0 0 16 16">
+              <path d="M15 7H9V1c0-.6-.4-1-1-1S7 .4 7 1v6H1c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1V9h6c.6 0 1-.4 1-1s-.4-1-1-1z" />
+            </svg>
+            Add Film
+          </button>
+
+        </form>
+      </div>
+    </div>
   )
 }
