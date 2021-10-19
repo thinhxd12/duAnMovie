@@ -33,7 +33,7 @@ export default function Films(props) {
 
     const columns = [
         {
-            title: 'Mã phim',
+            title: '#',
             dataIndex: 'maPhim',
             sorter: (a, b) => a.maPhim - b.maPhim,
             sortDirections: ['descend', 'ascend'],
@@ -41,7 +41,7 @@ export default function Films(props) {
             key: 1
         },
         {
-            title: 'Hình ảnh',
+            title: 'Image',
             dataIndex: 'hinhAnh',
             render: (text, film, index) => {
                 return <Fragment key={index}>
@@ -52,7 +52,7 @@ export default function Films(props) {
             key: 2
         },
         {
-            title: 'Tên phim',
+            title: 'Title',
             dataIndex: 'tenPhim',
             sorter: (a, b) => {
                 let tenPhimA = a.tenPhim.toLowerCase().trim();
@@ -66,7 +66,7 @@ export default function Films(props) {
             with: '20%',
             key: 3
         }, {
-            title: 'Mô tả',
+            title: 'Description',
             dataIndex: 'moTa',
             render: (text, film, index) => {
                 return <Fragment key={index}>
@@ -86,7 +86,7 @@ export default function Films(props) {
             key: 4
         },
         {
-            title: 'Hành động',
+            title: 'Actions',
             dataIndex: 'hanhDong',
             render: (text, film, index) => {
                 return <Fragment key={index}>
@@ -113,20 +113,24 @@ export default function Films(props) {
 
 
     return (
-        <div>
-            <h3 className="text-3xl">Quản lý phim</h3>
-            <Button className="my-3" type="primary" onClick={()=>{
-                history.push('/admin/addfilm');
-            }}>Thêm phim</Button>
-            <Search
-                className="w-50 mb-3 block"
-                placeholder="Nhập tên phim"
-                enterButton="Tìm"
-                size="large"
-                onSearch={onSearch}
-                allowClear="true"
-            />
-            <Table columns={columns} dataSource={data} onChange={onChange} rowKey={uniqueId} />
+        <div className="col-span-full xl:col-span-6">
+            <header className="flex justify-between px-5 py-4 border-b border-gray-100">
+                <h2 className="font-semibold text-gray-800 text-xl">Movie Management</h2>
+                <div className="flex items-center">
+                    <Search placeholder="Search movie" size="large" allowClear="true" onSearch={onSearch} style={{ width: 200, outline: 'none' }} />
+                    <button className="ml-2 inline-flex items-center justify-center px-4 py-2 text-xs font-medium text-center text-indigo-100 border border-indigo-500 rounded-lg shadow-sm cursor-pointer hover:text-white bg-gradient-to-br from-purple-500 via-indigo-500 to-indigo-500" onClick={() => {
+                        history.push('/admin/addfilm');
+                    }}>
+                        <svg className="mr-1 w-3 h-3 fill-current flex-shrink-0" viewBox="0 0 16 16">
+                            <path d="M15 7H9V1c0-.6-.4-1-1-1S7 .4 7 1v6H1c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1V9h6c.6 0 1-.4 1-1s-.4-1-1-1z" />
+                        </svg>
+                        Add film
+                    </button>
+                </div>
+            </header>
+            <div className="p-3 w-full">
+                <Table columns={columns} dataSource={data} onChange={onChange} rowKey={uniqueId} />
+            </div>
         </div>
     )
 }

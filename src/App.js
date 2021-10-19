@@ -18,7 +18,6 @@ import './assets/scss/main.scss'
 
 // const CheckoutTemplateLazy = lazy(()=> ('./templates/CheckoutTemplate/CheckoutTemplate'))
 
-import { AdminTemplate } from './templates/AdminTemplate';
 import Films from './pages/Admin/Films/Films';
 import AddFilm from './pages/Admin/Films/AddFilms/AddFilm';
 import EditFilm from './pages/Admin/Films/Edit/EditFilm';
@@ -27,6 +26,7 @@ import AddUser from './pages/Admin/Users/AddUser/AddUser';
 import Users from './pages/Admin/Users/Users';
 import EditUser from './pages/Admin/Users/EditUser/EditUser';
 import Profile from './pages/Profile/Profile';
+import AdminTemplate from './templates/AdminTemplate/AdminTemplate';
 
 
 
