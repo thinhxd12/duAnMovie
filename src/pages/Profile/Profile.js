@@ -102,7 +102,7 @@ export default function Profile(props) {
   }
 
   return (
-    <div className="md:w-full md:flex">
+    <div className="md:w-full md:flex profile">
       <div className="container mx-auto p-5 ">
         <div className="md:flex no-wrap md:-mx-2 mt-20 ">
           {/* Left Side */}

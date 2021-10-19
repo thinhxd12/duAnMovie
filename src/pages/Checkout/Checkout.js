@@ -29,6 +29,7 @@ import { history } from "../../../src/App";
 import { ACCESS_TOKEN, USER_LOGIN } from "../../util/setting";
 import { NavLink } from "react-router-dom";
 import ChairOutlinedIcon from "@mui/icons-material/ChairOutlined";
+import ChairOutlined from "@mui/icons-material/ChairOutlined";
 
 function Checkout(props) {
   const { userLogin } = useSelector((state) => state.QuanLyNguoiDungReducer);
@@ -111,12 +112,12 @@ function Checkout(props) {
       }
       return (
         <Fragment key={index}>
-          <ChairOutlinedIcon
+          <button
             onClick={() => {
               const action = datGheAction(ghe, props.match.params.id);
               dispatch(action);
             }}
-            disabled={ghe.daDat || classGheKhachDat !== ""}
+            disabled = {ghe.daDat || classGheKhachDat !== ""}
             className={`ghe ${classGheVip} ${classGheDaDat} ${classGheDangDat} ${classGheDaDuocDat} ${classGheKhachDat} text-center`}
             key={index}
           >
@@ -133,7 +134,7 @@ function Checkout(props) {
             ) : (
               ghe.stt
             )}
-          </ChairOutlinedIcon>
+          </button>
 
           {(index + 1) % 16 === 0 ? <br /> : ""}
         </Fragment>
@@ -336,7 +337,7 @@ export default function CheckoutTab(props) {
     </Fragment>
   );
   return (
-    <div className="p-2">
+    <div className="p-2 checkout">
       <Tabs
         tabBarExtraContent={operations}
         defaultActiveKey="1"

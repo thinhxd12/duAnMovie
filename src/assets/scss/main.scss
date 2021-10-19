@@ -1,4 +1,5 @@
 @import './Base/reset';
+@import './Base/body';
 // Helper
 @import './Helper/variable';
 @import './Helper/mixin';
@@ -6,3 +7,5 @@
 @import './Page/Application/application';
 @import './Page/News/news';
 @import './Page/Detail/detail';
+@import './Page/Checkout/checkout';
+@import './Page/Profile/profile'

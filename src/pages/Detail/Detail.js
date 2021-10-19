@@ -122,7 +122,7 @@ export default function Detail(props) {
                                         <NavLink
                                           to={`/checkout/${lichChieu.maLichChieu}`}
                                           key={index}
-                                          className="text-base text-green-400"
+                                          className="text-base text-green-400 mb-2"
                                         >
                                           {moment(
                                             lichChieu.ngayChieuGioChieu
