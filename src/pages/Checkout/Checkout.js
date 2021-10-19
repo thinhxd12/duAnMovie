@@ -28,6 +28,7 @@ import { connection } from "../../index";
 import { history } from "../../../src/App";
 import { ACCESS_TOKEN, USER_LOGIN } from "../../util/setting";
 import { NavLink } from "react-router-dom";
+import ChairOutlinedIcon from "@mui/icons-material/ChairOutlined";
 
 function Checkout(props) {
   const { userLogin } = useSelector((state) => state.QuanLyNguoiDungReducer);
@@ -110,7 +111,7 @@ function Checkout(props) {
       }
       return (
         <Fragment key={index}>
-          <button
+          <ChairOutlinedIcon
             onClick={() => {
               const action = datGheAction(ghe, props.match.params.id);
               dispatch(action);
@@ -132,7 +133,7 @@ function Checkout(props) {
             ) : (
               ghe.stt
             )}
-          </button>
+          </ChairOutlinedIcon>
 
           {(index + 1) % 16 === 0 ? <br /> : ""}
         </Fragment>
@@ -145,7 +146,10 @@ function Checkout(props) {
       <div className="grid grid-cols-12">
         <div className="col-span-9">
           <div className="flex flex-col items-center mt-5">
-            <div className="bg-black" style={{ width: "75%", height: "15" }}>
+            <div
+              className="bg-black w-4/5"
+              style={{ width: "75%", height: "15" }}
+            >
               aadadaada{" "}
             </div>
             <div className={`${style["trapezoid"]}`}>
@@ -155,9 +159,12 @@ function Checkout(props) {
           </div>
 
           <div className="mt-5 flex justify-center">
-            <table className="divide-y divide-gray-200 w-2/3">
+            <table
+              className="min-w-full divide-y divide-gray-200 w-2/3"
+              style={{ border: "none" }}
+            >
               <thead className="bg-gray-50 p-5">
-                <tr>
+                <tr className="text-left pl-6">
                   <th>Ghế chưa đặt</th>
                   <th>Ghế đang đặt</th>
                   <th>Ghế VIP</th>
@@ -170,44 +177,32 @@ function Checkout(props) {
                 <tr>
                   <td>
                     <button className="ghe text-center">
-                      <CheckOutlined
-                        style={{ marginBottom: 7.5, fontWeight: "bold" }}
-                      />
+                      <ChairOutlinedIcon></ChairOutlinedIcon>
                     </button>
                   </td>
                   <td>
                     <button className="ghe gheDangDat text-center">
-                      <CheckOutlined
-                        style={{ marginBottom: 7.5, fontWeight: "bold" }}
-                      />
+                      <ChairOutlinedIcon></ChairOutlinedIcon>
                     </button>
                   </td>
                   <td>
                     <button className="ghe gheVip text-center">
-                      <CheckOutlined
-                        style={{ marginBottom: 7.5, fontWeight: "bold" }}
-                      />
+                      <ChairOutlinedIcon></ChairOutlinedIcon>
                     </button>
                   </td>
                   <td>
                     <button className="ghe gheDaDat text-center">
-                      <CheckOutlined
-                        style={{ marginBottom: 7.5, fontWeight: "bold" }}
-                      />
+                      <ChairOutlinedIcon></ChairOutlinedIcon>
                     </button>
                   </td>
                   <td>
                     <button className="ghe gheDaDuocDat text-center">
-                      <CheckOutlined
-                        style={{ marginBottom: 7.5, fontWeight: "bold" }}
-                      />
+                      <ChairOutlinedIcon></ChairOutlinedIcon>
                     </button>
                   </td>
                   <td>
                     <button className="ghe gheKhachDat text-center">
-                      <CheckOutlined
-                        style={{ marginBottom: 7.5, fontWeight: "bold" }}
-                      />
+                      <ChairOutlinedIcon></ChairOutlinedIcon>
                     </button>
                   </td>
                 </tr>
@@ -217,12 +212,7 @@ function Checkout(props) {
         </div>
         <div className="col-span-3">
           <h3 className="text-green-400 text-center text-2xl my-3">
-            {danhSachGheDangDat
-              .reduce((tongTien, ghe, index) => {
-                return (tongTien += ghe.giaVe);
-              }, 0)
-              .toLocaleString()}{" "}
-            đ
+            BOOKING IMFORMATION
           </h3>
           <hr />
           <h3 className="text-xl mt-3">{thongTinPhim.tenPhim}</h3>
@@ -233,26 +223,40 @@ function Checkout(props) {
             Ngày chiếu: {thongTinPhim.ngayChieu} - {thongTinPhim.gioChieu}
           </p>
           <hr />
-          <div className="flex flex-row my-3">
-            <div className="w-4/5">
-              <span className="text-red-400 text-lg">Ghế</span>
-              {_.sortBy(danhSachGheDangDat, ["stt"]).map((gheDD, index) => {
+          <div className="flex  justify-between align-center">
+            <div className="w-4/5 font-semibold">
+              Ghế
+              {_.sortBy(danhSachGheDangDat, "stt").map((gheDD, index) => {
                 return (
-                  <span key={index} className="text-green-500 text-xl">
-                    {" "}
-                    {gheDD.stt}
-                  </span>
+                  <div key={index}>
+                    <div className="text-green-500 text-xl"> {gheDD.stt}</div>
+                  </div>
                 );
               })}
             </div>
-            <div className="text-right">
-              <span className="text-green-800 text-lg">
-                {danhSachGheDangDat
-                  .reduce((tongTien, ghe, index) => {
-                    return (tongTien += ghe.giaVe);
-                  }, 0)
-                  .toLocaleString()}
-              </span>
+            <div className="font-semibold">
+              Giá
+              <div>
+                {danhSachGheDangDat?.map((gheDD, index) => {
+                  return (
+                    <div key={index}>
+                      <div className="text-blue-600 text-xl">
+                        {gheDD.giaVe.toLocaleString()}đ
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+            <hr />
+          </div>
+          <div className="flex justify-between">
+            <div className="font-semibold my-auto">Total Price:</div>
+            <div className="text-3xl text-red-600">
+              {danhSachGheDangDat.reduce((tongTien, ghe, index) => {
+                return (tongTien += ghe.giaVe);
+              }, 0).toLocaleString()}
+              đ
             </div>
           </div>
           <hr />
@@ -295,10 +299,10 @@ export default function CheckoutTab(props) {
     return () => {
       dispatch({
         type: CHANGE_TAB_ACTIVE,
-        number: '1',
-      })
-    }
-  }, [])
+        number: "1",
+      });
+    };
+  }, []);
   const operations = (
     <Fragment>
       {!_.isEmpty(userLogin) ? (
@@ -353,7 +357,7 @@ export default function CheckoutTab(props) {
         <TabPane
           tab={
             <NavLink className=" text-3xl" to="/">
-              <HomeOutlined className=" mb-3" style={{marginLeft:10}} />  
+              <HomeOutlined className=" mb-3" style={{ marginLeft: 10 }} />
             </NavLink>
           }
           key="3"
