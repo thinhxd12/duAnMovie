@@ -1,4 +1,4 @@
-import React, {  useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Tabs } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,37 +13,44 @@ export default function Cinema(props) {
     useEffect(() => {
         dispatch(layThongTinLichChieuHeThongRapAction());
     }, [])
-    
+
     return (
-        <div className="container w-3/4" style={{ height: '700px'}}>
+        <div className="hidden md:block md:w-5/6 mx-auto my-10 cinema-tabs">
             <Tabs tabPosition="left">
                 {heThongRapChieu.map((heThongRapChieu, index) => {
                     return <TabPane key={index} tab={<img src={heThongRapChieu.logo} alt={heThongRapChieu.maHeThongRap} className="rounded-full" width={50} />}>
-                        <Tabs tabPosition="left">
+                        <Tabs defaultActiveKey="1" tabPosition="left" style={{ height: 500,padding:0 }}>
 
-                            {heThongRapChieu.lstCumRap.slice(0,6).map((cumRap, index) => {
+                            {heThongRapChieu.lstCumRap.map((cumRap, index) => {
                                 return <TabPane key={cumRap.maCumRap} tab={
                                     <div className="flex items-center">
                                         <img src={cumRap.hinhAnh} alt={cumRap.tenCumRap} style={{ width: '50px', height: '50px' }} onError={(e) => { e.target.onerror = null; e.target.src = "https://picsum.photos/50" }} />
-                                        <div className="ml-2 text-left">
-                                            <p className="text-gray-800 text-base">{cumRap.tenCumRap}</p>
-                                            <p className="text-gray-500 text-sm">{cumRap.diaChi.length > 50 ? cumRap.diaChi.substr(0, 50) + '...' : cumRap.diaChi}</p>
-                                            <a href="/" className="text-red-500 text-sm">[chi tiết]</a>
+                                        <div className="lg:ml-2 ml-1 text-left md:w-32 lg:w-max">
+                                            <p className="text-gray-800 font-bold text-xs lg:text-sm lg:block hidden">{cumRap.tenCumRap}</p>
+                                            <p className="text-gray-800 font-bold text-xs lg:text-sm">{cumRap.tenCumRap.length > 20 ? cumRap.tenCumRap.substr(0, 20) + '...' :cumRap.tenCumRap}</p>
+                                            <p className="text-gray-500 text-xs lg:block hidden">{cumRap.diaChi.length > 40 ? cumRap.diaChi.substr(0, 40) + '...' : cumRap.diaChi}</p>
+                                            <p className="text-gray-500 text-xs">{cumRap.diaChi.length > 20 ? cumRap.diaChi.substr(0, 20) + '...' : cumRap.diaChi}</p>
+                                            <NavLink to="/" className="text-xs" style={{ color: '#fa5238' }}>[chi tiết]</NavLink>
                                         </div>
                                     </div>}>
-
-                                    <div style={{ height: '600px', overflow: 'auto' }}>
+                                    <div style={{ height: '500px', overflow: 'auto' }}>
                                         {cumRap.danhSachPhim.map((phim) => {
-                                            return <div className="m-2 flex" key={phim.tenPhim}>
-                                                <img src={phim.hinhAnh} alt={phim.tenPhim} style={{width:'50px',height:'70px'}} onError={(e) => { e.target.onerror = null; e.target.src = "https://picsum.photos/75" }} />
+                                            return <div className="mx-2 my-4 flex items-center justify-start" key={phim.tenPhim}>
+                                                <div className="w-20 h-28 block" style={{
+                                                    minWidth:'80px',
+                                                    backgroundImage: `url(${phim.hinhAnh})`,
+                                                    backgroundSize: "cover",
+                                                    backgroundRepeat: "no-repeat",
+                                                    backgroundPosition: "center",
+                                                }}></div>
                                                 <div className="ml-2">
-                                                    <h4 className="text-xl text-green-700 pb-1 cursor-pointer" onClick={()=>{
-                                                        history.push(`/detail/${phim.maPhim}`)
-                                                    }}>{phim.tenPhim}</h4>
-                                                    <p className="font-semibold text-sm">{cumRap.diaChi}</p>
-                                                    <div className="grid grid-cols-6 gap-6">
+                                                    <NavLink to={`/detail/${phim.maPhim}`} className="text-lg font-bold cursor-pointer" style={{ color: '#fa5238' }}>
+                                                        {phim.tenPhim}
+                                                    </NavLink>
+                                                    <p className="text-xs font-base mb-1">{cumRap.diaChi}</p>
+                                                    <div className="grid grid-cols-3 gap-2 lg:grid-cols-6">
                                                         {phim.lstLichChieuTheoPhim.slice(0, 12).map((lichChieu, index2) => {
-                                                            return <NavLink key={index2} className="text-sm text-green-400" to={`/checkout/${lichChieu.maLichChieu}`}>
+                                                            return <NavLink key={index2} className="text-xs text-gray-800 font-semibold px-2 py-2 bg-gradient-to-tl from-white to-gray-200 rounded border hover:text-green-500" to={`/checkout/${lichChieu.maLichChieu}`}>
                                                                 {moment(lichChieu.ngayChieuGioChieu).format('hh:mm A')}
                                                             </NavLink>
                                                         })}

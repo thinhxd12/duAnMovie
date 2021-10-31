@@ -27,6 +27,7 @@ import Users from './pages/Admin/Users/Users';
 import EditUser from './pages/Admin/Users/EditUser/EditUser';
 import Profile from './pages/Profile/Profile';
 import AdminTemplate from './templates/AdminTemplate/AdminTemplate';
+import WelcomeBanner from './templates/AdminTemplate/dashboard/WelcomeBanner';
 
 
 
@@ -55,7 +56,7 @@ function App() {
         <AdminTemplate exact path="/admin/films/edit/:id" component={EditFilm} />
         <AdminTemplate exact path="/admin/addfilm" component={AddFilm} />
         <AdminTemplate exact path="/admin/films" component={Films} />
-        <AdminTemplate exact path="/admin" component={Users}/>
+        <AdminTemplate exact path="/admin" component={WelcomeBanner}/>
         <HomeTemplate path="/" component={Home} />
       </Switch>
 
@@ -64,3 +65,4 @@ function App() {
 }
 
 export default App;
+

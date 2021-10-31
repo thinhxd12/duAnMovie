@@ -196,9 +196,9 @@ export default function ShowTime(props) {
                                                                 </span>
                                                             </div>
                                                         </div>
-                                                        <div className="grid grid-cols-6 w-2/3">
+                                                        <div className="grid grid-cols-6 sm:w-2/3">
                                                             {item.showtime.map((time, index1) => {
-                                                                return <button type="button" className="text-sm font-semibold text-gray-500 mx-2 my-4 hover:text-red-500 active:text-red-500 focus:text-red-500 focus-within:text-red-500" key={index1} onClick={() => {
+                                                                return <button type="button" className="text-xs text-gray-600 font-semibold px-2 py-2 mr-2 mb-2 bg-gradient-to-tl from-white to-gray-200 rounded border bg-opacity-50 hover:text-green-500 active:text-green-500 focus:text-green-500 focus-within:text-green-500 focus-within:bg-opacity-100" key={index1} onClick={() => {
                                                                     { formik.setFieldValue('maRap', item.maCumRap) }
                                                                     { formik.setFieldValue('ngayChieuGioChieu', ngayChieu + ' ' + time.value) }
                                                                 }}>

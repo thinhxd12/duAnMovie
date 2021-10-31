@@ -436,6 +436,16 @@ module.exports = {
       '3/6': '50%',
       '4/6': '66.666667%',
       '5/6': '83.333333%',
+      "10v": "10vh",
+			"20v": "20vh",
+			"30v": "30vh",
+			"40v": "40vh",
+			"50v": "50vh",
+			"60v": "60vh",
+			"70v": "70vh",
+			"80v": "80vh",
+			"90v": "90vh",
+			"100v": "100vh",
       full: '100%',
       screen: '100vh',
     }),
@@ -975,6 +985,9 @@ module.exports = {
     width: ['responsive'],
     wordBreak: ['responsive'],
     zIndex: ['responsive', 'focus-within', 'focus'],
+    lineClamp: ["responsive"]
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+  ],
 }

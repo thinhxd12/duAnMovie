@@ -31,7 +31,7 @@ export default function WelcomeBanner(props) {
 
         {/* Content */}
         <div className="relative">
-          <h1 className="text-2xl md:text-3xl text-gray-800 font-bold mb-1">Good afternoon, {userLogin.hoTen}👋</h1>
+          <h1 className="text-2xl md:text-3xl text-gray-800 font-bold mb-1">Hello, {userLogin.hoTen}👋</h1>
         </div>
 
       </div>

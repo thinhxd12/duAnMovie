@@ -25,18 +25,6 @@ export default function AdminTemplate(props) {
                     <main>
                         <div className="px-4 sm:px-6 lg:px-8 py-4 w-full max-w-9xl mx-auto">
 
-
-                            {/* Dashboard actions */}
-                            <div className="sm:flex sm:justify-between sm:items-center">
-
-                                {/* Left: Avatars */}
-                                {/* <DashboardAvatars /> */}
-
-                                {/* Right: Actions */}
-
-
-                            </div>
-
                             <div className="w-full h-full xl:col-span-6 bg-white shadow-lg rounded-sm border border-gray-200">
                                 <div className="p-3">
                                     <props.component {...propsRoute} />

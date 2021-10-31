@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Transition from '../../utils/Transition';
 
 import { useSelector } from 'react-redux';
@@ -34,6 +34,26 @@ function UserMenu() {
     document.addEventListener('keydown', keyHandler);
     return () => document.removeEventListener('keydown', keyHandler);
   });
+
+  const renderSettings = () => {
+    if (userLogin.maLoaiNguoiDung === 'QuanTri') {
+      return <NavLink
+        className="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3"
+        to="/admin"
+        onClick={() => setDropdownOpen(!dropdownOpen)}
+      >
+        Settings
+      </NavLink>
+    }
+    return <NavLink
+    className="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3"
+    to="/profile"
+    onClick={() => setDropdownOpen(!dropdownOpen)}
+  >
+    Settings
+  </NavLink>
+
+  }
 
   return (
     <div className="relative inline-flex">
@@ -70,18 +90,12 @@ function UserMenu() {
           onBlur={() => setDropdownOpen(false)}
         >
           <div className="pt-0.5 pb-2 px-3 mb-1 border-b border-gray-200">
-            <div className="font-medium text-gray-800">{userLogin.taiKhoan}</div>
+            <div className="font-xs text-gray-800">{userLogin.taiKhoan}</div>
             <div className="text-xs text-gray-500 italic">{userLogin.maLoaiNguoiDung == 'QuanTri' ? 'Quản trị' : 'Khách hàng'}</div>
           </div>
           <ul>
             <li>
-              <Link
-                className="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3"
-                to="/admin/edituser"
-                onClick={() => setDropdownOpen(!dropdownOpen)}
-              >
-                Settings
-              </Link>
+              {renderSettings()}
             </li>
             <li>
               <button

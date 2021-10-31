@@ -49,28 +49,27 @@ export default function HomeCarousel(props) {
     };
 
     const contentStyle = {
-        height: '650px',
         width: '100%',
         backgroundPosition: 'center',
         backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat'
+        backgroundRepeat: 'no-repeat',
     }
     return (
         <div className="w-full">
 
             <Slider {...settings}>
                 {arrImg.map((item, index) => {
-                    return <div key={index} >
-                        <div style={{ ...contentStyle, backgroundImage: `url(${item.hinhAnh})` }}>
+                    return <div key={index}>
+                        <div style={{ ...contentStyle, backgroundImage: `url(${item.hinhAnh})` }} className="h-40v lg:h-60v">
 
                             <div style={{
                                 position: 'relative',
                                 top: '0',
                                 width: '100%',
                                 height: '100%',
-                                background: 'rgba(29, 42, 55, 0.15)'
+                                background: 'linear-gradient(to top,#000,transparent 20%)',
                             }}>
-                            <img src="./img/play-video.png" alt="..." className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer" />
+                                <img src="./img/play-video.png" alt="..." className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer" />
                             </div>
                         </div>
                     </div>
