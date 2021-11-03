@@ -81,9 +81,9 @@ export default function EditFilm(props) {
 
 
   return (
-    <div className="col-span-full xl:col-span-6">
-      <header className="flex justify-between px-5 py-4 border-b border-gray-100">
-        <h2 className="font-semibold text-gray-800 text-xl">Update Movie</h2>
+    <div className="editFilm col-span-full xl:col-span-6">
+      <header className="flex justify-between p-3 border-b border-gray-100">
+        <h2 className="font-semibold text-gray-800 text-lg">Update Movie</h2>
         <button onClick={history.goBack} className="inline-flex items-center justify-center px-4 py-2 text-xs font-medium text-center text-indigo-100 border border-indigo-500 rounded-lg shadow-sm cursor-pointer hover:text-white bg-gradient-to-br from-purple-500 via-indigo-500 to-indigo-500">
           Go Back
           <i className="fas fa-chevron-circle-left fa-fw ml-1" />
@@ -133,28 +133,28 @@ export default function EditFilm(props) {
               <span className="text-red-500">&nbsp;*</span>
               Now Playing:
             </label>
-            <Switch name="dangChieu" onChange={(checked) => { handleChangeSwitch('dangChieu', checked) }} checked={formik.values.dangChieu} />
+            <Switch name="dangChieu" onChange={(checked) => { handleChangeSwitch('dangChieu', checked) }} checked={formik.values.dangChieu} className="bg-gray-300"/>
           </div>
           <div className="mb-5">
             <label className="mr-2 w-32 inline-block text-gray-700 text-sm font-bold mb-2">
               <span className="text-red-500">&nbsp;*</span>
               Coming soon:
             </label>
-            <Switch name="sapChieu" onChange={(checked) => { handleChangeSwitch('sapChieu', checked) }} checked={formik.values.sapChieu} />
+            <Switch name="sapChieu" onChange={(checked) => { handleChangeSwitch('sapChieu', checked) }} checked={formik.values.sapChieu}  className="bg-gray-300"/>
           </div>
           <div className="mb-5">
             <label className="mr-2 w-32 inline-block text-gray-700 text-sm font-bold mb-2">
               <span className="text-red-500">&nbsp;*</span>
               Hot Movie:
             </label>
-            <Switch name="Hot" onChange={(checked) => { handleChangeSwitch('hot', checked) }} checked={formik.values.hot} />
+            <Switch name="Hot" onChange={(checked) => { handleChangeSwitch('hot', checked) }} checked={formik.values.hot} className="bg-gray-300"/>
           </div>
           <div className="mb-5">
             <label className="mr-2 w-32 inline-block text-gray-700 text-sm font-bold mb-2">
               <span className="text-red-500">&nbsp;*</span>
               Rating:
             </label>
-            <InputNumber name="danhGia" onChange={(value) => { formik.setFieldValue('danhGia', value) }} value={formik.values.danhGia} />
+            <InputNumber name="danhGia" onChange={(value) => { formik.setFieldValue('danhGia', value) }} value={formik.values.danhGia}/>
           </div>
 
           <div className="mb-5">

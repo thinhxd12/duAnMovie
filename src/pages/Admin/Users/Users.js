@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { Table } from 'antd';
 import { Input } from 'antd';
-import { CloseOutlined, EditOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
@@ -22,7 +21,7 @@ export default function Users(props) {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(layDanhSachNguoiDungAction());
-    }, [])
+    }, [dispatch])
 
     const onSearch = value => {
         // console.log(value)
@@ -41,9 +40,11 @@ export default function Users(props) {
         {
             title: '#',
             dataIndex: 'index',
-            width: '5%',
             key: 1,
+            width: '10%',
+            className: 'text-xs md:text-sm'
         },
+        
 
         {
             title: 'Account Name',
@@ -57,14 +58,18 @@ export default function Users(props) {
                 return -1;
             },
             sortDirections: ['descend', 'ascend'],
-            with: '20%',
-            key: 2
+            key: 2,
+            width: '15%',
+            className: 'text-xs md:text-sm'
+
         },
         {
             title: 'Password',
             dataIndex: 'matKhau',
-            with: '20%',
-            key: 2
+            key: 3,
+            width: '15%',
+            ellipsis: true,
+            className: 'text-xs md:text-sm'
         },
         {
             title: 'Full Name',
@@ -78,56 +83,71 @@ export default function Users(props) {
                 return -1;
             },
             sortDirections: ['descend', 'ascend'],
-            with: '20%',
-            key: 2
+            key: 4,
+            width: 140,
+            ellipsis: true,
+            className: 'text-xs md:text-sm',
+            responsive:["lg"]
         },
         {
             title: 'Email',
             dataIndex: 'email',
             with: '20%',
-            key: 2
+            key: 5,
+            width: '15%',
+            ellipsis: true,
+            className: 'text-xs md:text-sm',
+            responsive:["lg"]
         },
         {
             title: 'Phone Number',
             dataIndex: 'soDt',
-            with: '20%',
-            key: 2
+            key: 6,
+            width: '15%',
+            ellipsis: true,
+            className: 'text-xs md:text-sm',
+            responsive:["lg"]
         },
         {
             title: 'Actions',
             dataIndex: 'hanhDong',
             render: (text, record, index) => {
                 return <Fragment key={index}>
-                    <NavLink className="mr-2 text-2xl" to={`/admin/edituser`} onClick={() => {
+                    <NavLink className="mr-2 text-xl text-gray-600 hover:text-gray-800 transition-all ease-in duration-200" to={`/admin/edituser`} onClick={() => {
                         dispatch({
                             type: SET_THONG_TIN_NGUOI_DUNG_ADMIN,
                             userModify: record
                         })
-                    }}><EditOutlined /></NavLink>
+                    }}>
+                        <i className="fa fa-user-edit"></i>
+                    </NavLink>
 
-                    <span className="mr-2 text-2xl text-red-500" style={{ cursor: 'pointer' }} onClick={() => {
+                    <button className="text-xl text-gray-600 hover:text-red-500 transition-all ease-in duration-200" onClick={() => {
                         if (window.confirm('Bạn có muốn xoá tài khoản ' + record.taiKhoan)) {
                             xoaNguoiDung(record.taiKhoan);
                         }
                         dispatch(layDanhSachNguoiDungAction());
-                    }}><CloseOutlined /></span>
+                    }}>
+                        <i className="fas fa-eraser"></i>
+                    </button>
                 </Fragment>
             },
-            width: '10%',
             align: 'center',
-            key: 5
+            key: 7,
+            width: '15%',
+            className: 'text-xs md:text-sm'
         },
     ];
 
 
 
     return (
-        <div className="col-span-full xl:col-span-6">
-            <header className="flex justify-between px-5 py-4 border-b border-gray-100">
-                <h2 className="font-semibold text-gray-800 text-xl">Accounts</h2>
-                <Search placeholder="Search account ..." size="large" allowClear="true" onSearch={onSearch} style={{ width: 200, outline: 'none' }} />
+        <div className="users w-full">
+            <header className="flex justify-between p-3 border-b border-gray-100">
+                <h2 className="font-semibold text-gray-800 text-lg">Accounts</h2>
+                <Search placeholder="Search account ..." size="middle" allowClear="true" onSearch={onSearch} style={{ width: 200, outline: 'none' }} />
             </header>
-            <div className="p-3 w-full">
+            <div className="w-full">
                 <Table columns={columns} dataSource={data} onChange={onChange} rowKey={uniqueId} />
             </div>
         </div>

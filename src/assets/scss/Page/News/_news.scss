@@ -17,6 +17,16 @@
       font-size: 24px;
     }
   }
+  .ant-tabs > .ant-tabs-nav .ant-tabs-nav-list {
+    position: relative;
+    transition: transform 0.3s;
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    justify-content: center
+  }
   .ant-tabs > .ant-tabs-nav .ant-tabs-nav-wrap {
     align-self: center;
     justify-content: center;

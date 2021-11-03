@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Transition from '../../utils/Transition';
 
 import { useSelector } from 'react-redux';
@@ -17,9 +17,12 @@ function UserMenu() {
 
   // close on click outside
   useEffect(() => {
-    const clickHandler = ({ target }) => {
-      if (!dropdownOpen || dropdown.current.contains(target) || trigger.current.contains(target)) return;
-      setDropdownOpen(false);
+    const clickHandler = (e) => {
+      if (dropdownOpen && dropdown.current && !trigger.current.contains(e.target)) {
+        setDropdownOpen(false)
+      }
+      // if (!dropdownOpen || dropdown.current.contains(target) || trigger.current.contains(target)) return;
+      // setDropdownOpen(false);
     };
     document.addEventListener('click', clickHandler);
     return () => document.removeEventListener('click', clickHandler);
@@ -46,12 +49,12 @@ function UserMenu() {
       </NavLink>
     }
     return <NavLink
-    className="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3"
-    to="/profile"
-    onClick={() => setDropdownOpen(!dropdownOpen)}
-  >
-    Settings
-  </NavLink>
+      className="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3"
+      to="/profile"
+      onClick={() => setDropdownOpen(!dropdownOpen)}
+    >
+      Settings
+    </NavLink>
 
   }
 
@@ -90,8 +93,8 @@ function UserMenu() {
           onBlur={() => setDropdownOpen(false)}
         >
           <div className="pt-0.5 pb-2 px-3 mb-1 border-b border-gray-200">
-            <NavLink to="/profile" className="font-xs text-gray-800">{userLogin.taiKhoan}</NavLink>
-            <div className="text-xs text-gray-500 italic">{userLogin.maLoaiNguoiDung == 'QuanTri' ? 'Quản trị' : 'Khách hàng'}</div>
+            <div className="font-xs text-gray-800">{userLogin.taiKhoan}</div>
+            <div className="text-xs text-gray-500 italic">{userLogin.maLoaiNguoiDung === 'QuanTri' ? 'Quản trị' : 'Khách hàng'}</div>
           </div>
           <ul>
             <li>

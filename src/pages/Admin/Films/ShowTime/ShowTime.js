@@ -9,8 +9,7 @@ import { http } from '../../../../util/setting';
 import { history } from '../../../../App';
 import { Tabs } from 'antd';
 
-import { Modal, Button } from 'antd';
-import moment from 'moment';
+import { Modal } from 'antd';
 
 
 export default function ShowTime(props) {
@@ -37,17 +36,19 @@ export default function ShowTime(props) {
 
     const [ngayChieu, setNgayChieu] = useState('')
 
-    useEffect(async () => {
-        try {
-            let result = await http.get(`/api/QuanLyRap/LayThongTinHeThongRap`);
-            setState({
-                ...state, heThongRapChieu: result.data.content
-            })
-        } catch (error) {
-            console.log(error)
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                let result = await http.get(`/api/QuanLyRap/LayThongTinHeThongRap`);
+                setState({
+                    ...state, heThongRapChieu: result.data.content
+                })
+            } catch (error) {
+                console.log(error)
+            }
         }
-    }, [])
-
+        fetchData();
+    }, []);
 
 
     const handleChangeHeThongRap = async (value) => {
@@ -75,24 +76,24 @@ export default function ShowTime(props) {
     }
 
     let showtime = [
-        { time: "09:00 am", value: '09:00:00' },
-        { time: "09:45 am", value: '09:45:00' },
-        { time: "10:30 am", value: '10:30:00' },
-        { time: "10:45 am", value: '10:45:00' },
-        { time: "11:45 am", value: '11:45:00' },
-        { time: "12:30 pm", value: '12:30:00' },
-        { time: "02:30 pm", value: '14:30:00' },
-        { time: "03:15 pm", value: '15:15:00' },
-        { time: "04:05 pm", value: '16:05:00' },
-        { time: "04:40 pm", value: '16:40:00' },
-        { time: "05:15 pm", value: '17:15:00' },
-        { time: "06:00 pm", value: '18:00:00' },
-        { time: "06:45 pm", value: '18:45:00' },
-        { time: "08:00 pm", value: '20:00:00' },
-        { time: "08:45 pm", value: '20:45:00' },
-        { time: "09:20 pm", value: '21:20:00' },
-        { time: "10:45 pm", value: '22:45:00' },
-        { time: "11:30 pm", value: '23:30:00' },
+        { time: "09:00 AM", value: '09:00:00' },
+        { time: "09:45 AM", value: '09:45:00' },
+        { time: "10:30 AM", value: '10:30:00' },
+        { time: "10:45 AM", value: '10:45:00' },
+        { time: "11:45 AM", value: '11:45:00' },
+        { time: "12:30 PM", value: '12:30:00' },
+        { time: "02:30 PM", value: '14:30:00' },
+        { time: "03:15 PM", value: '15:15:00' },
+        { time: "04:05 PM", value: '16:05:00' },
+        { time: "04:40 PM", value: '16:40:00' },
+        { time: "05:15 PM", value: '17:15:00' },
+        { time: "06:00 PM", value: '18:00:00' },
+        { time: "06:45 PM", value: '18:45:00' },
+        { time: "08:00 PM", value: '20:00:00' },
+        { time: "08:45 PM", value: '20:45:00' },
+        { time: "09:20 PM", value: '21:20:00' },
+        { time: "10:45 PM", value: '22:45:00' },
+        { time: "11:30 PM", value: '23:30:00' },
     ]
 
 
@@ -118,9 +119,9 @@ export default function ShowTime(props) {
 
 
     return (
-        <div className="col-span-full xl:col-span-6">
-            <header className="flex justify-between px-5 py-4 border-b border-gray-100">
-                <h2 className="font-semibold text-gray-800 text-xl">Showtimes</h2>
+        <div className="showtimes col-span-full xl:col-span-6">
+            <header className="flex justify-between p-3 border-b border-gray-100">
+                <h2 className="font-semibold text-gray-800 text-lg">Showtimes</h2>
                 <button onClick={history.goBack} className="inline-flex items-center justify-center px-4 py-2 text-xs font-medium text-center text-indigo-100 border border-indigo-500 rounded-lg shadow-sm cursor-pointer hover:text-white bg-gradient-to-br from-purple-500 via-indigo-500 to-indigo-500">
                     Go Back
                     <i className="fas fa-chevron-circle-left fa-fw ml-1" />
@@ -128,12 +129,12 @@ export default function ShowTime(props) {
             </header>
             <div className="p-3 w-full">
                 <form onSubmit={formik.handleSubmit}>
-                    <div className="mx-auto flex md:flex-row flex-col">
-                        <div className="lg:max-w-lg lg:w-1/6 md:w-1/6 w-1/2 mb-10 md:mb-0">
-                            <img className="object-cover object-center rounded" alt="hero" src={film.hinhAnh} />
+                    <div className="mx-auto flex md:flex-row flex-col items-center md:items-start">
+                        <div className="md:w-1/3 w-1/2 mb-10 md:mb-0">
+                            <img className="block w-full rounded" alt="hero" src={film.hinhAnh} />
                         </div>
-                        <div className="lg:flex-grow md:w-1/2 lg:pl-8 md:pl-8 flex flex-col md:items-start md:text-left items-center text-center">
-                            <h1 className="title-font sm:text-3xl text-3xl mb-2 font-medium text-gray-900">
+                        <div className="lg:pl-8 md:pl-8 flex flex-col md:items-start md:text-left items-center text-center">
+                            <h1 className="title-font sm:text-3xl text-2xl mb-2 font-medium text-gray-900">
                                 {film.tenPhim}
                             </h1>
                             <label className="block text-gray-700 text-sm font-bold mb-2">
@@ -147,7 +148,7 @@ export default function ShowTime(props) {
                                     <span className="text-red-500">&nbsp;*</span>
                                     Description
                                 </label>
-                                <p className="ml-2 leading-relaxed mt-2">{film.moTa}</p>
+                                <p className="ml-2 text-sm mt-2">{film.moTa}</p>
                             </div>
                             <div className="mb-3">
                                 <label className="block text-gray-700 text-sm font-bold mb-2">
@@ -180,14 +181,14 @@ export default function ShowTime(props) {
                                 </label>
                                 <Tabs onChange={(key) => { handleChangeHeThongRap(key) }}>
                                     {state.heThongRapChieu?.map((item, index) => {
-                                        return <TabPane key={item.maHeThongRap} tab={<img src={item.logo} alt={item.maHeThongRap} className="rounded-full" width={50} />}>
+                                        return <TabPane key={item.maHeThongRap} tab={<img src={item.logo} alt={item.maHeThongRap} className="rounded-full mx-auto w-16 md:w-12" />}>
                                             <div style={{ maxHeight: '600px', overflow: 'auto', width: "100%" }}>
 
                                                 {newCumRap.map((item, index) => {
-                                                    return <div className="flex border-b p-4 w-full sm:flex-row flex-col items-center justify-center" key={index}>
-                                                        <div className="sm:w-1/3 flex sm:mr-8 sm:mb-0 mb-4 ">
-                                                            <img src="https://s3img.vcdn.vn/123phim/2021/01/bhd-star-bitexco-16105952137769.png" className="w-16 h-16 rounded mr-2" alt="..." />
-                                                            <div>
+                                                    return <div className="flex border-b w-full sm:flex-row flex-col items-start justify-center" key={index}>
+                                                        <div className="md:w-1/4 flex flex-row md:flex-col py-3">
+                                                            <img src="https://s3img.vcdn.vn/123phim/2021/01/bhd-star-bitexco-16105952137769.png" className="w-14 h-14 md:w-16 md:h-16 rounded mb-3" alt="..." />
+                                                            <div className="text-left pl-3 md:pl-0">
                                                                 <p className="text-gray-600 text-sm font-bold">{item.tenCumRap}</p>
                                                                 <p className="text-gray-500 text-xs">{item.diaChi.length > 50 ? item.diaChi.substr(0, 50) + '...' : item.diaChi}</p>
                                                                 <span className="text-gray-500 text-xs">
@@ -196,9 +197,9 @@ export default function ShowTime(props) {
                                                                 </span>
                                                             </div>
                                                         </div>
-                                                        <div className="grid grid-cols-6 sm:w-2/3">
+                                                        <div className="grid grid-cols-6 w-full md:w-3/4 py-3">
                                                             {item.showtime.map((time, index1) => {
-                                                                return <button type="button" className="text-xs text-gray-600 font-semibold px-2 py-2 mr-2 mb-2 bg-gradient-to-tl from-white to-gray-200 rounded border bg-opacity-50 hover:text-green-500 active:text-green-500 focus:text-green-500 focus-within:text-green-500 focus-within:bg-opacity-100" key={index1} onClick={() => {
+                                                                return <button type="button" className="text-xs text-gray-600 font-semibold px-0 py-2 mr-2 mb-2 bg-gradient-to-tl from-white to-gray-200 rounded border bg-opacity-50 hover:text-green-500 active:text-green-500 focus:text-green-500 focus-within:text-green-500 focus-within:bg-opacity-100" key={index1} onClick={() => {
                                                                     { formik.setFieldValue('maRap', item.maCumRap) }
                                                                     { formik.setFieldValue('ngayChieuGioChieu', ngayChieu + ' ' + time.value) }
                                                                 }}>
@@ -239,27 +240,29 @@ export default function ShowTime(props) {
                         Ok
                     </button>,
                 ]}
+                className="rounded-lg"
             >
-                <div className="h-full w-full flex items-center border-gray-200 border p-4 rounded-lg">
+                <div className="h-full w-full flex items-center">
                     <img
                         alt="team"
-                        className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
+                        className="w-1/3 bg-gray-100 object-cover object-center flex-shrink-0 rounded mr-4"
                         src={film.hinhAnh}
                     />
                     <div className="flex-grow">
-                        <h2 className="text-gray-900 title-font font-medium">
+                        <h2 className="text-gray-900 title-font font-medium md:text-lg">
                             {film.tenPhim}
                         </h2>
-                        <p className="text-gray-500">
+                        <p className="text-gray-500 text-xs md:text-base">
                             Ngày chiếu, giờ chiếu: {formik.values.ngayChieuGioChieu}
                         </p>
-                        <p className="text-gray-500">
-                            Giá vé: {formik.values.giaVe} VND
+                        <p className="text-gray-500 text-xs md:text-base">
+                            Giá vé: {formik.values.giaVe + ' VND'}
+                            {formik.touched.giaVe && formik.errors.giaVe ? <p className="text-red-500 text-xs md:text-base italic">{formik.errors.giaVe}</p> : ''}
                         </p>
-                        <p className="text-gray-500">
+                        <p className="text-gray-500 text-xs md:text-base">
                             Địa điểm: {state.cumRapChieu.find(rap => rap.maCumRap === formik.values.maRap)?.diaChi}
                         </p>
-                        <p className="text-gray-500">
+                        <p className="text-gray-500 text-xs md:text-base">
                             Tên rạp: {state.cumRapChieu.find(rap => rap.maCumRap === formik.values.maRap)?.tenCumRap}
                         </p>
                     </div>
