@@ -43,7 +43,6 @@ function App() {
       <Switch>
         <HomeTemplate path="/home" component={Home} />
         <HomeTemplate path="/detail/:id" exact component={Detail} />
-        {/* <HomeTemplate exact path="/baitaptonghop" component={BaiTapTongHop} /> */}
         <CheckoutTemplate path="/checkout/:id" exact component={Checkout} />
         <UserTemplate path="/login" exact Component={Login} />
         <UserTemplate path="/register" exact Component={Register} />

@@ -1,5 +1,4 @@
 import React from "react";
-import { history } from '../../App'
 import { Rate } from 'antd';
 import { useDispatch } from 'react-redux';
 import { SET_VIDEO_MODAL } from "../../redux/types/MovieType";
@@ -11,57 +10,47 @@ export default function Film(props) {
   let stars = Number(item.danhGia) / 2;
   const dispatch = useDispatch();
 
-
   return (
 
-    // <div className="max-w-sm rounded p-2 overflow-hidden cursor-pointer bg-gradient-to-br from-white to-gray-200" style={{ width: '235px', height: '440px', }} >
-<div className="rounded m-2 p-2 overflow-hidden cursor-pointer bg-gradient-to-br from-white to-gray-200" >
+    <div className="group xl:w-56 rounded m-2 p-2 overflow-hidden cursor-pointer">
 
-
-      <div className="h-60 lg:h-72 mx-auto rounded relative cursor-pointer" style={{
-        
+      <div className="relative h-60 lg:h-72 mx-auto rounded cursor-pointer" style={{
         backgroundImage: `url(${item.hinhAnh})`,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
       }}>
+
         <div className="film-point absolute top-1 right-1">
           {item.danhGia}
           <Rate disabled allowHalf="true" defaultValue={stars} style={{ fontSize: 8, }} />
         </div>
 
-        <div className="rounded opacity-0 hover:opacity-100 transition-all duration-200 flex items-center justify-center" style={{
-          position: 'relative',
-          top: '0',
-          zIndex: '0',
-          width: '100%',
-          height: '100%',
-          background: 'linear-gradient(to top,#000,transparent 100%)',
-        }} onClick={() => {
-          dispatch({
-            type: SET_VIDEO_MODAL,
-            isOpenModal: true,
-            modalTrailer: item.trailer
-          })
-        }}>
-
-          <button className="hover:opacity-70 absolute z-50">
+        <div className="absolute hidden group-hover:flex rounded w-full h-full top-0 left-0 bg-gradient-to-t from-black to-transparent items-center justify-center">
+          <button className="hover:opacity-70 z-50" onClick={() => {
+            dispatch({
+              type: SET_VIDEO_MODAL,
+              isOpenModal: true,
+              modalTrailer: item.trailer
+            })
+          }}>
             <img src="./img/play-video.png" alt="..." width={50} height={50} />
           </button>
-
         </div>
-
       </div>
-      <div className="px-4 py-2 h-28" onClick={() => {
-        history.push(`/detail/${item.maPhim}`)
-      }}>
-        <NavLink to={`/detail/${item.maPhim}`} className="font-bold text-sm capitalize h-12 line-clamp-2 mb-2 hover:text-black">
+
+      <div className="h-24 overflow-hidden">
+        <NavLink to={`/detail/${item.maPhim}`} className="group-hover:hidden group-hover:text-black font-bold text-sm capitalize my-2 line-clamp-2">
           <span className="bg-red-500 text-white leading-7 px-2 py-1 rounded-md mr-2">C18</span>
           {item.tenPhim}
         </NavLink>
-        <p className="text-gray-700 text-xs line-clamp-2">
+        <p className="text-gray-700 text-xs line-clamp-2 hidden group-hover:hidden">
           {item.moTa}
         </p>
+        <NavLink to={`/detail/${item.maPhim}`}
+          className="bg-red-500 text-white hover:text-white p-2 mt-2 rounded-md w-full text-lg text-center uppercase hidden group-hover:block">
+          Mua vé
+        </NavLink>
       </div>
     </div>
 

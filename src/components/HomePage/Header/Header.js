@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import {  Select } from "antd";
+import { Select } from "antd";
 //hook đa ngôn ngữ
 import { useTranslation } from "react-i18next";
-import _, { values } from "lodash";
+import _ from 'lodash';
 import { Fragment } from "react";
 import { useSelector } from "react-redux";
 import UserMenu from "../../../templates/AdminTemplate/partials/header/UserMenu";
@@ -123,17 +123,22 @@ export default function Header(props) {
             onChange={handleChange}
             className="ml-2 w-40 text-sm"
             style={{ border: 'none', outline: 'none' }}
+            suffixIcon={
+              <svg className="w-3 h-3 text-gray-400 fill-current" viewBox="0 0 12 12">
+                <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
+              </svg>
+            }
           >
             <Option value="eng">
-              <img src="./img/flags/555417.png" alt="..." width={28} className="inline mr-2" />
+              <img src="../../../img/flags/555417.png" alt="..." width={28} className="inline mr-2" />
               English
             </Option>
             <Option value="chi">
-              <img src="./img/flags/940194.png" alt="..." width={28} className="inline mr-2" />
+              <img src="../../../img/flags/940194.png" alt="..." width={28} className="inline mr-2" />
               Chinese
             </Option>
             <Option value="vi">
-              <img src="./img/flags/555515.png" alt="..." width={28} className="inline mr-2" />
+              <img src="../../../img/flags/555515.png" alt="..." width={28} className="inline mr-2" />
               Vietnamese
             </Option>
           </Select>

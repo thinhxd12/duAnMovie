@@ -60,7 +60,7 @@ export default function HomeCarousel(props) {
             <Slider {...settings}>
                 {arrImg.map((item, index) => {
                     return <div key={index}>
-                        <div style={{ ...contentStyle, backgroundImage: `url(${item.hinhAnh})` }} className="h-40v lg:h-60v">
+                        <div style={{ ...contentStyle, backgroundImage: `url(${item.hinhAnh})` }} className="md:h-40v lg:h-80v">
 
                             <div style={{
                                 position: 'relative',

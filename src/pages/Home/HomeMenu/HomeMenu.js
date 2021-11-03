@@ -18,7 +18,7 @@ export default function HomeMenu(props) {
 
     useEffect(() => {
         dispatch(layDanhSachPhimAction());
-    }, []);
+    }, [dispatch]);
 
 
     const arrButton = [
@@ -44,7 +44,7 @@ export default function HomeMenu(props) {
                 })
             }} />
             <div className="mx-auto md:w-5/6">
-            <MultipleRowSlick arrFilm={arrFilm} />
+                <MultipleRowSlick arrFilm={arrFilm} />
             </div>
         </div>
     )

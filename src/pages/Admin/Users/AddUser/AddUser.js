@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Field, useFormik } from 'formik'
+import {  useFormik } from 'formik'
 import * as Yup from 'yup'
 
 import { history } from '../../../../App';
@@ -14,16 +14,19 @@ export default function AddUser(prop) {
     arrLoaiNguoiDung: []
   })
 
-  useEffect(async () => {
-    try {
-      let result = await http.get(`/api/QuanLyNguoiDung/LayDanhSachLoaiNguoiDung`);
-      setState({
-        ...state, arrLoaiNguoiDung: result.data.content
-      })
-    } catch (error) {
-      console.log(error)
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        let result = await http.get(`/api/QuanLyNguoiDung/LayDanhSachLoaiNguoiDung`);
+        setState({
+          ...state, arrLoaiNguoiDung: result.data.content
+        })
+      } catch (error) {
+        console.log(error)
+      }
     }
-  }, [])
+    fetchData();
+  });
 
 
   const formik = useFormik({
@@ -52,9 +55,9 @@ export default function AddUser(prop) {
 
 
   return (
-    <div className="col-span-full xl:col-span-6">
-      <header className="flex justify-between px-5 py-4 border-b border-gray-100">
-        <h2 className="font-semibold text-gray-800 text-xl">Create Account</h2>
+    <div className="addUser col-span-full xl:col-span-6">
+      <header className="flex justify-between p-3 border-b border-gray-100">
+        <h2 className="font-semibold text-gray-800 text-lg">Create Account</h2>
         <button onClick={history.goBack} className="inline-flex items-center justify-center px-4 py-2 text-xs font-medium text-center text-indigo-100 border border-indigo-500 rounded-lg shadow-sm cursor-pointer hover:text-white bg-gradient-to-br from-purple-500 via-indigo-500 to-indigo-500">
           Go Back
           <i className="fas fa-chevron-circle-left fa-fw ml-1" />
@@ -143,7 +146,7 @@ export default function AddUser(prop) {
               Account Type
             </label>
             <div className="mt-1 relative rounded-md shadow-sm">
-              <select onChange={(e) => formik.setFieldValue('maLoaiNguoiDung',e.target.value)} className="block cursor-pointer shadow border border-orange-100 rounded w-full py-2 px-4 text-gray-700 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-orange-500 transition duration-500 ease-in-out">
+              <select onChange={(e) => formik.setFieldValue('maLoaiNguoiDung', e.target.value)} className="block cursor-pointer shadow border border-orange-100 rounded w-full py-2 px-4 text-gray-700 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-orange-500 transition duration-500 ease-in-out">
                 {state.arrLoaiNguoiDung.map((item, index) => {
                   return <option value={item.maLoaiNguoiDung} key={index} className="cursor-pointer">{item.tenLoai}</option>
                 })}
