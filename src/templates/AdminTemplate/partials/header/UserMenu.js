@@ -90,7 +90,7 @@ function UserMenu() {
           onBlur={() => setDropdownOpen(false)}
         >
           <div className="pt-0.5 pb-2 px-3 mb-1 border-b border-gray-200">
-            <div className="font-xs text-gray-800">{userLogin.taiKhoan}</div>
+            <NavLink to="/profile" className="font-xs text-gray-800">{userLogin.taiKhoan}</NavLink>
             <div className="text-xs text-gray-500 italic">{userLogin.maLoaiNguoiDung == 'QuanTri' ? 'Quản trị' : 'Khách hàng'}</div>
           </div>
           <ul>

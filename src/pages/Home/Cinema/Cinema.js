@@ -30,7 +30,7 @@ export default function Cinema(props) {
                                             <p className="text-gray-800 font-bold text-xs lg:text-sm">{cumRap.tenCumRap.length > 20 ? cumRap.tenCumRap.substr(0, 20) + '...' :cumRap.tenCumRap}</p>
                                             <p className="text-gray-500 text-xs lg:block hidden">{cumRap.diaChi.length > 40 ? cumRap.diaChi.substr(0, 40) + '...' : cumRap.diaChi}</p>
                                             <p className="text-gray-500 text-xs">{cumRap.diaChi.length > 20 ? cumRap.diaChi.substr(0, 20) + '...' : cumRap.diaChi}</p>
-                                            <NavLink to="/" className="text-xs" style={{ color: '#fa5238' }}>[chi tiết]</NavLink>
+                                            <a href="https://tix.vn/rap-chieu-phim/28-bhd-star-cineplex-icon-68" className="text-xs" style={{ color: '#fa5238' }}>[chi tiết]</a>
                                         </div>
                                     </div>}>
                                     <div style={{ height: '500px', overflow: 'auto' }}>

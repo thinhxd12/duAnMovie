@@ -30,6 +30,7 @@ import { ACCESS_TOKEN, USER_LOGIN } from "../../util/setting";
 import { NavLink } from "react-router-dom";
 import ChairOutlinedIcon from "@mui/icons-material/ChairOutlined";
 import ChairOutlined from "@mui/icons-material/ChairOutlined";
+import UserMenu from "../../templates/AdminTemplate/partials/header/UserMenu";
 
 function Checkout(props) {
   const { userLogin } = useSelector((state) => state.QuanLyNguoiDungReducer);
@@ -117,7 +118,7 @@ function Checkout(props) {
               const action = datGheAction(ghe, props.match.params.id);
               dispatch(action);
             }}
-            disabled = {ghe.daDat || classGheKhachDat !== ""}
+            disabled={ghe.daDat || classGheKhachDat !== ""}
             className={`ghe ${classGheVip} ${classGheDaDat} ${classGheDangDat} ${classGheDaDuocDat} ${classGheKhachDat} text-center`}
             key={index}
           >
@@ -144,8 +145,8 @@ function Checkout(props) {
 
   return (
     <div className="min-h-screen">
-      <div className="grid grid-cols-12">
-        <div className="col-span-9">
+      <div className="grid md:grid-cols-12">
+        <div className="md:col-span-9">
           <div className="flex flex-col items-center mt-5">
             <div
               className="bg-black w-4/5"
@@ -211,9 +212,9 @@ function Checkout(props) {
             </table>
           </div>
         </div>
-        <div className="col-span-3">
+        <div className="md:col-span-3">
           <h3 className="text-green-400 text-center text-2xl my-3">
-            BOOKING IMFORMATION
+            THÔNG TIN ĐẶT VÉ
           </h3>
           <hr />
           <h3 className="text-xl mt-3">{thongTinPhim.tenPhim}</h3>
@@ -252,11 +253,13 @@ function Checkout(props) {
             <hr />
           </div>
           <div className="flex justify-between">
-            <div className="font-semibold my-auto">Total Price:</div>
+            <div className="font-semibold my-auto">Thành Tiền:</div>
             <div className="text-3xl text-red-600">
-              {danhSachGheDangDat.reduce((tongTien, ghe, index) => {
-                return (tongTien += ghe.giaVe);
-              }, 0).toLocaleString()}
+              {danhSachGheDangDat
+                .reduce((tongTien, ghe, index) => {
+                  return (tongTien += ghe.giaVe);
+                }, 0)
+                .toLocaleString()}
               đ
             </div>
           </div>
@@ -308,28 +311,12 @@ export default function CheckoutTab(props) {
     <Fragment>
       {!_.isEmpty(userLogin) ? (
         <Fragment>
-          <button
-            onClick={() => {
-              history.push("/profile");
-            }}
-            className="text-xl"
-          >
-            <div className="ml-4 w-16 h-16 rounded-full bg-yellow-500 flex justify-center items-center capitalize text-white text-2xl mr-4">
-              {userLogin.taiKhoan.substr(0, 1)}
-            </div>
-            Hello! {userLogin.taiKhoan}
-          </button>
-          <button
-            onClick={() => {
-              localStorage.removeItem(USER_LOGIN);
-              localStorage.removeItem(ACCESS_TOKEN);
-              history.push("/home");
-              window.location.reload();
-            }}
-            className="text-blue-800"
-          >
-            Đăng xuất
-          </button>{" "}
+          <div className="flex items-center mt-4">
+            {/* <Help /> */}
+            {/*  Divider */}
+            <hr className="w-px h-6 bg-gray-200 mx-3" />
+            <UserMenu />
+          </div>
         </Fragment>
       ) : (
         ""

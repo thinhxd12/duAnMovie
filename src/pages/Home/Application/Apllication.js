@@ -19,8 +19,8 @@ export default function Application() {
         <div id="wrapHomeApp">
           <div id="homeApp">
             <div className="MaxWidth940">
-              <div className="grid grid-cols-2 md:grid-cols-2 container">
-                <div className="col-span-1 md:col-span-1 app_content_left">
+              <div className="grid grid-cols-12 md:grid-cols-2 container">
+                <div className="col-span-12 md:col-span-1 app_content_left">
                   <p className="app_textLeft">Ứng dụng tiện lợi dành cho</p>
                   <p className="app_textLeft">người yêu điện ảnh</p>
                   <br />
@@ -45,7 +45,7 @@ export default function Application() {
                     </a>
                   </p>
                 </div>
-                <div className="col-span-1 md:col-span-1 app_content_right">
+                <div className="col-span-12 md:col-span-1 app_content_right">
                   <img
                     className="phone_img"
                     src="./img/Footer/mobile.png"
