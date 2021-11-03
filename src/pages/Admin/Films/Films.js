@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
-import { Button, Table } from 'antd';
+import { Table } from 'antd';
 import { Input } from 'antd';
-import { AudioOutlined, EditOutlined, DeleteOutlined, CalendarOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
@@ -38,7 +37,21 @@ export default function Films(props) {
             sorter: (a, b) => a.maPhim - b.maPhim,
             sortDirections: ['descend', 'ascend'],
             width: '10%',
-            key: 1
+            key: 1,
+            className: 'text-xs md:text-sm',
+            ellipsis: true,
+            responsive: ["md"]
+        },
+        {
+            title: '#',
+            dataIndex: 'maPhim',
+            sorter: (a, b) => a.maPhim - b.maPhim,
+            sortDirections: ['descend', 'ascend'],
+            width: '20%',
+            key: 1,
+            className: 'text-xs md:text-sm',
+            ellipsis: true,
+            responsive: ["xs"]
         },
         {
             title: 'Image',
@@ -49,7 +62,10 @@ export default function Films(props) {
                 </Fragment>
             },
             width: '10%',
-            key: 2
+            key: 2,
+            className: 'text-xs md:text-sm',
+            ellipsis: true,
+            responsive: ["md"]
         },
         {
             title: 'Title',
@@ -64,8 +80,25 @@ export default function Films(props) {
             },
             sortDirections: ['descend', 'ascend'],
             with: '20%',
-            key: 3
-        }, {
+            key: 3,
+            className: 'text-xs md:text-sm',
+            responsive: ["md"]
+        },
+
+        {
+            title: "Movie",
+            render: (record) => (
+                <Fragment>
+                    <img src={record.hinhAnh} alt={record.tenPhim} width={50} height={50} onError={(e) => { e.target.onerror = null; e.target.src = "https://picsum.photos/50" }} />
+                    <br />
+                    <p className="text-xs">{record.tenPhim}</p>
+                </Fragment>
+            ),
+            width: '30%',
+            responsive: ["xs"]
+        },
+
+        {
             title: 'Description',
             dataIndex: 'moTa',
             render: (text, film, index) => {
@@ -82,43 +115,51 @@ export default function Films(props) {
                 return -1;
             },
             sortDirections: ['descend', 'ascend'],
-            width: '40%',
-            key: 4
+            width: '30%',
+            key: 4,
+            className: 'text-xs md:text-sm',
+            // ellipsis: true,
+            responsive: ["md","xs"]
         },
         {
             title: 'Actions',
             dataIndex: 'hanhDong',
             render: (text, film, index) => {
                 return <Fragment key={index}>
-                    <NavLink className="mr-2 text-2xl" to={`/admin/films/edit/${film.maPhim}`}><EditOutlined /></NavLink>
-                    <span className="mr-2 text-2xl text-red-500" style={{ cursor: 'pointer' }} onClick={() => {
+                    <NavLink className="mr-1 md:mr-2 text-base md:text-xl text-gray-600 hover:text-gray-800 transition-all ease-in duration-200" to={`/admin/films/edit/${film.maPhim}`}><i className="fa fa-edit"></i></NavLink>
+                    <button className="mr-1 md:mr-2 text-base md:text-xl text-gray-600 hover:text-red-500 transition-all ease-in duration-200" onClick={() => {
                         if (window.confirm('Bạn có muốn xoá phim ' + film.tenPhim)) {
                             // console.log(film.maPhim)
                             xoaPhimAction(film.maPhim);
                         }
                         dispatch(layDanhSachPhimAction());
-                    }}><DeleteOutlined /></span>
-                    <NavLink className="mr-2 text-2xl text-green-500" to={`/admin/films/showtime/${film.maPhim}`} onClick={() => {
+                    }}>
+                        <i className="fa fa-trash-alt"></i>
+                    </button>
+                    <NavLink className="text-base md:text-xl text-gray-600 hover:text-green-500 transition-all ease-in duration-200" to={`/admin/films/showtime/${film.maPhim}`} onClick={() => {
                         localStorage.setItem('filmParams', JSON.stringify(film))
-                    }}><CalendarOutlined /></NavLink>
+                    }}>
+                        <i className="fa fa-calendar-alt"></i>
+                    </NavLink>
 
                 </Fragment>
             },
-            width: '20%',
+            width: '30%',
             align: 'center',
-            key: 5
+            key: 5,
+            responsive: ["md","xs"]
         },
     ];
 
 
 
     return (
-        <div className="col-span-full xl:col-span-6">
-            <header className="flex justify-between px-5 py-4 border-b border-gray-100">
-                <h2 className="font-semibold text-gray-800 text-xl">Movie Management</h2>
-                <div className="flex items-center">
-                    <Search placeholder="Search movie" size="large" allowClear="true" onSearch={onSearch} style={{ width: 200, outline: 'none' }} />
-                    <button className="ml-2 inline-flex items-center justify-center px-4 py-2 text-xs font-medium text-center text-indigo-100 border border-indigo-500 rounded-lg shadow-sm cursor-pointer hover:text-white bg-gradient-to-br from-purple-500 via-indigo-500 to-indigo-500" onClick={() => {
+        <div className="films col-span-full xl:col-span-6">
+            <header className="flex-col items-start md:flex md:justify-between p-3 border-b border-gray-100">
+                <h2 className="font-semibold text-gray-800 text-lg mb-1 md:mb-0">Movie Management</h2>
+                <div className="flex flex-col md:flex-row md:items-center items-start">
+                    <Search placeholder="Search movie" size="middle" allowClear="true" onSearch={onSearch} style={{ width: 200, outline: 'none' }} />
+                    <button className="ml-0 md:ml-2 mt-2 md:mt-0 inline-flex items-center justify-center px-4 py-2 text-xs font-medium text-center text-indigo-100 border border-indigo-500 rounded-lg shadow-sm cursor-pointer hover:text-white bg-gradient-to-br from-purple-500 via-indigo-500 to-indigo-500" onClick={() => {
                         history.push('/admin/addfilm');
                     }}>
                         <svg className="mr-1 w-3 h-3 fill-current flex-shrink-0" viewBox="0 0 16 16">
@@ -128,7 +169,7 @@ export default function Films(props) {
                     </button>
                 </div>
             </header>
-            <div className="p-3 w-full">
+            <div className="w-full">
                 <Table columns={columns} dataSource={data} onChange={onChange} rowKey={uniqueId} />
             </div>
         </div>
