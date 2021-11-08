@@ -32,7 +32,7 @@ export default function Detail(props) {
       className="detail"
     >
       <CustomCard
-        style={{ paddingTop: 150, minHeight: "100vh" }}
+        className="min-h-screen"
         effectColor="#fff" // required
         color="#fff" // default color is white
         blur={10} // default blur value is 10px
@@ -40,19 +40,20 @@ export default function Detail(props) {
       >
         <div className="grid md:grid-cols-12 grid-cols-6 my-20">
           <div className="md:col-span-5 col-span-7 md:col-start-3">
-            <div className="grid grid-cols-3">
-              <img className="col-span-1" src={filmDetail.hinhAnh} alt="..." />
-              <div className="col-span-2 ml-5">
+            <div className="grid md:grid-cols-3 gap-4">
+              <img className="col-span-1 md:col-span-1 ml-5" src={filmDetail.hinhAnh} alt="..." />
+              <div className="col-span-2 md:col-span-2 ml-5 mt-2">
                 <p className="text-sm">
                   Ngày chiếu:{" "}
                   {moment(filmDetail.ngayKhoiChieu).format("DD.MM.YYYY")}
                 </p>
                 <p className="text-3xl mt-2">{filmDetail.tenPhim}</p>
-                <p className="mt-4">{filmDetail.moTa}</p>
+                <p>Mô tả:</p>
+                <p className="mt-2">{filmDetail.moTa}</p>
               </div>
             </div>
           </div>
-          <div className="col-span-4">
+          <div className="col-span-5 mt-4 ml-10">
             <div className="detail__rate">
               <div
                 className={`c100 p${filmDetail.danhGia * 10} big mx-auto`}
@@ -77,7 +78,7 @@ export default function Detail(props) {
           </div>
         </div>
 
-        <div className="mt-20 ml-72 w-2/3 container bg-white px-5 py-5">
+        <div className="mt-20 container mx-auto bg-white p-5">
           <Tabs defaultActiveKey="1" centered>
             <TabPane tab="Lịch chiếu" key="1">
               <div>

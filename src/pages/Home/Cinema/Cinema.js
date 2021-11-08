@@ -14,7 +14,7 @@ export default function Cinema(props) {
     }, [dispatch])
 
     return (
-        <div className="hidden xl:w-3/5 md:block lg:w-3/4 md:w-5/6 mx-auto my-10 cinema-tabs">
+        <div className="hidden 2xl:w-3/5 md:block lg:w-3/4 md:w-5/6 mx-auto my-10 cinema-tabs">
             <Tabs tabPosition="left">
                 {heThongRapChieu.map((heThongRapChieu, index) => {
                     return <TabPane key={index} tab={<img src={heThongRapChieu.logo} alt={heThongRapChieu.maHeThongRap} className="rounded-full" width={50} />}>
@@ -28,8 +28,8 @@ export default function Cinema(props) {
                                             <p className="text-gray-800 font-bold text-xs lg:text-sm lg:block hidden">{cumRap.tenCumRap.length > 30 ? cumRap.tenCumRap.substr(0, 30) + '...' :cumRap.tenCumRap}</p>
                                             <p className="text-gray-800 font-bold text-xs lg:text-sm lg:hidden block">{cumRap.tenCumRap.length > 20 ? cumRap.tenCumRap.substr(0, 20) + '...' :cumRap.tenCumRap}</p>
                                             <p className="text-gray-500 text-xs lg:block hidden">{cumRap.diaChi.length > 40 ? cumRap.diaChi.substr(0, 40) + '...' : cumRap.diaChi}</p>
-                                            <p className="text-gray-500 text-xs  lg:hidden block">{cumRap.diaChi.length > 20 ? cumRap.diaChi.substr(0, 20) + '...' : cumRap.diaChi}</p>
-                                            <NavLink to="/" className="text-xs" style={{ color: '#fa5238' }}>[chi tiết]</NavLink>
+                                            <p className="text-gray-500 text-xs">{cumRap.diaChi.length > 20 ? cumRap.diaChi.substr(0, 20) + '...' : cumRap.diaChi}</p>
+                                            <a href="https://tix.vn/rap-chieu-phim/28-bhd-star-cineplex-icon-68" className="text-xs" style={{ color: '#fa5238' }}>[chi tiết]</a>
                                         </div>
                                     </div>}>
                                     <div style={{ height: '500px', overflow: 'auto' }}>

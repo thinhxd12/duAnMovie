@@ -30,16 +30,18 @@ export default function Login(props) {
       className="lg:w-1/2 xl:max-w-screen-sm"
     >
       <div className="py-12 bg-indigo-100 lg:bg-white flex justify-center lg:justify-start lg:px-12">
-        <div className="cursor-pointer flex items-center justify-center">
+      <NavLink to="/">
+        <div className="flex items-center justify-center">
           <img
             src="https://i.imgur.com/lC22izJ.png"
             alt="logo"
             style={{ maxWidth: "40px" }}
           />
-          <span className="text-3xl font-bold ml-2 text-red-600">
+          <span className="text-xl font-bold text-red-600 ml-2">
             Movie Cybersoft
           </span>
         </div>
+        </NavLink>
       </div>
       <div className="mt-10 px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl">
         <h2

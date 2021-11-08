@@ -15,11 +15,13 @@
     "@mui/material": "^5.0.4",
     "@mui/styled-engine-sc": "^5.0.3",
     "@tailwindcss/line-clamp": "^0.2.2",
+    "@tailwindcss/postcss7-compat": "^2.2.17",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "@tsamantanis/react-glassmorphism": "^1.1.2",
     "antd": "^4.16.12",
+    "autoprefixer": "^9.8.8",
     "axios": "^0.21.1",
     "formik": "^2.2.9",
     "history": "^4.10.0",
@@ -29,6 +31,7 @@
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
     "node-sass": "^6.0.1",
+    "postcss": "^7.0.39",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-i18next": "^11.12.0",
@@ -71,8 +74,7 @@
     ]
   },
   "devDependencies": {
-    "autoprefixer": "^9.8.8",
-    "postcss": "^7.0.39",
+    "@types/autoprefixer": "^10.2.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
   }
 }

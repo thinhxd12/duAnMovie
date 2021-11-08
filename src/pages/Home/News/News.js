@@ -12,8 +12,8 @@ export default function News() {
     <div id="news" className="container">
       <Tabs defaultActiveKey="1" onChange={callback}>
         <TabPane tab="Điện Ảnh 24h" key="1">
-          <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
-            <div className="news__item col-span-1 md:col-span-1 ">
+          <div className="grid grid-cols-12 md:grid-cols-2 gap-4">
+            <div className="news__item col-span-12 md:col-span-1 ">
               <a
                 href="https://tix.vn/goc-dien-anh/7965-an-dinh-chac-nich-ngay-khoi-chieu-16-04-ly-hai-tung-clip-lat-mat-48h-dam-chat"
                 className="news__news"
@@ -35,7 +35,7 @@ export default function News() {
                 </div>
               </a>
             </div>
-            <div className="news__item col-span-1 md:col-span-1 ">
+            <div className="news__item col-span-12 md:col-span-1 ">
               <a
                 href="https://tix.vn/goc-dien-anh/7964-mortal-kombat-cuoc-chien-sinh-tu-goi-ten-nhung-phim-dien-anh-noi-tieng-duoc-chuyen-the-tu-cac-tua-game-dinh-dam"
                 className="news__news"
@@ -61,7 +61,7 @@ export default function News() {
             </div>
           </div>
           <div className="grid grid-cols-12 md:grid-cols-12 gap-4">
-            <div className="col-span-4 md:col-span-4 pl-0 pr-15">
+            <div className="col-span-12 md:col-span-4 pl-0 pr-15">
               <a
                 href="https://tix.vn/goc-dien-anh/7963-promising-young-woman-bong-hong-nuoc-anh-carey-mulligan-va-man-tra-thu-dan-ong-de-doi"
                 className="news__news"
@@ -84,7 +84,7 @@ export default function News() {
                 </div>
               </a>
             </div>
-            <div className="col-span-4 md:col-span-4 pl-0 pr-15">
+            <div className="col-span-12 md:col-span-4 pl-0 pr-15">
               <a
                 href="https://tix.vn/goc-dien-anh/7962-vua-dep-lai-vua-tai-nang-dan-sao-nam-cua-phim-ban-tay-diet-quy-dam-bao-don-tim-hoi-chi-em"
                 className="news__news"
@@ -107,7 +107,7 @@ export default function News() {
                 </div>
               </a>
             </div>
-            <div className="col-span-4 md:col-span-4 pl-0 pr-15">
+            <div className="col-span-12 md:col-span-4 pl-0 pr-15">
               <a
                 className="news__bonusNew"
                 href="https://tix.vn/goc-dien-anh/7961-khai-truong-rap-xin-gia-ngon-chuan-xi-tai-sai-gon"
@@ -189,8 +189,8 @@ export default function News() {
           </div>
         </TabPane>
         <TabPane tab="Review" key="2">
-          <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
-            <div className="news__item col-span-1 md:col-span-1">
+          <div className="grid grid-cols-12 md:grid-cols-2 gap-4">
+            <div className="news__item col-span-12 md:col-span-1">
               <a
                 href="https://tix.vn/goc-dien-anh/7964-mortal-kombat-cuoc-chien-sinh-tu-goi-ten-nhung-phim-dien-anh-noi-tieng-duoc-chuyen-the-tu-cac-tua-game-dinh-dam"
                 className="news__news"
@@ -214,7 +214,7 @@ export default function News() {
                 </div>
               </a>
             </div>
-            <div className="news__item col-span-1 md:col-span-1">
+            <div className="news__item col-span-12 md:col-span-1">
               <a
                 href="https://tix.vn/review/7946-review-dinh-thu-oan-khuat-ghost-of-war"
                 className="news__news"
@@ -237,7 +237,7 @@ export default function News() {
             </div>
           </div>
           <div className="grid grid-cols-12 md:grid-cols-12 gap-4">
-            <div className="col-span-4 md:col-span-4 pl-0 pr-15">
+            <div className="col-span-12 md:col-span-4 pl-0 pr-15">
               <a
                 href="https://tix.vn/goc-dien-anh/7963-promising-young-woman-bong-hong-nuoc-anh-carey-mulligan-va-man-tra-thu-dan-ong-de-doi"
                 className="news__news"
@@ -260,7 +260,7 @@ export default function News() {
                 </div>
               </a>
             </div>
-            <div className="col-span-4 md:col-span-4 pl-0 pr-15">
+            <div className="col-span-12 md:col-span-4 pl-0 pr-15">
               <a
                 href="https://tix.vn/goc-dien-anh/7962-vua-dep-lai-vua-tai-nang-dan-sao-nam-cua-phim-ban-tay-diet-quy-dam-bao-don-tim-hoi-chi-em"
                 className="news__news"
@@ -283,7 +283,7 @@ export default function News() {
                 </div>
               </a>
             </div>
-            <div className="col-span-4 md:col-span-4 pl-0 pr-15">
+            <div className="col-span-12 md:col-span-4 pl-0 pr-15">
               <a
                 className="news__bonusNew"
                 href="https://tix.vn/goc-dien-anh/7961-khai-truong-rap-xin-gia-ngon-chuan-xi-tai-sai-gon"
@@ -365,8 +365,8 @@ export default function News() {
           </div>
         </TabPane>
         <TabPane tab="Khuyến Mãi" key="3">
-          <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
-            <div className="news__item col-span-1 md:col-span-1">
+          <div className="grid grid-cols-12 md:grid-cols-2 gap-4">
+            <div className="news__item col-span-12 md:col-span-1">
               <a
                 href="https://tix.vn/khuyen-mai/7958-bhd-59k-ve-ca-tuan"
                 className="news__news"
@@ -386,7 +386,7 @@ export default function News() {
                 </div>
               </a>
             </div>
-            <div className="news__item col-span-1 md:col-span-1">
+            <div className="news__item col-span-12 md:col-span-1">
               <a
                 href="https://tix.vn/khuyen-mai/7955-tix-1k-ve-ngai-chi-gia-ve"
                 className="news__news"
@@ -407,7 +407,7 @@ export default function News() {
             </div>
           </div>
           <div className="grid grid-cols-12 md:grid-cols-12 gap-4">
-            <div className="col-span-4 md:col-span-4 pl-0 pr-15">
+            <div className="col-span-12 md:col-span-4 pl-0 pr-15">
               <a
                 href="https://tix.vn/goc-dien-anh/7963-promising-young-woman-bong-hong-nuoc-anh-carey-mulligan-va-man-tra-thu-dan-ong-de-doi"
                 className="news__news"
@@ -430,7 +430,7 @@ export default function News() {
                 </div>
               </a>
             </div>
-            <div className="col-span-4 md:col-span-4 pl-0 pr-15">
+            <div className="col-span-12 md:col-span-4 pl-0 pr-15">
               <a
                 href="https://tix.vn/goc-dien-anh/7962-vua-dep-lai-vua-tai-nang-dan-sao-nam-cua-phim-ban-tay-diet-quy-dam-bao-don-tim-hoi-chi-em"
                 className="news__news"
@@ -453,7 +453,7 @@ export default function News() {
                 </div>
               </a>
             </div>
-            <div className="col-span-4 md:col-span-4 pl-0 pr-15">
+            <div className="col-span-12 md:col-span-4 pl-0 pr-15">
               <a
                 className="news__bonusNew"
                 href="https://tix.vn/goc-dien-anh/7961-khai-truong-rap-xin-gia-ngon-chuan-xi-tai-sai-gon"

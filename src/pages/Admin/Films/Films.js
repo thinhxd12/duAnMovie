@@ -155,7 +155,7 @@ export default function Films(props) {
 
     return (
         <div className="films col-span-full xl:col-span-6">
-            <header className="flex-col items-start md:flex md:justify-between p-3 border-b border-gray-100">
+            <header className="flex flex-col items-start md:flex-row md:justify-between p-3 border-b border-gray-100">
                 <h2 className="font-semibold text-gray-800 text-lg mb-1 md:mb-0">Movie Management</h2>
                 <div className="flex flex-col md:flex-row md:items-center items-start">
                     <Search placeholder="Search movie" size="middle" allowClear="true" onSearch={onSearch} style={{ width: 200, outline: 'none' }} />

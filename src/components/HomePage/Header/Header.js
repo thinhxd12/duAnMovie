@@ -9,8 +9,6 @@ import { useSelector } from "react-redux";
 import UserMenu from "../../../templates/AdminTemplate/partials/header/UserMenu";
 const { Option } = Select;
 
-
-
 export default function Header(props) {
   const { userLogin } = useSelector((state) => state.QuanLyNguoiDungReducer);
   const [navbarOpen, setNavbarOpen] = useState(false);
@@ -20,16 +18,17 @@ export default function Header(props) {
   const handleChange = (value) => {
     i18n.changeLanguage(value);
   };
-  const [headerStyle, setHeaderStyle] = useState('lg:h-16 h-18');
+  const [headerStyle, setHeaderStyle] = useState("lg:h-16 h-18");
 
   useEffect(() => {
-
     window.onscroll = () => {
       const scrollCheck = window.scrollY;
       if (scrollCheck >= 200) {
-        setHeaderStyle('bg-gray-300 bg-opacity-80 backdrop-filter backdrop-blur-md h-18 text-black shadow-md')
-      } else setHeaderStyle('lg:h-16 h-18')
-    }
+        setHeaderStyle(
+          "bg-gray-300 bg-opacity-80 backdrop-filter backdrop-blur-md h-18 text-black shadow-md"
+        );
+      } else setHeaderStyle("lg:h-16 h-18");
+    };
   }, []);
 
   const renderLogin = () => {
@@ -37,23 +36,26 @@ export default function Header(props) {
       return (
         <Fragment>
           <i className="fa fa-user-circle mr-2 text-2xl"></i>
-          <NavLink to="/login" className="header-login">{t("signin")}</NavLink>
+          <NavLink to="/login" className="header-login">
+            {t("signin")}
+          </NavLink>
           <span>/</span>
-          <NavLink to="/register" className="header-login">{t("signup")}</NavLink>
+          <NavLink to="/register" className="header-login">
+            {t("signup")}
+          </NavLink>
         </Fragment>
       );
     }
-    return <UserMenu />
+    return <UserMenu />;
   };
 
   return (
-    <nav className={`header p-2 items-center justify-center flex sticky top-0 z-50 w-full bg-gray-200 transition-all duration-400 ease-in ${headerStyle}`}>
+    <nav
+      className={`header p-2 items-center justify-center flex sticky top-0 z-50 w-full bg-gray-200 transition-all duration-400 ease-in ${headerStyle}`}
+    >
       <div className="container px-4 mx-auto flex flex-col items-start justify-between lg:flex-row">
         <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
-          <NavLink
-            to="/"
-            className="header-brand"
-          >
+          <NavLink to="/" className="header-brand">
             <div className="flex items-center justify-center">
               <img
                 src="https://i.imgur.com/lC22izJ.png"
@@ -72,50 +74,34 @@ export default function Header(props) {
           </button>
         </div>
         <div
-          className={
-            "flex items-center" +
-            (navbarOpen ? " hidden" : " block")
-          }
+          className={"flex items-center" + (navbarOpen ? " hidden" : " block")}
         >
           <ul className="flex flex-col lg:flex-row list-none lg:flex">
             <li className="flex">
-              <a
-                href="/"
-                className="header-menu header-menu-active"
-              >
+              <a href="/" className="header-menu header-menu-active">
                 {t("homepage")}
               </a>
             </li>
             <li className="flex">
-              <a
-                href="/#footer"
-                className="header-menu "
-              >
+              <a href="/#footer" className="header-menu ">
                 {t("contact")}
               </a>
             </li>
             <li className="flex">
-              <a
-                href="/#news"
-                className="header-menu"
-              >
+              <a href="/#news" className="header-menu">
                 {t("news")}
               </a>
             </li>
             <li className="flex">
-              <a
-                href="/#application"
-                className="header-menu"
-              >
+              <a href="/#application" className="header-menu">
                 {t("application")}
               </a>
             </li>
           </ul>
         </div>
-        <div className={
-          "flex items-center" +
-          (navbarOpen ? " hidden" : " block")
-        }>
+        <div
+          className={"flex items-center" + (navbarOpen ? " hidden" : " block")}
+        >
           {renderLogin()}
 
           <Select
