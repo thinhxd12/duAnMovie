@@ -64,7 +64,7 @@ export default function Header(props) {
             alt="logo"
             style={{ maxWidth: "40px" }}
           />
-          <span className="text-xl font-bold ml-2">Movie Cybersoft</span>
+          <span className="block md:hidden lg:block text-xl font-bold ml-2">Movie Cybersoft</span>
         </div>
       </NavLink>
       <div className="flex md:hidden">
@@ -77,7 +77,7 @@ export default function Header(props) {
         </button>
       </div>
       <div className="toggle hidden w-full md:w-auto md:flex text-right text-bold mt-5 md:mt-0 border-t border-gray-700 md:border-none">
-        <ul className="flex flex-col items-end lg:flex-row list-none lg:flex">
+        <ul className="flex flex-col items-end md:flex-row list-none lg:flex">
           <li className="flex">
             <a href="/" className="header-menu header-menu-active">
               {t('homepage')}
@@ -130,9 +130,5 @@ export default function Header(props) {
         </div>
       </div>
     </nav>
-
-
-
-
   );
 }

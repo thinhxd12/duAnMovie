@@ -9,7 +9,7 @@
     &:hover {
       color: #fa5238;
     }
-    @apply px-3 py-2 flex items-center text-sm font-medium;
+    @apply px-3 py-2 flex text-center text-sm font-medium;
   }
   .header-menu-active {
     color: #fa5238;
@@ -26,6 +26,7 @@
     outline: none;
     box-shadow: none;
     text-align: center;
+    padding: 0;
   }
   .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input)
     .ant-select-selector {
