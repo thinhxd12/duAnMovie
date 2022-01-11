@@ -102,7 +102,7 @@ export default function AddFilm(prop) {
               Title
             </label>
             <div className="mt-1 relative rounded-md shadow-sm">
-              <input name="taiKhoan" onChange={formik.handleChange} className="block pr-10 shadow appearance-none border border-orange-100 rounded w-full py-2 px-4 text-gray-700 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-orange-500 transition duration-500 ease-in-out" />
+              <input name="tenPhim" onChange={formik.handleChange} className="block pr-10 shadow appearance-none border border-orange-100 rounded w-full py-2 px-4 text-gray-700 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-orange-500 transition duration-500 ease-in-out" />
             </div>
           </div>
           <div className="mb-5">
@@ -111,7 +111,7 @@ export default function AddFilm(prop) {
               Description
             </label>
             <div className="mt-1 relative rounded-md shadow-sm">
-              <input name="taiKhoan" onChange={formik.handleChange} className="block pr-10 shadow appearance-none border border-orange-100 rounded w-full py-2 px-4 text-gray-700 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-orange-500 transition duration-500 ease-in-out" />
+              <input name="moTa" onChange={formik.handleChange} className="block pr-10 shadow appearance-none border border-orange-100 rounded w-full py-2 px-4 text-gray-700 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-orange-500 transition duration-500 ease-in-out" />
             </div>
           </div>
           <div className="mb-5">
@@ -120,7 +120,7 @@ export default function AddFilm(prop) {
               Trailer
             </label>
             <div className="mt-1 relative rounded-md shadow-sm">
-              <input name="taiKhoan" onChange={formik.handleChange} className="block pr-10 shadow appearance-none border border-orange-100 rounded w-full py-2 px-4 text-gray-700 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-orange-500 transition duration-500 ease-in-out" />
+              <input name="trailer" onChange={formik.handleChange} className="block pr-10 shadow appearance-none border border-orange-100 rounded w-full py-2 px-4 text-gray-700 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-orange-500 transition duration-500 ease-in-out" />
             </div>
           </div>
           <div className="mb-5">

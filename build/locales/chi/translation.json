@@ -1,5 +1,9 @@
 {
     "hello": "你好",
     "signin": "登入",
-    "signup": "报名"
+    "signup": "报名",
+    "homepage":"主页",
+    "contact":"登入",
+    "news":"消息",
+    "application":"应用"
 }

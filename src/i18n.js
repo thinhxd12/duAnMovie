@@ -1,3 +1,38 @@
+// import i18n from "i18next";
+// import { reactI18nextModule } from "react-i18next";
+
+// import translationENG from '../public/locales/eng/translation.json';
+// import translationCHI from '../public/locales/chi/translation.json';
+// import translationVI from '../public/locales/vi/translation.json';
+
+// // the translations
+// const resources = {
+//   eng: {
+//     translation: translationENG
+//   },
+//   chi: {
+//     translation: translationCHI
+//   },
+//   vi: {
+//     translation: translationVI
+//   }
+// };
+
+// i18n
+//   .use(reactI18nextModule) // passes i18n down to react-i18next
+//   .init({
+//     resources,
+//     lng: "vi",
+
+//     keySeparator: false, // we do not use keys in form messages.welcome
+
+//     interpolation: {
+//       escapeValue: false // react already safes from xss
+//     }
+//   });
+
+// export default i18n;
+
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
@@ -20,9 +55,10 @@ i18n
   // init i18next
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
-    fallbackLng: 'en',
+    fallbackLng: 'vi',
+    lng:'vi',
     debug: true,
-    whiteLis: ['chi','en','vi'], //Liệt kê các ngôn ngự
+
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
     }

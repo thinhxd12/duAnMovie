@@ -5,7 +5,7 @@ export default function Footer(props) {
     const { heThongRapChieu } = useSelector(state => state.QuanLyRapReducer)
 
     return (
-        <footer className="bg-gray-200 backdrop-filter backdrop-blur-md text-black shadow-md">
+        <footer className="bg-gray-200 backdrop-filter backdrop-blur-md text-black shadow-md" id="footer">
             <div className="px-4 pt-4 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
                 <a className="lg:w-1/3 md:w-1/3 flex flex-col justify-center items-center lg:mt-6" href="/">
                     <img src="https://i.imgur.com/lC22izJ.png" alt="logo" style={{ maxWidth: '60px' }} />

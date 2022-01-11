@@ -9,6 +9,8 @@ import * as success from "../../success.json";
 import Application from "./Application/Apllication";
 import { Fragment } from "react";
 
+import { Parallax } from 'rc-scroll-anim';
+
 export default function Home() {
   const [state, setState] = useState({
     width: window.innerWidth,
@@ -80,10 +82,31 @@ export default function Home() {
     }
     return <Fragment>
       <HomeCarousel />
-      <HomeMenu />
-      <Cinema />
-      <News />
-      <Application />
+      <Parallax
+        animation={{ x: 0, opacity: 1, playScale: [0.2, 0.5] }}
+        style={{ transform: 'translateX(-150px)', opacity: 0 }}
+      >
+        <HomeMenu />
+      </Parallax>
+      <Parallax
+        animation={{ x: 0, opacity: 1, playScale: [0.2, 0.5] }}
+        style={{ transform: 'translateX(-150px)', opacity: 0 }}
+      >
+        <Cinema />
+      </Parallax>
+      <Parallax
+        animation={{ x: 0, opacity: 1, playScale: [0.2, 0.5] }}
+        style={{ transform: 'translateX(-150px)', opacity: 0 }}
+      >
+        <News />
+      </Parallax>
+      <Parallax
+        animation={{ x: 0, opacity: 1, playScale: [0.2, 0.5] }}
+        style={{ transform: 'translateX(-150px)', opacity: 0 }}
+      >
+        <Application />
+      </Parallax>
+
     </Fragment>
   }
 

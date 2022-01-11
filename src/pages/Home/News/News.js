@@ -24,11 +24,11 @@ export default function News() {
                   alt="news-movie"
                 />
                 <div className="py-3">
-                  <h4 className="card-title">
+                  <h4 className="font-bold text-sm capitalize mb-1">
                     Ấn định chắc nịch ngày khởi chiếu 16.04, Lý Hải tung clip
                     Lật Mặt: 48H đậm chất
                   </h4>
-                  <p className="text-secondary">
+                  <p className="text-xs">
                     Trước thềm khởi chiếu 16.04 này, Lý Hải bất ngờ tung clip
                     rượt đuổi gay cấn thót tim fans hâm mộ
                   </p>
@@ -46,11 +46,11 @@ export default function News() {
                   alt="news-movie"
                 />
                 <div className="py-3">
-                  <h4 className="card-title">
+                  <h4 className="font-bold text-sm capitalize mb-1">
                     [MORTAL KOMBAT: CUỘC CHIẾN SINH TỬ] - GỌI TÊN NHỮNG PHIM
                     ĐIỆN ẢNH NỔI...
                   </h4>
-                  <p className="text-secondary">
+                  <p className="text-xs">
                     Cư dân nơi khác đang sắp “gato nổ mắt” với dân Sài Thành khi
                     sắp tới đây thành phố HCM sẽ chào đón một rạp chiếu phim
                     mang phong cách Artistic Urban Lifestyle đầu tiên tại Việt
@@ -72,11 +72,11 @@ export default function News() {
                   alt="news-movie"
                 />
                 <div className="py-3">
-                  <h4 className="card-title">
+                  <h4 className="font-bold text-sm capitalize mb-1">
                     PROMISING YOUNG WOMAN | Bông hồng nước Anh Carey Mulligan và
                     màn trả thù...
                   </h4>
-                  <p className="text-secondary">
+                  <p className="text-xs">
                     Đề cử giải Oscar danh giá vừa gọi tên Carey Mulligan ở hạng
                     mục nữ chính xuất sắc nhất cho vai diễn "đẫm máu" nhất sự
                     nghiệp của cô trong phim
@@ -95,7 +95,7 @@ export default function News() {
                   alt="news-movie"
                 />
                 <div className="py-3">
-                  <h4 className="card-title">
+                  <h4 className="font-bold text-sm capitalize mb-1">
                     VỪA ĐẸP LẠI VỪA TÀI NĂNG, DÀN SAO NAM CỦA PHIM “BÀN TAY DIỆT
                     QUỶ”...
                   </h4>
@@ -121,7 +121,7 @@ export default function News() {
                     />
                   </div>
                   <div className="col-span-9 md:col-span-9">
-                    <h6 className="text-secondary">
+                    <h6 className="text-xs font-semibold ml-2">
                       Khai trương rạp xịn giá ngon, chuẩn xì-tai Sài Gòn
                     </h6>
                   </div>
@@ -140,7 +140,7 @@ export default function News() {
                     />
                   </div>
                   <div className="col-span-9 md:col-span-9">
-                    <h6 className="text-secondary">
+                    <h6 className="text-xs font-semibold ml-2">
                       “Bóc tem” tổ hợp giải trí mới toanh của giới Hà Thành
                     </h6>
                   </div>
@@ -159,7 +159,7 @@ export default function News() {
                     />
                   </div>
                   <div className="col-span-9 md:col-span-9">
-                    <h6 className="text-secondary">
+                    <h6 className="text-xs font-semibold ml-2">
                       Tiệc Trăng Máu chính thức cán mốc 100 tỷ chỉ sau 2 tuần
                       công
                     </h6>
@@ -179,8 +179,8 @@ export default function News() {
                     />
                   </div>
                   <div className="col-span-9 md:col-span-9">
-                    <h6 className="text-secondary">
-                      NGÔ THANH VÂN CHÍNH THỨC KHỞI ĐỘNG CUỘC THI THIẾT
+                    <h6 className="text-xs font-semibold ml-2">
+                    Ngô thanh vân chính thức khởI động cuộc thi thiết
                     </h6>
                   </div>
                 </div>
@@ -205,7 +205,7 @@ export default function News() {
                     [MORTAL KOMBAT: CUỘC CHIẾN SINH TỬ] - GỌI TÊN NHỮNG PHIM
                     ĐIỆN ẢNH NỔI...
                   </h4>
-                  <p className="text-secondary">
+                  <p className="text-xs">
                     Cư dân nơi khác đang sắp “gato nổ mắt” với dân Sài Thành khi
                     sắp tới đây thành phố HCM sẽ chào đón một rạp chiếu phim
                     mang phong cách Artistic Urban Lifestyle đầu tiên tại Việt
@@ -228,7 +228,7 @@ export default function News() {
                   <h4 className="card-title">
                     Review: Dinh Thự Oan Khuất (Ghost Of War)
                   </h4>
-                  <p className="text-secondary">
+                  <p className="text-xs">
                     Tuy là một bộ phim có chất lượng tốt, nhưng có vẻ Dinh Thự
                     Oan Khuất vẫn chưa đủ để đem khán giả trở lại phòng vé!
                   </p>
@@ -252,7 +252,7 @@ export default function News() {
                     PROMISING YOUNG WOMAN | Bông hồng nước Anh Carey Mulligan và
                     màn trả thù...
                   </h4>
-                  <p className="text-secondary">
+                  <p className="text-xs">
                     Đề cử giải Oscar danh giá vừa gọi tên Carey Mulligan ở hạng
                     mục nữ chính xuất sắc nhất cho vai diễn "đẫm máu" nhất sự
                     nghiệp của cô trong phim
@@ -275,7 +275,7 @@ export default function News() {
                     VỪA ĐẸP LẠI VỪA TÀI NĂNG, DÀN SAO NAM CỦA PHIM “BÀN TAY DIỆT
                     QUỶ”...
                   </h4>
-                  <p className="text-secondary">
+                  <p className="text-xs">
                     Quy tụ 3 nam tài tử vừa điển trai, vừa được đánh giá cao về
                     năng lực diễn xuất là Park Seo Joon, Woo Do Hwan và Choi Woo
                     Sik, tác phẩm kinh dị – hành
@@ -297,7 +297,7 @@ export default function News() {
                     />
                   </div>
                   <div className="col-span-9 md:col-span-9">
-                    <h6 className="text-secondary">
+                    <h6 className="text-xs">
                       Khai trương rạp xịn giá ngon, chuẩn xì-tai Sài Gòn
                     </h6>
                   </div>
@@ -316,7 +316,7 @@ export default function News() {
                     />
                   </div>
                   <div className="col-span-9 md:col-span-9">
-                    <h6 className="text-secondary">
+                    <h6 className="text-xs">
                       “Bóc tem” tổ hợp giải trí mới toanh của giới Hà Thành
                     </h6>
                   </div>
@@ -335,7 +335,7 @@ export default function News() {
                     />
                   </div>
                   <div className="col-span-9 md:col-span-9">
-                    <h6 className="text-secondary">
+                    <h6 className="text-xs">
                       Tiệc Trăng Máu chính thức cán mốc 100 tỷ chỉ sau 2 tuần
                       công
                     </h6>
@@ -355,7 +355,7 @@ export default function News() {
                     />
                   </div>
                   <div className="col-span-9 md:col-span-9">
-                    <h6 className="text-secondary">
+                    <h6 className="text-xs">
                       NGÔ THANH VÂN CHÍNH THỨC KHỞI ĐỘNG CUỘC THI THIẾT
                     </h6>
                   </div>
@@ -379,7 +379,7 @@ export default function News() {
 
                 <div className="py-3">
                   <h4 className="card-title">BHD 59K/VÉ CẢ TUẦN !!!</h4>
-                  <p className="text-secondary">
+                  <p className="text-xs">
                     Tận hưởng Ưu Đãi lên đến 3 VÉ BHD Star mỗi tuần chỉ với giá
                     59k/vé khi mua vé trên TIX hoặc Mục Vé Phim trên ZaloPay.
                   </p>
@@ -398,7 +398,7 @@ export default function News() {
                 />
                 <div className="py-3">
                   <h4 className="card-title">TIX 1K/VÉ NGẠI CHI GIÁ VÉ</h4>
-                  <p className="text-secondary">
+                  <p className="text-xs">
                     Đồng giá 1k/vé cả tuần tất cả các rạp trên TIX + Nhận thêm
                     02 voucher thanh toán ZaloPay thả ga
                   </p>
@@ -422,7 +422,7 @@ export default function News() {
                     PROMISING YOUNG WOMAN | Bông hồng nước Anh Carey Mulligan và
                     màn trả thù...
                   </h4>
-                  <p className="text-secondary">
+                  <p className="text-xs">
                     Đề cử giải Oscar danh giá vừa gọi tên Carey Mulligan ở hạng
                     mục nữ chính xuất sắc nhất cho vai diễn "đẫm máu" nhất sự
                     nghiệp của cô trong phim
@@ -445,7 +445,7 @@ export default function News() {
                     VỪA ĐẸP LẠI VỪA TÀI NĂNG, DÀN SAO NAM CỦA PHIM “BÀN TAY DIỆT
                     QUỶ”...
                   </h4>
-                  <p className="text-secondary">
+                  <p className="text-xs">
                     Quy tụ 3 nam tài tử vừa điển trai, vừa được đánh giá cao về
                     năng lực diễn xuất là Park Seo Joon, Woo Do Hwan và Choi Woo
                     Sik, tác phẩm kinh dị – hành
@@ -467,7 +467,7 @@ export default function News() {
                     />
                   </div>
                   <div className="col-span-9 md:col-span-9">
-                    <h6 className="text-secondary">
+                    <h6 className="text-xs">
                       Khai trương rạp xịn giá ngon, chuẩn xì-tai Sài Gòn
                     </h6>
                   </div>
@@ -486,7 +486,7 @@ export default function News() {
                     />
                   </div>
                   <div className="col-span-9 md:col-span-9">
-                    <h6 className="text-secondary">
+                    <h6 className="text-xs">
                       “Bóc tem” tổ hợp giải trí mới toanh của giới Hà Thành
                     </h6>
                   </div>
@@ -505,7 +505,7 @@ export default function News() {
                     />
                   </div>
                   <div className="col-span-9 md:col-span-9">
-                    <h6 className="text-secondary">
+                    <h6 className="text-xs">
                       Tiệc Trăng Máu chính thức cán mốc 100 tỷ chỉ sau 2 tuần
                       công
                     </h6>
@@ -525,7 +525,7 @@ export default function News() {
                     />
                   </div>
                   <div className="col-span-9 md:col-span-9">
-                    <h6 className="text-secondary">
+                    <h6 className="text-xs">
                       NGÔ THANH VÂN CHÍNH THỨC KHỞI ĐỘNG CUỘC THI THIẾT
                     </h6>
                   </div>

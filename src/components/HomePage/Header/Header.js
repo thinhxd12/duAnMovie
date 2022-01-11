@@ -11,8 +11,6 @@ const { Option } = Select;
 
 export default function Header(props) {
   const { userLogin } = useSelector((state) => state.QuanLyNguoiDungReducer);
-  const [navbarOpen, setNavbarOpen] = useState(false);
-
   const { t, i18n } = useTranslation();
 
   const handleChange = (value) => {
@@ -48,62 +46,63 @@ export default function Header(props) {
     }
     return <UserMenu />;
   };
+  function toggleMenu() {
+    const navToggle = document.getElementsByClassName("toggle");
+    for (let i = 0; i < navToggle.length; i++) {
+      navToggle.item(i).classList.toggle("hidden");
+    }
+  }
 
   return (
     <nav
-      className={`header p-2 items-center justify-center flex sticky top-0 z-50 w-full bg-gray-200 transition-all duration-400 ease-in ${headerStyle}`}
+      className={`header flex flex-wrap items-center justify-between py-2 px-5 sticky top-0 z-50 w-full bg-gray-200 transition-all duration-400 ease-in ${headerStyle}`}
     >
-      <div className="container px-4 mx-auto flex flex-col items-start justify-between lg:flex-row">
-        <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
-          <NavLink to="/" className="header-brand">
-            <div className="flex items-center justify-center">
-              <img
-                src="https://i.imgur.com/lC22izJ.png"
-                alt="logo"
-                style={{ maxWidth: "40px" }}
-              />
-              <span className="text-xl font-bold ml-2">Movie Cybersoft</span>
-            </div>
-          </NavLink>
-          <button
-            className="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
-            type="button"
-            onClick={() => setNavbarOpen(!navbarOpen)}
-          >
-            <i className="fas fa-bars"></i>
-          </button>
+      <NavLink to="/" className="header-brand">
+        <div className="flex items-center justify-center">
+          <img
+            src="https:i.imgur.com/lC22izJ.png"
+            alt="logo"
+            style={{ maxWidth: "40px" }}
+          />
+          <span className="text-xl font-bold ml-2">Movie Cybersoft</span>
         </div>
-        <div
-          className={"flex items-center" + (navbarOpen ? " hidden" : " block")}
+      </NavLink>
+      <div className="flex md:hidden">
+        <button
+          className="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+          type="button"
+          onClick={toggleMenu}
         >
-          <ul className="flex flex-col lg:flex-row list-none lg:flex">
-            <li className="flex">
-              <a href="/" className="header-menu header-menu-active">
-                {t("homepage")}
-              </a>
-            </li>
-            <li className="flex">
-              <a href="/#footer" className="header-menu ">
-                {t("contact")}
-              </a>
-            </li>
-            <li className="flex">
-              <a href="/#news" className="header-menu">
-                {t("news")}
-              </a>
-            </li>
-            <li className="flex">
-              <a href="/#application" className="header-menu">
-                {t("application")}
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div
-          className={"flex items-center" + (navbarOpen ? " hidden" : " block")}
-        >
+          <i className="fas fa-bars"></i>
+        </button>
+      </div>
+      <div className="toggle hidden w-full md:w-auto md:flex text-right text-bold mt-5 md:mt-0 border-t border-gray-700 md:border-none">
+        <ul className="flex flex-col items-end lg:flex-row list-none lg:flex">
+          <li className="flex">
+            <a href="/" className="header-menu header-menu-active">
+              {t('homepage')}
+            </a>
+          </li>
+          <li className="flex">
+            <a href="/#footer" className="header-menu">
+              {t("contact")}
+            </a>
+          </li>
+          <li className="flex">
+            <a href="/#news" className="header-menu">
+              {t("news")}
+            </a>
+          </li>
+          <li className="flex">
+            <a href="/#application" className="header-menu">
+              {t("application")}
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div className="toggle hidden md:flex w-full md:w-auto md:items-center px-4 py-2">
+        <div className="flex items-center justify-end">
           {renderLogin()}
-
           <Select
             defaultValue="vi"
             onChange={handleChange}
@@ -131,5 +130,9 @@ export default function Header(props) {
         </div>
       </div>
     </nav>
+
+
+
+
   );
 }

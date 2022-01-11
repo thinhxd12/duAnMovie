@@ -69,7 +69,9 @@
       
     }
     @include Responsive(md){
-      
+        #wrapHomeApp {
+            #homeApp {
+                padding: 20px 0 80px 0;}}
         
     }
     @include Responsive(sm){
